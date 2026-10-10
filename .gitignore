@@ -23,3 +23,5 @@ __pycache__/
 
 # Scratch & temp files
 scratch/
+
+.vercel
