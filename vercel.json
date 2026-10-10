@@ -11,8 +11,8 @@
     { "source": "/engage", "destination": "/engage.html" },
     { "source": "/ambassador-program", "destination": "/ambassador-program/index.html" },
     { "source": "/business-directory", "destination": "/business-directory/index.html" },
-    { "source": "/blog/:slug", "destination": "/blog-detail.html" },
-    { "source": "/books/:slug", "destination": "/book-detail.html" }
+    { "source": "/blog", "destination": "/blog/index.html" },
+    { "source": "/books", "destination": "/books/index.html" }
   ],
   "headers": [
     {

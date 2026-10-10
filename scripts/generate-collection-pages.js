@@ -323,7 +323,7 @@ const blogContent = `
       </div>
 
       <div class="grid-3">
-        ${articles.slice(0, 30).map(a => `
+        ${articles.map(a => `
           <div class="card filterable-item" data-category="${esc(a.title.toLowerCase())}">
             ${a.localImage ? `
               <div class="card-media">
@@ -332,36 +332,36 @@ const blogContent = `
             ` : ''}
             <span class="badge badge-blue" style="width: fit-content; margin-bottom: 8px;">Analysis</span>
             <h3 class="card-title">
-              <a href="/blog-detail.html?slug=${a.slug}">${esc(a.title)}</a>
+              <a href="/blog/${a.slug}">${esc(a.title)}</a>
             </h3>
             <p class="card-body">
-              ${esc(a.excerpt || 'Practical executive analysis and market perspectives from the Allied Muslim Chamber of Business.')}
+              ${esc(a.excerpt || a.lead || 'Practical executive analysis and market perspectives from the Allied Muslim Chamber of Business.')}
             </p>
             <div class="card-footer">
               <span style="font-size: 13px; color: var(--text-muted);">AMCOB Editorial</span>
-              <a href="/blog-detail.html?slug=${a.slug}" class="btn btn-outline btn-sm">Read Article &rarr;</a>
+              <a href="/blog/${a.slug}" class="btn btn-outline btn-sm">Read Article &rarr;</a>
             </div>
           </div>
         `).join('')}
       </div>
-
-      ${articles.length > 30 ? `
-        <div style="margin-top: 48px; text-align: center;">
-          <p style="font-size: 14.5px; color: var(--text-muted); margin-bottom: 16px;">Displaying 30 of ${articles.length} thought leadership articles.</p>
-        </div>
-      ` : ''}
     </div>
   </section>
 `;
 
-fs.writeFileSync('blog.html', renderLayout({
+const renderedBlog = renderLayout({
   title: 'Editorial & Strategic Insights | 190 In-Depth Articles',
   description: 'Explore AMCOB thought leadership articles covering American Muslim business growth, executive leadership, and commercial scaling.',
   activeNav: 'blog',
   breadcrumbs: [{ label: 'Editorial', url: '/blog' }],
   content: blogContent
-}));
-console.log('Generated blog.html');
+});
+
+fs.writeFileSync('blog.html', renderedBlog);
+if (!fs.existsSync('blog')) {
+  fs.mkdirSync('blog', { recursive: true });
+}
+fs.writeFileSync(path.join('blog', 'index.html'), renderedBlog);
+console.log('Generated blog.html and blog/index.html');
 
 // 4. Blog Detail Template (blog-detail.html)
 const blogDetailContent = `
@@ -487,14 +487,14 @@ const booksContent = `
               </div>
             `}
             <h3 style="font-size: 15.5px; font-weight: 700; color: var(--brand-navy); margin-bottom: 4px; line-height: 1.3;">
-              <a href="/book-detail.html?slug=${bk.slug}">${esc(bk.title)}</a>
+              <a href="/books/${bk.slug}">${esc(bk.title)}</a>
             </h3>
             <p style="font-size: 12.5px; color: var(--brand-gold); font-weight: 600; margin-bottom: 10px;">${esc(bk.author || 'Executive Summary')}</p>
             <p class="card-body" style="font-size: 13px; line-height: 1.5; color: var(--text-body); margin-bottom: 14px;">
-              ${esc(bk.description || 'Comprehensive executive synthesis and strategic takeaways.')}
+              ${esc(bk.description || bk.lead || 'Comprehensive executive synthesis and strategic takeaways.')}
             </p>
             <div class="card-footer" style="padding-top: 10px;">
-              <a href="/book-detail.html?slug=${bk.slug}" class="btn btn-outline btn-sm" style="width: 100%; text-align: center;">Read Summary &rarr;</a>
+              <a href="/books/${bk.slug}" class="btn btn-outline btn-sm" style="width: 100%; text-align: center;">Read Summary &rarr;</a>
             </div>
           </div>
         `).join('')}
@@ -503,14 +503,20 @@ const booksContent = `
   </section>
 `;
 
-fs.writeFileSync('books.html', renderLayout({
+const renderedBooks = renderLayout({
   title: 'Executive Library | 64 Business Book Summaries',
   description: 'Curated executive syntheses of 64 influential management, leadership, and strategy books for business owners.',
   activeNav: 'books',
   breadcrumbs: [{ label: 'Executive Library', url: '/books' }],
   content: booksContent
-}));
-console.log('Generated books.html');
+});
+
+fs.writeFileSync('books.html', renderedBooks);
+if (!fs.existsSync('books')) {
+  fs.mkdirSync('books', { recursive: true });
+}
+fs.writeFileSync(path.join('books', 'index.html'), renderedBooks);
+console.log('Generated books.html and books/index.html');
 
 // 6. Book Detail Template (book-detail.html)
 const bookDetailContent = `

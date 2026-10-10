@@ -40,13 +40,6 @@ const server = http.createServer((req, res) => {
     reqPath = aliases[reqPath];
   }
 
-  // Handle dynamic collection detail routing (fallback for non-static routes)
-  if (reqPath.startsWith('/blog/') && reqPath !== '/blog/' && !reqPath.endsWith('.html') && !reqPath.endsWith('.png') && !reqPath.endsWith('.jpg') && !reqPath.endsWith('.webp')) {
-    reqPath = '/blog-detail.html';
-  } else if (reqPath.startsWith('/books/') && reqPath !== '/books/' && !reqPath.endsWith('.html') && !reqPath.endsWith('.png') && !reqPath.endsWith('.jpg') && !reqPath.endsWith('.webp')) {
-    reqPath = '/book-detail.html';
-  }
-
   let filePath = path.join(rootDir, reqPath);
 
   // Security check: ensure path is within rootDir
