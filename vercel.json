@@ -10,7 +10,7 @@
     { "source": "/networking-events-podcasts", "destination": "/networking-events-podcasts.html" },
     { "source": "/engage", "destination": "/engage.html" },
     { "source": "/ambassador-program", "destination": "/ambassador-program/index.html" },
-    { "source": "/business-directory/:slug", "destination": "/business-directory-detail.html" },
+    { "source": "/business-directory", "destination": "/business-directory/index.html" },
     { "source": "/blog/:slug", "destination": "/blog-detail.html" },
     { "source": "/books/:slug", "destination": "/book-detail.html" }
   ],

@@ -272,20 +272,23 @@ a {
 }
 
 .breadcrumbs a {
-  color: var(--text-muted);
+  color: #475569 !important;
+  font-weight: 500;
 }
 
 .breadcrumbs a:hover {
-  color: var(--brand-navy);
+  color: var(--brand-navy) !important;
+  text-decoration: underline;
 }
 
 .breadcrumbs-sep {
-  color: var(--border-medium);
+  color: #94a3b8 !important;
+  margin: 0 2px;
 }
 
 .breadcrumbs-current {
-  color: var(--text-main);
-  font-weight: 500;
+  color: var(--brand-navy) !important;
+  font-weight: 700;
 }
 
 /* Page Hero */

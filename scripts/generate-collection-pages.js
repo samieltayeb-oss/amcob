@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const { renderLayout, businesses, articles, books, esc } = require('./site-layout');
 
 // 1. Master Business Directory (business-directory.html)
@@ -91,7 +92,7 @@ const directoryContent = `
               <div style="overflow: hidden;">
                 <span class="badge" style="font-size: 11px; margin-bottom: 4px;">${esc(b.category)}</span>
                 <h3 style="font-size: 16px; font-weight: 650; color: var(--brand-navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;">
-                  <a href="/business-directory-detail.html?slug=${b.slug}">${esc(b.name)}</a>
+                  <a href="/business-directory/${b.slug}">${esc(b.name)}</a>
                 </h3>
               </div>
             </div>
@@ -102,23 +103,81 @@ const directoryContent = `
 
             <div class="card-footer">
               <span style="font-size: 12px; color: var(--brand-emerald); font-weight: 600;">&#10003; Verified Member</span>
-              <a href="/business-directory-detail.html?slug=${b.slug}" class="btn btn-outline btn-sm">View Profile &rarr;</a>
+              <a href="/business-directory/${b.slug}" class="btn btn-outline btn-sm">View Profile &rarr;</a>
             </div>
           </div>
         `).join('')}
       </div>
     </div>
   </section>
+
+  <!-- Built for the Community Section -->
+  <section style="background: #ffffff; padding: 56px 0 36px 0; border-bottom: 1px solid var(--border-light);">
+    <div class="container" style="max-width: 1040px; margin: 0 auto;">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 36px auto;">
+        <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand-gold);">Ecosystem Value</span>
+        <h2 style="font-size: 32px; font-weight: 800; color: var(--brand-navy); margin-top: 6px; margin-bottom: 12px; font-family: var(--font-serif);">Built for the Community</h2>
+        <p style="font-size: 15.5px; line-height: 1.65; color: var(--text-muted); margin: 0 auto;">
+          Whether you are searching for trusted businesses or growing your own, the AMCOB directory connects both sides of the ecosystem.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;">
+        <div style="background: #fdfbf7; border: 1px solid rgba(212,175,55,0.25); border-radius: 14px; padding: 32px; display: flex; flex-direction: column;">
+          <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(212,175,55,0.15); display: flex; align-items: center; justify-content: center; color: var(--brand-gold); font-size: 20px; margin-bottom: 18px;">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3 style="font-size: 20px; font-weight: 700; color: var(--brand-navy); margin-bottom: 10px; font-family: var(--font-serif);">For consumers</h3>
+          <p style="font-size: 14px; line-height: 1.65; color: var(--text-body); margin: 0;">
+            Find Muslim-owned businesses across every industry. Search by category, location, or specialty: and keep your dollars circulating within the community you trust.
+          </p>
+        </div>
+
+        <div style="background: #fdfbf7; border: 1px solid rgba(212,175,55,0.25); border-radius: 14px; padding: 32px; display: flex; flex-direction: column;">
+          <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(212,175,55,0.15); display: flex; align-items: center; justify-content: center; color: var(--brand-gold); font-size: 20px; margin-bottom: 18px;">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3 style="font-size: 20px; font-weight: 700; color: var(--brand-navy); margin-bottom: 10px; font-family: var(--font-serif);">For businesses</h3>
+          <p style="font-size: 14px; line-height: 1.65; color: var(--text-body); margin: 0;">
+            Get discovered by an audience actively looking for what you offer. AMCOB members get a free listing as part of their membership, plus access to a network of 372+ verified businesses and counting.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Not Listed Yet Section -->
+  <section style="background: #091325; color: #ffffff; padding: 64px 0; border-top: 1px solid rgba(212,175,55,0.25);">
+    <div class="container" style="max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap;">
+      <div style="max-width: 600px;">
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand-gold);">Expand Your Reach</span>
+        <h2 style="font-size: 28px; font-weight: 800; color: #ffffff; margin-top: 6px; margin-bottom: 10px; font-family: var(--font-serif);">Not Listed Yet?</h2>
+        <p style="font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.8); margin: 0;">
+          AMCOB members get a free business listing: reach an audience actively searching for Muslim-owned businesses and grow within a trusted community.
+        </p>
+      </div>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <a href="/join" class="btn btn-primary" style="padding: 12px 26px; font-size: 14px; font-weight: 700;">Apply for Membership</a>
+        <a href="/add-listing" class="btn btn-secondary" style="padding: 12px 26px; font-size: 14px; font-weight: 700; background: rgba(255,255,255,0.08); color: #ffffff; border: 1px solid rgba(255,255,255,0.25);">+ Add Your Business</a>
+      </div>
+    </div>
+  </section>
 `;
 
-fs.writeFileSync('business-directory.html', renderLayout({
+const renderedDirectory = renderLayout({
   title: 'Business Directory | 372 Verified Muslim-Owned Businesses',
   description: 'Search the complete official AMCOB business directory featuring 372 verified Muslim-owned commercial enterprises across North America.',
   activeNav: 'directory',
   breadcrumbs: [{ label: 'Business Directory', url: '/business-directory' }],
   content: directoryContent
-}));
-console.log('Generated business-directory.html');
+});
+
+fs.writeFileSync('business-directory.html', renderedDirectory);
+if (!fs.existsSync('business-directory')) {
+  fs.mkdirSync('business-directory', { recursive: true });
+}
+fs.writeFileSync(path.join('business-directory', 'index.html'), renderedDirectory);
+console.log('Generated business-directory.html and business-directory/index.html');
 
 // 2. Business Directory Detail Template (business-directory-detail.html)
 const directoryDetailContent = `

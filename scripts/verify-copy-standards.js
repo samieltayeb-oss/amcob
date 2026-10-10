@@ -22,7 +22,7 @@ function getHtmlFiles(dir) {
     const fullPath = path.join(dir, file);
     const stat = fs.statSync(fullPath);
     if (stat && stat.isDirectory()) {
-      if (file !== 'node_modules' && file !== '.git' && file !== 'scripts' && file !== 'concepts') {
+      if (file !== 'node_modules' && file !== '.git' && file !== 'scripts' && file !== 'concepts' && file !== 'scratch') {
         results = results.concat(getHtmlFiles(fullPath));
       }
     } else if (file.endsWith('.html')) {

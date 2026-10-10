@@ -40,11 +40,8 @@ const server = http.createServer((req, res) => {
     reqPath = aliases[reqPath];
   }
 
-  // Handle dynamic collection detail routing
-  if (reqPath.startsWith('/business-directory/') && reqPath !== '/business-directory/' && !reqPath.endsWith('.html') && !reqPath.endsWith('.png') && !reqPath.endsWith('.jpg') && !reqPath.endsWith('.webp')) {
-    const slug = reqPath.replace('/business-directory/', '');
-    reqPath = '/business-directory-detail.html';
-  } else if (reqPath.startsWith('/blog/') && reqPath !== '/blog/' && !reqPath.endsWith('.html') && !reqPath.endsWith('.png') && !reqPath.endsWith('.jpg') && !reqPath.endsWith('.webp')) {
+  // Handle dynamic collection detail routing (fallback for non-static routes)
+  if (reqPath.startsWith('/blog/') && reqPath !== '/blog/' && !reqPath.endsWith('.html') && !reqPath.endsWith('.png') && !reqPath.endsWith('.jpg') && !reqPath.endsWith('.webp')) {
     reqPath = '/blog-detail.html';
   } else if (reqPath.startsWith('/books/') && reqPath !== '/books/' && !reqPath.endsWith('.html') && !reqPath.endsWith('.png') && !reqPath.endsWith('.jpg') && !reqPath.endsWith('.webp')) {
     reqPath = '/book-detail.html';
