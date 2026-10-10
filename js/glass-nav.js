@@ -103,7 +103,30 @@
 
     // 3. Mobile Drawer Toggle
     if (mobileToggle && mobileDrawer) {
-      mobileToggle.addEventListener('click', () => {
+      const hamburgerIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
+      const closeIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+
+      function openMobileDrawer() {
+        mobileDrawer.classList.add('open');
+        mobileToggle.classList.add('is-active');
+        mobileToggle.setAttribute('aria-expanded', 'true');
+        mobileToggle.setAttribute('aria-label', 'Close Navigation Menu');
+        mobileToggle.innerHTML = closeIcon;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileDrawer() {
+        mobileDrawer.classList.remove('open');
+        mobileToggle.classList.remove('is-active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.setAttribute('aria-label', 'Open Navigation Menu');
+        mobileToggle.innerHTML = hamburgerIcon;
+        document.body.style.overflow = '';
+      }
+
+      mobileToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const isOpen = mobileDrawer.classList.contains('open');
         if (isOpen) {
           closeMobileDrawer();
@@ -112,25 +135,28 @@
         }
       });
 
-      function openMobileDrawer() {
-        mobileDrawer.classList.add('open');
-        mobileToggle.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
-      }
+      // Auto-close on link click so mobile navigation never gets stuck
+      mobileDrawer.addEventListener('click', (e) => {
+        const link = e.target.closest('a, button');
+        if (link && !link.classList.contains('mobile-menu-toggle')) {
+          closeMobileDrawer();
+        }
+      });
 
-      function closeMobileDrawer() {
-        mobileDrawer.classList.remove('open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-
-      // Close on escape
+      // Close on escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
           closeMobileDrawer();
           mobileToggle.focus();
         }
       });
+
+      // Reset on desktop resize
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024 && mobileDrawer.classList.contains('open')) {
+          closeMobileDrawer();
+        }
+      }, { passive: true });
     }
   }
 })();

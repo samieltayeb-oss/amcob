@@ -1049,10 +1049,10 @@ a {
   }
 
   .nav-desktop {
-    display: none;
+    display: none !important;
   }
   .mobile-menu-toggle {
-    display: block;
+    display: inline-flex !important;
   }
   .grid-4, .grid-3 {
     grid-template-columns: repeat(2, 1fr);

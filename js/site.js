@@ -2,29 +2,7 @@
 // Accessible interactions, live search, and dynamic directory filtering
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Menu Toggle
-  const menuToggle = document.querySelector('.mobile-menu-toggle');
-  const navDesktop = document.querySelector('.nav-desktop');
-  if (menuToggle && navDesktop) {
-    menuToggle.addEventListener('click', () => {
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
-      if (isExpanded) {
-        navDesktop.style.display = 'none';
-      } else {
-        navDesktop.style.display = 'flex';
-        navDesktop.style.flexDirection = 'column';
-        navDesktop.style.position = 'absolute';
-        navDesktop.style.top = '80px';
-        navDesktop.style.left = '0';
-        navDesktop.style.right = '0';
-        navDesktop.style.background = '#ffffff';
-        navDesktop.style.padding = '24px';
-        navDesktop.style.borderBottom = '1px solid var(--border-light)';
-        navDesktop.style.boxShadow = 'var(--shadow-lg)';
-      }
-    });
-  }
+  // 1. Mobile navigation drawer is managed exclusively by js/glass-nav.js
 
   // 2. Directory Live Search & Filter
   const directorySearch = document.getElementById('directorySearch');
