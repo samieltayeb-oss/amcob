@@ -996,17 +996,28 @@ body {
   gap: 10px;
 }
 
-/* Giant Architectural Watermark (Supaste style) */
+/* Giant Architectural Watermark (Supaste style with Original AMCOB Logo) */
 .footer-watermark-wrap {
   position: relative;
   width: 100%;
   overflow: hidden;
   pointer-events: none;
   user-select: none;
-  margin-top: 18px;
-  margin-bottom: -15px;
-  line-height: 0.82;
-  text-align: center;
+  margin-top: 28px;
+  margin-bottom: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.footer-watermark-logo {
+  width: min(94%, 1160px);
+  max-width: 1200px;
+  height: auto;
+  opacity: 0.048; /* perfectly balanced subtle gray watermark */
+  display: block;
+  filter: grayscale(100%);
 }
 
 .footer-watermark-text {
