@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "name": "amcob",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/accelerator", "destination": "/virtual-accelerator-program.html" },
+    { "source": "/interested", "destination": "/join.html" },
+    { "source": "/podcasts", "destination": "/networking-events-podcasts.html" },
+    { "source": "/networking-events-podcasts", "destination": "/networking-events-podcasts.html" },
+    { "source": "/engage", "destination": "/engage.html" },
+    { "source": "/ambassador-program", "destination": "/ambassador-program/index.html" },
+    { "source": "/business-directory/:slug", "destination": "/business-directory-detail.html" },
+    { "source": "/blog/:slug", "destination": "/blog-detail.html" },
+    { "source": "/books/:slug", "destination": "/book-detail.html" }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*).html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}

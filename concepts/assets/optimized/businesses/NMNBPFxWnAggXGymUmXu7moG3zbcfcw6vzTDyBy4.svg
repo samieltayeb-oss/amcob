@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 468.9 175.7">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0c4a98;
+        font-family: Palatino-Bold, Palatino;
+        font-size: 64.36px;
+        font-weight: 700;
+        letter-spacing: -.02em;
+      }
+
+      .cls-2 {
+        fill: #ff7050;
+      }
+
+      .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: #ffb9aa;
+      }
+    </style>
+  </defs>
+  <rect class="cls-3" x="29.05" y="122.01" width="96.9" height="14.36"/>
+  <rect class="cls-3" x="29.05" y="94.19" width="96.9" height="14.36" transform="translate(19.1 -12.08) rotate(10.16)"/>
+  <rect class="cls-2" x="29.05" y="59.75" width="96.9" height="14.36" transform="translate(-8.68 11.63) rotate(-8.13)"/>
+  <rect class="cls-3" x="29.05" y="25.3" width="96.9" height="14.36" transform="translate(6.95 -13.17) rotate(10.16)"/>
+  <text class="cls-1" transform="translate(142.71 82.74)"><tspan x="0" y="0">Panel</tspan><tspan x="0" y="54.09">Marketing</tspan></text>
+</svg>

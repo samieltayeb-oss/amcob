@@ -1,0 +1,16 @@
+{
+  "desktop": {
+    "fcp": 640,
+    "domContentLoaded": 479,
+    "loadEvent": 609,
+    "transferSize": 47768,
+    "lcp": 700,
+    "cls": 0,
+    "consoleErrors": []
+  },
+  "mobile": {
+    "fcp": 312,
+    "domContentLoaded": 293,
+    "loadEvent": 363
+  }
+}

@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System Specification | AMCOB</title>
+  <meta name="description" content="The definitive design system specification, component library, and token architecture for the AMCOB digital flagship.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/glass-nav.css">
+  <link rel="stylesheet" href="/css/motion.css">
+  <link rel="stylesheet" href="/css/ecosystem-motion.css">
+  <style>
+    .ds-swatch {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+    .ds-swatch-color {
+      height: 90px;
+      width: 100%;
+    }
+    .ds-swatch-info {
+      padding: 12px 14px;
+    }
+    .ds-swatch-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--brand-navy);
+      margin-bottom: 2px;
+    }
+    .ds-swatch-hex {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+    .ds-preview-box {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 36px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .ds-preview-dark {
+      background: #08102e;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 36px;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+    .ds-code {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 16px 20px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+    .ds-nav-anchor {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand-navy);
+      margin-right: 8px;
+      margin-bottom: 8px;
+      transition: all 0.2s ease;
+    }
+    .ds-nav-anchor:hover {
+      background: var(--brand-navy);
+      color: #ffffff;
+      border-color: var(--brand-navy);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Glass Masthead -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="brand-logo" title="AMCOB - Allied Muslim Chamber of Business">
+        <img src="/assets/optimized/logos/logo.png" alt="AMCOB - Allied Muslim Chamber of Business" width="160" height="45">
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop" aria-label="Main Navigation">
+        <a href="/about" class="nav-link ">About</a>
+
+        <!-- Membership Mega Dropdown -->
+        <div class="nav-dropdown-wrapper">
+          <button type="button" class="nav-trigger-btn " aria-expanded="false" aria-haspopup="true">
+            Membership
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 5 5-5z"/></svg>
+          </button>
+          <div class="glass-dropdown-panel" role="region" aria-label="Membership Programs">
+            <div class="glass-panel-grid">
+              <div class="glass-panel-links">
+                <a href="/membership" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">01</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Overview</span>
+                    <span class="glass-panel-link-desc">Compare all chamber tiers and benefits</span>
+                  </div>
+                </a>
+                <a href="/peer-advisory" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">02</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Peer Advisory Groups (PAG)</span>
+                    <span class="glass-panel-link-desc">Revenue-stage matched boards ($100k to $3M+)</span>
+                  </div>
+                </a>
+                <a href="/connect" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">03</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">AMCOB Connect</span>
+                    <span class="glass-panel-link-desc">Bi-weekly commercial B2B referral network ($850/yr)</span>
+                  </div>
+                </a>
+                <a href="/affiliate" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">04</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Affiliate Membership</span>
+                    <span class="glass-panel-link-desc">Solo practitioners, consultants, and early founders ($550/yr)</span>
+                  </div>
+                </a>
+                <a href="/virtual-accelerator-program" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">05</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Virtual Accelerator Program</span>
+                    <span class="glass-panel-link-desc">12-week venture syllabus, 0% equity dilution</span>
+                  </div>
+                </a>
+                <a href="/ambassador-program" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">06</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Chapter Ambassadors</span>
+                    <span class="glass-panel-link-desc">Leadership across 12 North American metropolitan hubs</span>
+                  </div>
+                </a>
+                <a href="/mldl" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">07</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Muslim Life Design Lab</span>
+                    <span class="glass-panel-link-desc">Executive enterprise and lifestyle balance masterclasses</span>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Featured Preview Card -->
+              <div class="glass-panel-featured">
+                <img src="/assets/optimized/programs/JoinAMCOBBannerWebsite.webp" alt="AMCOB Community" class="glass-panel-featured-img">
+                <div class="glass-panel-featured-body">
+                  <span class="glass-panel-featured-tag">Chamber Tiers</span>
+                  <span class="glass-panel-featured-title">Peer Advisory Boards</span>
+                  <p class="glass-panel-featured-desc">Confidential peer cohorts matched strictly by verified revenue stage.</p>
+                  <a href="/membership" class="glass-panel-featured-action">Compare Programs &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Events Mega Dropdown -->
+        <div class="nav-dropdown-wrapper">
+          <button type="button" class="nav-trigger-btn " aria-expanded="false" aria-haspopup="true">
+            Events
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 5 5-5z"/></svg>
+          </button>
+          <div class="glass-dropdown-panel" role="region" aria-label="Chamber Events">
+            <div class="glass-panel-grid">
+              <div class="glass-panel-links">
+                <a href="/events" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">01</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Master Calendar</span>
+                    <span class="glass-panel-link-desc">Complete schedule of in-person and virtual dates</span>
+                  </div>
+                </a>
+                <a href="/dinner-mixers" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">02</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Dinner Mixers</span>
+                    <span class="glass-panel-link-desc">Regional chapter executive dinners across 12 cities</span>
+                  </div>
+                </a>
+                <a href="/virtual-mixers" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">03</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Virtual Mixers</span>
+                    <span class="glass-panel-link-desc">Global online networking sessions</span>
+                  </div>
+                </a>
+                <a href="/upcoming-peer-advisory-meetings" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">04</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Peer Advisory Meetings</span>
+                    <span class="glass-panel-link-desc">Closed-door monthly cohort board dates</span>
+                  </div>
+                </a>
+                <a href="/conferences-workshops" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon">05</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title">Conferences &amp; Workshops</span>
+                    <span class="glass-panel-link-desc">LEAD Summit convenings and executive clinics</span>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Featured Event Card -->
+              <div class="glass-panel-featured">
+                <img src="/assets/optimized/events/leadSummitHomeBanner.webp" alt="LEAD Summit" class="glass-panel-featured-img">
+                <div class="glass-panel-featured-body">
+                  <span class="glass-panel-featured-tag">Annual Flagship</span>
+                  <span class="glass-panel-featured-title">AMCOB LEAD Summit</span>
+                  <p class="glass-panel-featured-desc">National conference bringing business founders, investors, and leaders together.</p>
+                  <a href="/conferences-workshops" class="glass-panel-featured-action">View Summit Details &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="/business-directory" class="nav-link ">Directory</a>
+        <a href="/blog" class="nav-link ">Editorial</a>
+        <a href="/podcasts" class="nav-link ">Podcasts</a>
+        <a href="/books" class="nav-link ">Library</a>
+        <a href="/contact-us" class="nav-link ">Contact</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="https://my.amcob.org" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Member Login</a>
+        <a href="/join" class="btn btn-primary btn-sm">Apply to Join</a>
+        <button class="mobile-menu-toggle" aria-label="Toggle Navigation" aria-expanded="false">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Glass Drawer Sheet -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-nav-group">
+      <span class="mobile-nav-group-title">Navigation</span>
+      <a href="/about" class="mobile-nav-link">About AMCOB</a>
+      <a href="/business-directory" class="mobile-nav-link">Business Directory</a>
+      <a href="/blog" class="mobile-nav-link">Editorial Journal</a>
+      <a href="/podcasts" class="mobile-nav-link">Executive Dialogues Podcasts</a>
+      <a href="/books" class="mobile-nav-link">Executive Library</a>
+      <a href="/contact-us" class="mobile-nav-link">Contact Us</a>
+    </div>
+
+    <div class="mobile-nav-group">
+      <span class="mobile-nav-group-title">Membership Programs</span>
+      <a href="/membership" class="mobile-nav-link">Membership Overview</a>
+      <a href="/peer-advisory" class="mobile-nav-link">Peer Advisory Groups (PAG)</a>
+      <a href="/connect" class="mobile-nav-link">AMCOB Connect ($850/yr)</a>
+      <a href="/affiliate" class="mobile-nav-link">Affiliate Membership ($550/yr)</a>
+      <a href="/virtual-accelerator-program" class="mobile-nav-link">Virtual Accelerator Program</a>
+      <a href="/ambassador-program" class="mobile-nav-link">Chapter Ambassadors</a>
+      <a href="/mldl" class="mobile-nav-link">Muslim Life Design Lab</a>
+    </div>
+
+    <div class="mobile-nav-group">
+      <span class="mobile-nav-group-title">Events &amp; Gatherings</span>
+      <a href="/events" class="mobile-nav-link">Master Calendar</a>
+      <a href="/dinner-mixers" class="mobile-nav-link">Regional Dinner Mixers</a>
+      <a href="/virtual-mixers" class="mobile-nav-link">Virtual Mixers</a>
+      <a href="/upcoming-peer-advisory-meetings" class="mobile-nav-link">Peer Advisory Meetings</a>
+      <a href="/conferences-workshops" class="mobile-nav-link">Conferences &amp; Workshops</a>
+    </div>
+
+    <div class="mobile-actions">
+      <a href="/join" class="btn btn-primary" style="width: 100%; text-align: center;">Apply to Join</a>
+      <a href="https://my.amcob.org" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; text-align: center;">Member Login</a>
+    </div>
+  </div>
+
+  
+    <div class="breadcrumbs">
+      <div class="container breadcrumbs-inner">
+        <a href="/">Home</a>
+        <span class="breadcrumbs-sep">/</span><span class="breadcrumbs-current">Design System</span>
+      </div>
+    </div>
+  
+
+  <!-- Page Content -->
+  <main>
+    <main>
+    <main>
+    <!-- System Intro -->
+    <section class="page-intro" style="padding: 64px 0 48px 0; background: #ffffff;">
+      <div class="container">
+        <span class="page-intro-badge">Design Architecture v1.0</span>
+        <h1 class="page-title" style="font-family: var(--font-serif); font-size: 46px; font-weight: 750;">
+          The AMCOB Design System
+        </h1>
+        <p class="page-subtitle" style="font-size: 17.5px; line-height: 1.65; max-width: 820px; color: var(--text-body);">
+          The official design standards, color tokens, typography hierarchy, and interactive component library for the Allied Muslim Chamber of Business digital ecosystem. Designed for bespoke institutional authority, pure white canvas clarity, and high-fidelity responsiveness.
+        </p>
+
+        <div style="margin-top: 28px; display: flex; flex-wrap: wrap;">
+          <a href="#brand" class="ds-nav-anchor">Brand Identity</a>
+          <a href="#colors" class="ds-nav-anchor">Color Tokens</a>
+          <a href="#typography" class="ds-nav-anchor">Typography</a>
+          <a href="#buttons" class="ds-nav-anchor">Buttons &amp; Pills</a>
+          <a href="#faq" class="ds-nav-anchor">FAQ Accordion</a>
+          <a href="#cta" class="ds-nav-anchor">Imperial CTA Banner</a>
+          <a href="#ecosystem-preview" class="ds-nav-anchor">Orbital Ecosystem</a>
+          <a href="#footer-preview" class="ds-nav-anchor">Chamber Footer</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Brand Identity & Logos -->
+    <section class="section" id="brand">
+      <div class="container">
+        <span class="badge badge-gold" style="margin-bottom: 12px;">Core Assets</span>
+        <h2 class="section-title" style="font-family: var(--font-serif); font-size: 34px;">1. Brand Identity &amp; Official Marks</h2>
+        <p class="section-desc">
+          Official high-resolution vector and transparent PNG assets for light backgrounds and imperial dark mode surfaces.
+        </p>
+
+        <div class="grid-2">
+          <!-- Light Mark -->
+          <div class="ds-preview-box">
+            <h4 style="font-size: 16px; font-weight: 700; color: var(--brand-navy); margin-bottom: 16px;">
+              Primary Full-Color Brand Mark (Light Surface)
+            </h4>
+            <div style="padding: 40px 20px; text-align: center; border: 1px dashed var(--border-light); border-radius: 8px; margin-bottom: 16px;">
+              <img src="/assets/optimized/logos/logo.png" alt="AMCOB Official Brand Mark" style="max-height: 70px; margin: 0 auto;">
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">
+              <strong>Asset Path:</strong> <code>/assets/optimized/logos/logo.png</code> (600 &times; 168 px, RGBA)
+            </p>
+            <p style="font-size: 13px; color: var(--text-body);">
+              Deep Imperial Navy letterforms with Sovereign Gold serif chamber title on crisp white banner ribbon. Use on pure white and light slate canvases.
+            </p>
+          </div>
+
+          <!-- Dark / Monochrome Mark -->
+          <div class="ds-preview-dark">
+            <h4 style="font-size: 16px; font-weight: 700; color: #ffffff; margin-bottom: 16px;">
+              Monochrome White Transparent Mark (Dark Surface)
+            </h4>
+            <div style="padding: 40px 20px; text-align: center; border: 1px dashed rgba(255, 255, 255, 0.2); border-radius: 8px; margin-bottom: 16px; background: #08102e;">
+              <img src="/assets/optimized/logos/logo-monochrome.png" alt="AMCOB Official Monochrome Mark" style="max-height: 70px; margin: 0 auto;">
+            </div>
+            <p style="font-size: 13px; color: rgba(255, 255, 255, 0.7); margin-bottom: 8px;">
+              <strong>Asset Path:</strong> <code>/assets/optimized/logos/logo-monochrome.png</code> (600 &times; 168 px, Transparent)
+            </p>
+            <p style="font-size: 13px; color: rgba(255, 255, 255, 0.85);">
+              Transparent white glyphs with crisp knock-out center banner. Mandatory for imperial navy footers, hero banners, and dark event collateral.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Color System -->
+    <section class="section" id="colors">
+      <div class="container">
+        <span class="badge badge-gold" style="margin-bottom: 12px;">Chromatic Hierarchy</span>
+        <h2 class="section-title" style="font-family: var(--font-serif); font-size: 34px;">2. Palette Tokens &amp; Color System</h2>
+        <p class="section-desc">
+          Strict chromatic rules preserving pure white foundation, imperial navy governance, and sovereign gold prosperity.
+        </p>
+
+        <h3 style="font-size: 19px; font-weight: 700; color: var(--brand-navy); margin-bottom: 18px;">Primary &amp; Accent Palette</h3>
+        <div class="grid-4" style="margin-bottom: 36px;">
+          <!-- Imperial Navy -->
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background: #0A1E54;"></div>
+            <div class="ds-swatch-info">
+              <div class="ds-swatch-name">Imperial Navy</div>
+              <div class="ds-swatch-hex">#0A1E54 | --brand-navy</div>
+            </div>
+          </div>
+
+          <!-- Deep Navy Dark -->
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background: #08102E;"></div>
+            <div class="ds-swatch-info">
+              <div class="ds-swatch-name">Chamber Midnight</div>
+              <div class="ds-swatch-hex">#08102E | --brand-navy-dark</div>
+            </div>
+          </div>
+
+          <!-- Sovereign Gold -->
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background: #CE8924;"></div>
+            <div class="ds-swatch-info">
+              <div class="ds-swatch-name">Sovereign Gold</div>
+              <div class="ds-swatch-hex">#CE8924 | --brand-gold</div>
+            </div>
+          </div>
+
+          <!-- Gold Amber Hover -->
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background: #B87319;"></div>
+            <div class="ds-swatch-info">
+              <div class="ds-swatch-name">Gold Hover</div>
+              <div class="ds-swatch-hex">#B87319 | --brand-gold-hover</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 19px; font-weight: 700; color: var(--brand-navy); margin-bottom: 18px;">Surfaces &amp; Functional Tokens</h3>
+        <div class="grid-4">
+          <!-- Canvas Pure White -->
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background: #FFFFFF; border-bottom: 1px solid var(--border-light);"></div>
+            <div class="ds-swatch-info">
+              <div class="ds-swatch-name">Pure White Canvas</div>
+              <div class="ds-swatch-hex">#FFFFFF | --bg-page</div>
+            </div>
+          </div>
+
+          <!-- Slate Subtle -->
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background: #F8FAFC; border-bottom: 1px solid var(--border-light);"></div>
+            <div class="ds-swatch-info">
+              <div class="ds-swatch-name">Slate Subtle</div>
+              <div class="ds-swatch-hex">#F8FAFC | --bg-subtle</div>
+            </div>
+          </div>
+
+          <!-- Emerald Trust -->
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background: #065F46;"></div>
+            <div class="ds-swatch-info">
+              <div class="ds-swatch-name">Emerald Trust</div>
+              <div class="ds-swatch-hex">#065F46 | --brand-emerald</div>
+            </div>
+          </div>
+
+          <!-- Text Slate 900 -->
+          <div class="ds-swatch">
+            <div class="ds-swatch-color" style="background: #0F172A;"></div>
+            <div class="ds-swatch-info">
+              <div class="ds-swatch-name">Ink Primary</div>
+              <div class="ds-swatch-hex">#0F172A | --text-main</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Typography Hierarchy -->
+    <section class="section" id="typography">
+      <div class="container">
+        <span class="badge badge-gold" style="margin-bottom: 12px;">Type System</span>
+        <h2 class="section-title" style="font-family: var(--font-serif); font-size: 34px;">3. Editorial Typography Scale</h2>
+        <p class="section-desc">
+          Dual type family architecture pairing <strong>Playfair Display</strong> for traditional authority and <strong>Inter</strong> for digital UI precision.
+        </p>
+
+        <div class="ds-preview-box">
+          <div style="border-bottom: 1px solid var(--border-light); padding-bottom: 24px; margin-bottom: 24px;">
+            <p style="font-size: 12px; color: var(--brand-gold); font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Display Serif &middot; Playfair Display Bold (48px / 1.15 line-height)</p>
+            <h1 style="font-family: var(--font-serif); font-size: 46px; font-weight: 750; color: var(--brand-navy); line-height: 1.15; margin: 0;">
+              Connecting Muslim Business Leaders Across North America.
+            </h1>
+          </div>
+
+          <div style="border-bottom: 1px solid var(--border-light); padding-bottom: 24px; margin-bottom: 24px;">
+            <p style="font-size: 12px; color: var(--brand-gold); font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Section Title &middot; Playfair Display Bold (36px / 1.2 line-height)</p>
+            <h2 style="font-family: var(--font-serif); font-size: 36px; font-weight: 700; color: var(--brand-navy); margin: 0;">
+              Grow With People Who Want You To Win.
+            </h2>
+          </div>
+
+          <div style="border-bottom: 1px solid var(--border-light); padding-bottom: 24px; margin-bottom: 24px;">
+            <p style="font-size: 12px; color: var(--brand-gold); font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Editorial Subheading &middot; Playfair Display Italic (24px)</p>
+            <h3 style="font-family: var(--font-serif); font-size: 24px; font-style: italic; font-weight: 600; color: var(--brand-navy); margin: 0;">
+              "Building sovereign commercial bedrock across North American markets."
+            </h3>
+          </div>
+
+          <div>
+            <p style="font-size: 12px; color: var(--brand-navy); font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Body Regular &middot; Inter Medium (16px / 1.65 line-height)</p>
+            <p style="font-size: 16px; color: var(--text-body); line-height: 1.65; max-width: 760px; margin: 0;">
+              AMCOB connects over 400 verified businesses across North America. We provide confidential peer advisory boards, executive gatherings, warm commercial introductions, and bilateral trade missions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Buttons & Pill System -->
+    <section class="section" id="buttons">
+      <div class="container">
+        <span class="badge badge-gold" style="margin-bottom: 12px;">Interactive Controls</span>
+        <h2 class="section-title" style="font-family: var(--font-serif); font-size: 34px;">4. Pill Buttons &amp; Badges</h2>
+        <p class="section-desc">
+          Official pill-shaped and structured action buttons specified in the AMCOB creative guidelines.
+        </p>
+
+        <div class="ds-preview-box">
+          <h4 style="font-size: 16px; font-weight: 700; color: var(--brand-navy); margin-bottom: 18px;">Pill Buttons (Primary &amp; Outline)</h4>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 32px;">
+            <a href="/join" class="btn-pill btn-pill-gold">Sign Up Now</a>
+            <a href="tel:9496170529" class="btn-pill btn-pill-navy">Call 949-617-0529</a>
+            <a href="/membership" class="btn-pill btn-pill-navy" style="background: transparent; color: var(--brand-navy) !important; border: 1.5px solid var(--brand-navy);">Explore Cohorts</a>
+          </div>
+
+          <h4 style="font-size: 16px; font-weight: 700; color: var(--brand-navy); margin-bottom: 18px;">Dark Surface Actions (CTA &amp; Footer)</h4>
+          <div style="background: #08102e; padding: 28px; border-radius: 10px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 32px;">
+            <a href="/join" class="btn-pill btn-pill-gold">Sign Up Now</a>
+            <a href="tel:9496170529" class="btn-pill btn-pill-outline-white">Call 949-617-0529</a>
+          </div>
+
+          <h4 style="font-size: 16px; font-weight: 700; color: var(--brand-navy); margin-bottom: 18px;">Badge Tokens</h4>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+            <span class="faq-badge">● FAQ</span>
+            <span class="badge badge-gold">The Executive Chamber</span>
+            <span class="badge badge-blue">Three Strategic Pillars</span>
+            <span class="badge badge-emerald">Verified Enterprise</span>
+            <span class="badge" style="background: #ffffff; border-color: var(--brand-navy); color: var(--brand-navy);">$100k to $3M+ Revenue</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FAQ Accordion Component -->
+    <section class="section" id="faq">
+      <div class="container">
+        <span class="badge badge-gold" style="margin-bottom: 12px;">Component Specification</span>
+        <h2 class="section-title" style="font-family: var(--font-serif); font-size: 34px;">5. The FAQ Accordion Component</h2>
+        <p class="section-desc">
+          Two-column editorial FAQ layout with gold indicator pill, high-contrast Playfair headline, and interactive accordion cards.
+        </p>
+
+        <!-- Live FAQ Component -->
+        <div class="ds-preview-box" style="padding: 48px;">
+          <div class="faq-layout">
+            <!-- Left Header -->
+            <div>
+              <span class="faq-badge">● FAQ</span>
+              <h3 class="faq-title">Questions, Answered.</h3>
+              <p class="faq-desc">
+                Still curious? Call <a href="tel:9496170529">949-617-0529</a> or <a href="/contact-us">contact us</a>.
+              </p>
+            </div>
+
+            <!-- Right Accordion List -->
+            <div class="faq-accordion">
+              <!-- Item 1 -->
+              <div class="faq-item active">
+                <button type="button" class="faq-header">
+                  <span>How does capital-raise promotion work?</span>
+                  <span class="faq-chevron">&#9660;</span>
+                </button>
+                <div class="faq-body">
+                  AMCOB provides structured deal flow exposure for verified members. Qualified investment offerings are reviewed by chamber leadership and presented directly to accredited angel investors, venture syndicates, and family offices within our private network.
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="faq-item">
+                <button type="button" class="faq-header">
+                  <span>How does membership work for nonprofits?</span>
+                  <span class="faq-chevron">&#9660;</span>
+                </button>
+                <div class="faq-body">
+                  Registered 501(c)(3) nonprofit organizations and charitable endowments participate through specialized Affiliate pathways. Leadership gains access to our executive network, planned giving connections, and community partnership initiatives.
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="faq-item">
+                <button type="button" class="faq-header">
+                  <span>Can I attend a meeting before I join?</span>
+                  <span class="faq-chevron">&#9660;</span>
+                </button>
+                <div class="faq-body">
+                  Prospective members may attend one regional dinner mixer or virtual mixer as an invited guest. Peer Advisory Group (PAG) sessions remain closed to guests to protect strict strict peer confidentiality commitments.
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="faq-item">
+                <button type="button" class="faq-header">
+                  <span>How is this different from a Peer Advisory Group?</span>
+                  <span class="faq-chevron">&#9660;</span>
+                </button>
+                <div class="faq-body">
+                  AMCOB Connect focuses on commercial introductions, referral pipelines, and B2B vendor matching. Peer Advisory Groups (PAG) provide closed-door executive governance, personal accountability, and strategic business problem solving matched by verified revenue stage.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Imperial Navy Flagship CTA Banner -->
+    <section class="section" id="cta" style="padding-bottom: 0;">
+      <div class="container">
+        <span class="badge badge-gold" style="margin-bottom: 12px;">Conversion Flagship</span>
+        <h2 class="section-title" style="font-family: var(--font-serif); font-size: 34px;">6. Imperial Navy Flagship CTA Banner</h2>
+        <p class="section-desc">
+          High-impact full-width call to action banner featuring imperial navy gradient, Playfair display headline, and dual pill buttons.
+        </p>
+      </div>
+
+      <!-- Live CTA Banner Component -->
+      <div class="cta-banner" style="margin-top: 32px;">
+        <div class="container cta-banner-inner">
+          <h2 class="cta-title">Grow With People Who Want You To Win.</h2>
+          <p class="cta-subtitle">
+            Join the Trusted Advisor Network of the Allied Muslim Chamber of Business. Your next 1st or 3rd Friday could bring your next client.
+          </p>
+          <div class="cta-actions">
+            <a href="/join" class="btn-pill btn-pill-gold">Sign Up Now</a>
+            <a href="tel:9496170529" class="btn-pill btn-pill-outline-white">Call 949-617-0529</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Orbital Motion Graphics Ecosystem Dial -->
+    <section class="section" id="ecosystem-preview">
+      <div class="container">
+        <span class="badge badge-gold" style="margin-bottom: 12px;">Chamber Programs</span>
+        <h2 class="section-title" style="font-family: var(--font-serif); font-size: 34px;">7. Orbital Motion Graphics Ecosystem Dial</h2>
+        <p class="section-desc">
+          GPU-accelerated SVG orbital coordinate system with concentric rotating rings, live laser energy beams, and synchronized HUD status.
+        </p>
+
+        <!-- Orbital Motion Graphics Stage -->
+        <div class="ecosystem-stage" id="ecosystemStage">
+          <svg class="orbit-svg" viewBox="0 0 700 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="350" cy="350" r="305" class="orbit-ring-outer" />
+            <circle cx="350" cy="350" r="235" class="orbit-ring-middle" />
+            <circle cx="350" cy="350" r="165" class="orbit-ring-inner" />
+            <circle cx="350" cy="350" r="130" stroke="rgba(206, 137, 36, 0.4)" fill="none" class="orbit-pulse" />
+            <g id="ecosystemBeams"></g>
+          </svg>
+
+          <div class="ecosystem-core">
+            <img src="/assets/optimized/logos/logo.png" alt="AMCOB Emblem" class="ecosystem-core-crest">
+            <span class="ecosystem-core-label">Executive Chamber</span>
+            <span class="ecosystem-core-tagline">8 Interlinked Hubs</span>
+          </div>
+
+          <div class="ecosystem-nodes" id="ecosystemNodes"></div>
+        </div>
+
+        <div class="ecosystem-hud" id="ecosystemHud">
+          <div class="hud-left">
+            <span class="hud-num" id="hudNum">01</span>
+            <div class="hud-copy">
+              <h4 id="hudTitle">Peer Advisory Groups</h4>
+              <p id="hudDesc">Confidential boards of 8 to 12 verified founders meeting monthly for structured accountability under strict peer confidentiality.</p>
+            </div>
+          </div>
+          <div class="hud-right">
+            <span class="badge badge-gold" id="hudBadge">$100k to $3M+ Revenue</span>
+            <a href="/peer-advisory" class="btn btn-primary btn-sm" id="hudLink">Explore Cohorts &rarr;</a>
+          </div>
+        </div>
+
+        <div class="ecosystem-controls">
+          <button type="button" class="control-btn" id="ecosystemPlayPause">Pause Motion</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Chamber Global Footer -->
+    <section class="section" id="footer-preview" style="padding-bottom: 0;">
+      <div class="container">
+        <span class="badge badge-gold" style="margin-bottom: 12px;">Institutional Baseline</span>
+        <h2 class="section-title" style="font-family: var(--font-serif); font-size: 34px;">8. The Chamber Imperial Navy Global Footer</h2>
+        <p class="section-desc">
+          Official deep imperial navy institutional footer featuring white monochrome mark, Sovereign Gold column titles, gold bullets, and social action buttons.
+        </p>
+      </div>
+
+      <!-- Live Imperial Footer Component -->
+      <footer class="site-footer-imperial" style="margin-top: 36px;">
+        <div class="container">
+          <div class="footer-top-imperial">
+            <!-- Brand -->
+            <div class="footer-brand-imperial">
+              <a href="/" title="AMCOB Home">
+                <img src="/assets/optimized/logos/logo-monochrome.png" alt="AMCOB" width="168" height="47">
+              </a>
+              <p>
+                Join a global network of visionary Muslim business leaders shaping the future through elite advisory groups, curated events, and high-impact collaborations.
+              </p>
+              <div class="social-links-imperial">
+                <a href="https://www.linkedin.com/company/amcob/" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="LinkedIn">in</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Facebook">f</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Instagram">&#9678;</a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="YouTube">&#9658;</a>
+              </div>
+            </div>
+
+            <!-- Membership -->
+            <div>
+              <h4 class="footer-col-title">Membership</h4>
+              <ul class="footer-links-imperial">
+                <li><a href="/affiliate">Affiliate Membership</a></li>
+                <li><a href="/connect">AMCOB Connect</a></li>
+                <li><a href="/peer-advisory">Peer Advisory Groups</a></li>
+                <li><a href="/join">Interested in Joining?</a></li>
+              </ul>
+            </div>
+
+            <!-- Engage -->
+            <div>
+              <h4 class="footer-col-title">Engage</h4>
+              <ul class="footer-links-imperial">
+                <li><a href="/events">Events</a></li>
+                <li><a href="/ambassador-program">Ambassador Program</a></li>
+                <li><a href="/opportunities">Investment Opportunities</a></li>
+                <li><a href="/sponsorship">Sponsorship</a></li>
+              </ul>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+              <h4 class="footer-col-title">Quick Links</h4>
+              <ul class="footer-links-imperial">
+                <li><a href="/business-directory">Business Listing</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact-us">Contact Us</a></li>
+                <li><a href="/design-system">Design System</a></li>
+              </ul>
+            </div>
+
+            <!-- Info -->
+            <div>
+              <h4 class="footer-col-title">Info</h4>
+              <div class="footer-info-item">
+                <span class="footer-info-icon">&#9742;</span>
+                <span><a href="tel:9496170529" style="color: inherit;">949-617-0529</a></span>
+              </div>
+              <div class="footer-info-item">
+                <span class="footer-info-icon">&#9993;</span>
+                <span><a href="mailto:info@amcob.org" style="color: inherit;">info@amcob.org</a></span>
+              </div>
+              <div class="footer-info-item">
+                <span class="footer-info-icon">&#9873;</span>
+                <span>300 Spectrum Center Drive, Suite 400<br>Irvine, CA 92618</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom-imperial">
+            <p>Privacy &copy; 2026 AMCOB LLC. All Rights Reserved.</p>
+            <div style="display: flex; gap: 20px;">
+              <a href="/privacy-policy">Privacy Policy</a>
+              <a href="/contact-us">Contact</a>
+              <a href="https://my.amcob.org" target="_blank" rel="noopener noreferrer">Member Portal</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </main>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="site-footer-imperial">
+    <div class="container">
+      <div class="footer-top-imperial">
+        <!-- Brand Column -->
+        <div class="footer-brand-imperial">
+          <a href="/" title="AMCOB Home">
+            <img src="/assets/optimized/logos/logo-monochrome.png" alt="AMCOB" width="168" height="47">
+          </a>
+          <p>
+            Connecting Muslim entrepreneurs and business leaders across North America through confidential peer advisory groups, structured commercial referrals, and executive convenings.
+          </p>
+          <div class="social-links-imperial">
+            <a href="https://www.linkedin.com/company/amcob/" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="LinkedIn">in</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Facebook">f</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="Instagram">&#9678;</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-circle-btn" aria-label="YouTube">&#9658;</a>
+          </div>
+        </div>
+
+        <!-- Membership Column -->
+        <div>
+          <h4 class="footer-col-title">Membership</h4>
+          <ul class="footer-links-imperial">
+            <li><a href="/affiliate">Affiliate Membership</a></li>
+            <li><a href="/connect">AMCOB Connect</a></li>
+            <li><a href="/peer-advisory">Peer Advisory Groups</a></li>
+            <li><a href="/join">Interested in Joining?</a></li>
+          </ul>
+        </div>
+
+        <!-- Engage Column -->
+        <div>
+          <h4 class="footer-col-title">Engage</h4>
+          <ul class="footer-links-imperial">
+            <li><a href="/events">Events Calendar</a></li>
+            <li><a href="/podcasts">Podcasts &amp; Media</a></li>
+            <li><a href="/ambassador-program">Ambassador Program</a></li>
+            <li><a href="/opportunities">Investment Opportunities</a></li>
+            <li><a href="/sponsorship">Corporate Sponsorship</a></li>
+          </ul>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-imperial">
+            <li><a href="/business-directory">Business Directory</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact-us">Contact Us</a></li>
+            <li><a href="/design-system">Design System</a></li>
+          </ul>
+        </div>
+
+        <!-- Info Column -->
+        <div>
+          <h4 class="footer-col-title">Info</h4>
+          <div class="footer-info-item">
+            <span class="footer-info-icon">&#9742;</span>
+            <span><a href="tel:9496170529" style="color: inherit;">949-617-0529</a></span>
+          </div>
+          <div class="footer-info-item">
+            <span class="footer-info-icon">&#9993;</span>
+            <span><a href="mailto:info@amcob.org" style="color: inherit;">info@amcob.org</a></span>
+          </div>
+          <div class="footer-info-item">
+            <span class="footer-info-icon">&#9873;</span>
+            <span>300 Spectrum Center Drive, Suite 400<br>Irvine, CA 92618</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-imperial">
+        <p>Privacy &copy; 2026 AMCOB LLC. All Rights Reserved.</p>
+        <div style="display: flex; gap: 20px;">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/contact-us">Contact</a>
+          <a href="https://my.amcob.org" target="_blank" rel="noopener noreferrer">Member Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/vendor/gsap.min.js"></script>
+  <script src="/js/vendor/ScrollTrigger.min.js"></script>
+  <script src="/js/glass-nav.js"></script>
+  <script src="/js/motion.js"></script>
+  <script src="/js/site.js"></script>
+  <script src="/js/ecosystem-motion.js"></script>
+</body>
+</html>

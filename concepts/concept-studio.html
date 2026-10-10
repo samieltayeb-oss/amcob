@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMCOB | Visual Concept Studio</title>
+  
+  <!-- Typography for All Three Concepts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Playfair+Display:ital,wght@0,500..700;1,400..600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Studio Chrome Tokens */
+      --studio-bg: #070B14;
+      --studio-surface: #0E1526;
+      --studio-surface-elevated: #162038;
+      --studio-border: rgba(255, 255, 255, 0.12);
+      --studio-text: #F8FAFC;
+      --studio-muted: #94A3B8;
+      --studio-accent: #38BDF8;
+      
+      /* Shared Spacing and Radii */
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--studio-bg);
+      color: var(--studio-text);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Studio Bar */
+    .studio-header {
+      background: var(--studio-surface);
+      border-bottom: 1px solid var(--studio-border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .studio-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .studio-tag {
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--studio-accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .studio-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #FFF;
+    }
+
+    /* Controls Bar */
+    .studio-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .pill-nav {
+      display: flex;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 3px;
+      border-radius: 10px;
+      border: 1px solid var(--studio-border);
+      gap: 3px;
+    }
+    .pill-btn {
+      background: transparent;
+      border: none;
+      color: var(--studio-muted);
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pill-btn:hover {
+      color: #FFF;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .pill-btn.active {
+      background: #1E293B;
+      color: #FFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+    .pill-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.1);
+    }
+    .pill-btn.active .pill-badge {
+      background: var(--studio-accent);
+      color: #000;
+      font-weight: 700;
+    }
+
+    /* Layout Mode Switcher */
+    .mode-switch-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mode-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--studio-muted);
+    }
+
+    /* Main Studio Canvas */
+    .studio-stage {
+      flex: 1;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    /* Presentation Frame Containers */
+    .canvas-viewport {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    /* Desktop Simulated Frame */
+    .frame-desktop {
+      width: 100%;
+      max-width: 1240px;
+      border-radius: 14px;
+      border: 1px solid var(--studio-border);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* Mobile Simulated Frame */
+    .frame-mobile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .frame-mobile {
+      width: 390px;
+      min-height: 800px;
+      border-radius: 36px;
+      border: 8px solid #222B3D;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    .mobile-speaker-notch {
+      width: 120px;
+      height: 18px;
+      background: #222B3D;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      margin: 0 auto;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    /* Side-by-Side Dual View */
+    .frame-side-by-side {
+      width: 100%;
+      max-width: 1400px;
+      display: grid;
+      grid-template-columns: 1fr 410px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Browser Chrome Simulation Bar */
+    .browser-bar {
+      background: #151D2F;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #EF4444; }
+    .dot-yellow { background: #F59E0B; }
+    .dot-green { background: #10B981; }
+    .browser-address {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 3px 12px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #94A3B8;
+      flex: 1;
+      max-width: 460px;
+      text-align: center;
+    }
+
+    /* ===================================================================== */
+    /* CONCEPT 1 STYLES: THE LIVING CIRCLE                                   */
+    /* ===================================================================== */
+    .c1-theme {
+      --bg: #0C162C;
+      --card-bg: #FAF8F5;
+      --card-text: #0F172A;
+      --accent: #B37D2E;
+      --accent-light: #E2B061;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+    }
+    .c1-hero {
+      padding: 56px 40px;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(circle at 50% 25%, rgba(179, 125, 46, 0.14) 0%, transparent 65%);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .c1-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--c1-accent, #B37D2E);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .c1-headline {
+      font-family: 'Fraunces', serif;
+      font-size: 44px;
+      font-weight: 600;
+      line-height: 1.18;
+      color: #FFF;
+      max-width: 760px;
+      margin: 0 auto 18px;
+      letter-spacing: -0.01em;
+    }
+    .c1-headline em {
+      font-style: italic;
+      color: #E2B061;
+    }
+    .c1-lead {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #94A3B8;
+      max-width: 640px;
+      margin: 0 auto 30px;
+    }
+    .c1-btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .c1-btn-primary {
+      background: #B37D2E;
+      color: #FFF;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 12px 26px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(179, 125, 46, 0.35);
+      transition: all 0.15s ease;
+    }
+    .c1-btn-primary:hover { background: #C9922E; }
+    .c1-btn-secondary {
+      background: transparent;
+      color: #FFF;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255,255,255,0.22);
+      cursor: pointer;
+    }
+
+    /* Concept 1 Interaction: Concentric Peer Advisory Navigator */
+    .c1-interactive-box {
+      margin: 40px auto 0;
+      max-width: 780px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 24px;
+      text-align: left;
+    }
+    .c1-box-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #B37D2E;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .c1-tier-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .c1-tier-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #CBD5E1;
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .c1-tier-pill.active {
+      background: #B37D2E;
+      color: #FFF;
+      border-color: #B37D2E;
+    }
+    .c1-output-card {
+      background: #FAF8F5;
+      color: #0F172A;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .c1-output-info h4 {
+      font-size: 17px;
+      font-family: 'Fraunces', serif;
+      margin-bottom: 4px;
+      color: #0F172A;
+    }
+    .c1-output-info p {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.5;
+    }
+    .c1-price-val {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0F172A;
+      font-family: 'Fraunces', serif;
+      text-align: right;
+    }
+    .c1-price-sub {
+      font-size: 11px;
+      color: #64748B;
+      text-align: right;
+    }
+
+    /* ===================================================================== */
+    /* CONCEPT 2 STYLES: THE SOVEREIGN LEDGER                                */
+    /* ===================================================================== */
+    .c2-theme {
+      --bg: #081226;
+      --surface: #0E1C38;
+      --border: rgba(158, 123, 59, 0.28);
+      --brass: #9E7B3B;
+      --brass-bright: #D4B06A;
+      --forest: #0D3B2E;
+      --stone: #EAE5D9;
+      --text: #F8FAFC;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+    }
+    .c2-masthead {
+      border-bottom: 1px solid var(--border);
+      padding: 16px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #060D1B;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9E7B3B;
+    }
+    .c2-hero {
+      padding: 60px 48px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, #081226 0%, #060E1E 100%);
+    }
+    .c2-eyebrow {
+      color: #9E7B3B;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .c2-eyebrow::before {
+      content: '🏛️';
+      font-size: 13px;
+    }
+    .c2-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #FFF;
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+    .c2-headline em {
+      font-style: italic;
+      color: #D4B06A;
+    }
+    .c2-lead {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #A3B3C9;
+      margin-bottom: 26px;
+    }
+    .c2-btn-row {
+      display: flex;
+      gap: 12px;
+    }
+    .c2-btn-primary {
+      background: #9E7B3B;
+      color: #081226;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .c2-btn-secondary {
+      background: transparent;
+      color: #EAE5D9;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 12px 22px;
+      border: 1px solid rgba(158, 123, 59, 0.4);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .c2-ledger-card {
+      background: #0E1C38;
+      border: 1px solid rgba(158, 123, 59, 0.35);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .c2-ledger-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #D4B06A;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(158, 123, 59, 0.2);
+      padding-bottom: 8px;
+    }
+    .c2-ledger-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 13px;
+    }
+    .c2-ledger-label { color: #8F9EAF; }
+    .c2-ledger-val { color: #FFF; font-weight: 600; }
+
+    /* Concept 2 Interaction: Global Trade Corridor Matrix */
+    .c2-matrix-sec {
+      padding: 36px 48px;
+      background: #060D1B;
+    }
+    .c2-matrix-header {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9E7B3B;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .c2-corridor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .c2-corridor-card {
+      background: #0A162D;
+      border: 1px solid rgba(158, 123, 59, 0.25);
+      border-radius: 6px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .c2-corridor-card:hover, .c2-corridor-card.active {
+      border-color: #D4B06A;
+      background: #101E3A;
+    }
+    .c2-corridor-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: #FFF;
+      margin-bottom: 6px;
+    }
+    .c2-corridor-meta {
+      font-size: 12px;
+      color: #8F9EAF;
+      line-height: 1.4;
+    }
+
+    /* ===================================================================== */
+    /* CONCEPT 3 STYLES: THE CATALYST STUDIO                                 */
+    /* ===================================================================== */
+    .c3-theme {
+      --bg: #09090B;
+      --surface: #121215;
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #38BDF8;
+      --text: #F8FAFC;
+      --text-muted: #71717A;
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+    }
+    .c3-ticker {
+      background: #000;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #38BDF8;
+      display: flex;
+      justify-content: space-between;
+      letter-spacing: 0.04em;
+    }
+    .c3-hero {
+      padding: 56px 40px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .c3-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #38BDF8;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+      display: inline-block;
+    }
+    .c3-headline {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #FFF;
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+    }
+    .c3-headline span {
+      color: #38BDF8;
+    }
+    .c3-lead {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #A1A1AA;
+      margin-bottom: 28px;
+    }
+    .c3-btn-row {
+      display: flex;
+      gap: 12px;
+    }
+    .c3-btn-primary {
+      background: #FFF;
+      color: #000;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .c3-btn-secondary {
+      background: transparent;
+      color: #FFF;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .c3-terminal-box {
+      background: #121215;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+    .c3-term-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .c3-term-key { color: #71717A; }
+    .c3-term-val { color: #38BDF8; font-weight: 600; }
+
+    /* Concept 3 Interaction: High-Signal Feed */
+    .c3-feed-sec {
+      padding: 32px 40px;
+      background: #0E0E12;
+    }
+    .c3-feed-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #71717A;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .c3-feed-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .c3-feed-card {
+      background: #141418;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .c3-feed-card:hover, .c3-feed-card.active {
+      border-color: #38BDF8;
+    }
+    .c3-feed-domain {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #38BDF8;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .c3-feed-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .c3-feed-summary {
+      font-size: 12px;
+      color: #A1A1AA;
+      line-height: 1.5;
+    }
+
+    /* ===================================================================== */
+    /* COMPARATIVE ARCHITECTURAL MATRIX SECTION                              */
+    /* ===================================================================== */
+    .matrix-container {
+      width: 100%;
+      max-width: 1240px;
+      background: var(--studio-surface);
+      border: 1px solid var(--studio-border);
+      border-radius: 14px;
+      padding: 32px;
+      margin-top: 20px;
+    }
+    .matrix-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 6px;
+    }
+    .matrix-sub {
+      font-size: 14px;
+      color: var(--studio-muted);
+      margin-bottom: 24px;
+    }
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .matrix-table th, .matrix-table td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      vertical-align: top;
+    }
+    .matrix-table th {
+      color: var(--studio-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: rgba(0,0,0,0.25);
+    }
+    .matrix-table td strong {
+      color: #FFF;
+    }
+    .rec-pill {
+      background: #065F46;
+      color: #6EE7B7;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-left: 6px;
+    }
+
+    /* Accessibility focus */
+    button:focus-visible, a:focus-visible {
+      outline: 2px solid var(--studio-accent);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Studio Header -->
+  <header class="studio-header">
+    <div class="studio-brand-group">
+      <span class="studio-tag">Stage 1 Creative Validation</span>
+      <h1 class="studio-title">AMCOB Digital Reinvention: Visual Concept Studio</h1>
+    </div>
+
+    <div class="studio-controls">
+      <!-- Concept Switcher -->
+      <div class="pill-nav">
+        <button class="pill-btn active" id="btn-concept-1" onclick="selectConcept(1)">
+          <span>Concept 1: The Living Circle</span>
+          <span class="pill-badge">Leading Hypothesis</span>
+        </button>
+        <button class="pill-btn" id="btn-concept-2" onclick="selectConcept(2)">
+          <span>Concept 2: Sovereign Ledger</span>
+          <span class="pill-badge">Chamber</span>
+        </button>
+        <button class="pill-btn" id="btn-concept-3" onclick="selectConcept(3)">
+          <span>Concept 3: Catalyst Studio</span>
+          <span class="pill-badge">Modernist</span>
+        </button>
+      </div>
+
+      <!-- Viewport Display Mode -->
+      <div class="mode-switch-group">
+        <span class="mode-label">View:</span>
+        <div class="pill-nav">
+          <button class="pill-btn active" id="mode-desktop" onclick="switchViewMode('desktop')">Desktop</button>
+          <button class="pill-btn" id="mode-mobile" onclick="switchViewMode('mobile')">Mobile</button>
+          <button class="pill-btn" id="mode-split" onclick="switchViewMode('split')">Side-by-Side</button>
+          <button class="pill-btn" id="mode-matrix" onclick="switchViewMode('matrix')">Matrix</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Studio Main Stage -->
+  <main class="studio-stage">
+
+    <!-- Active Presentation Stage Viewport -->
+    <div class="canvas-viewport" id="viewport-stage">
+      <!-- Injected dynamically based on selected concept and view mode -->
+    </div>
+
+    <!-- Comparative Differences & Architectural Matrix (Persistent on stage) -->
+    <section class="matrix-container" id="architectural-matrix">
+      <h2 class="matrix-title">Architectural Difference &amp; Design System Comparison</h2>
+      <p class="matrix-sub">
+        Rigorous comparison of the three distinct creative directions. These represent structural, editorial, and experiential differences, not superficial color or font swaps.
+      </p>
+
+      <table class="matrix-table" aria-label="Creative Directions Comparison Matrix">
+        <thead>
+          <tr>
+            <th style="width:20%;">Dimension</th>
+            <th style="width:27%;">Concept 1: The Living Circle <span class="rec-pill">Hypothesis</span></th>
+            <th style="width:26%;">Concept 2: The Sovereign Ledger</th>
+            <th style="width:27%;">Concept 3: The Catalyst Studio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Core Archetype &amp; Emotion</strong></td>
+            <td>Intimate boardroom salon, relational sanctuary, mutual trust (*Ukhuwwah*), and communal consultation (*Shura*).</td>
+            <td>Historic global trading house, bilateral civic institution, multi-generational mercantile legacy.</td>
+            <td>High-velocity executive intelligence network, zero bureaucracy, actionable peer takeaways.</td>
+          </tr>
+          <tr>
+            <td><strong>Layout Architecture</strong></td>
+            <td>Concentric radial hierarchy, warm cream cards over midnight canvas, human-scale focal points.</td>
+            <td>Neoclassical two-column monumental ledger, Roman archival dates, formal credential seals.</td>
+            <td>Asymmetric minimalist grid, high-density terminal dispatches, electric cerulean accents.</td>
+          </tr>
+          <tr>
+            <td><strong>Typography Pairing</strong></td>
+            <td><em>Fraunces</em> optical display serif paired with <em>Plus Jakarta Sans</em> for friendly geometric clarity.</td>
+            <td><em>Playfair Display</em> high-contrast serif paired with <em>Inter</em> for institutional precision.</td>
+            <td><em>Plus Jakarta Sans Bold</em> display paired with <em>JetBrains Mono</em> for data micro-labels.</td>
+          </tr>
+          <tr>
+            <td><strong>Representative Interaction</strong></td>
+            <td><strong>Concentric Navigator:</strong> Matches founder revenue ($1M to $100M+) with specific cohort structure and peer criteria.</td>
+            <td><strong>Trade Corridor Matrix:</strong> Interactive exploration of bilateral commerce routes (Morocco delegation, Gulf trade).</td>
+            <td><strong>High-Signal Intelligence Feed:</strong> Searchable unvarnished executive takeaways from closed-door roundtables.</td>
+          </tr>
+          <tr>
+            <td><strong>Writing Standard Compliance</strong></td>
+            <td>Natural, confident English. Zero em dashes. Focuses on isolation relief and peer support.</td>
+            <td>Dignified, statesmanlike prose. Zero em dashes. Emphasizes bilateral trade treaties and capital stability.</td>
+            <td>Direct, concise language. Zero em dashes. Emphasizes operational execution and unvarnished facts.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <script>
+    // State management
+    let activeConcept = 1;
+    let activeMode = 'desktop'; // 'desktop' | 'mobile' | 'split' | 'matrix'
+
+    // Verified AMCOB Tiers
+    const verifiedTiers = [
+      { name: "Emerging Enterprises Peer Advisory", desc: "For high-potential enterprises under $1M annual revenue. Build foundational operating rhythms and unlock customer referrals.", price: "$1,925 / yr" },
+      { name: "Booming Enterprises Peer Advisory", desc: "For established companies with $1M to $5M annual revenue. Address executive hiring, unit economics, and founder isolation.", price: "$2,750 / yr" },
+      { name: "Scaling Enterprises Peer Advisory", desc: "For mid-market organizations with $5M to $25M revenue. Master governance, delegation, and geographic market expansion.", price: "$3,850 / yr" },
+      { name: "Summit Peer Advisory Council", desc: "For market leaders with $25M to $100M revenue. Confidential sounding board for capital allocation, acquisitions, and board dynamics.", price: "$4,675 / yr" },
+      { name: "Powerhouse Peer Advisory Council", desc: "For enterprise conglomerates with $100M+ annual revenue. Private boardroom cohort of large enterprise leaders.", price: "$5,500 / yr" }
+    ];
+
+    // Concept Render Templates
+    function renderConcept1() {
+      return `
+        <div class="c1-theme">
+          <div class="c1-hero">
+            <div class="c1-eyebrow">Allied Muslim Chamber of Business</div>
+            <h2 class="c1-headline">The Higher You Climb, The <em>Smaller the Room</em> Gets.</h2>
+            <p class="c1-lead">
+              AMCOB connects Muslim business founders, executives, and owners across North America, the UK, and the Gulf. Enter a confidential circle of peers who understand the complexities of leadership and share your values.
+            </p>
+            <div class="c1-btn-group">
+              <button class="c1-btn-primary" onclick="alert('Simulation: Navigating to Peer Advisory Groups')">Explore Peer Advisory Groups</button>
+              <button class="c1-btn-secondary" onclick="alert('Simulation: Checking Tier Eligibility')">Check Tier Eligibility</button>
+            </div>
+
+            <!-- Concentric Navigator Interaction -->
+            <div class="c1-interactive-box">
+              <div class="c1-box-label">The Concentric Navigator: Select Your Annual Enterprise Revenue</div>
+              <div class="c1-tier-pills">
+                <button class="c1-tier-pill" onclick="updateC1Tier(0, this)">Emerging (&lt;$1M)</button>
+                <button class="c1-tier-pill" onclick="updateC1Tier(1, this)">Booming ($1M to $5M)</button>
+                <button class="c1-tier-pill active" onclick="updateC1Tier(2, this)">Scaling ($5M to $25M)</button>
+                <button class="c1-tier-pill" onclick="updateC1Tier(3, this)">Summit ($25M to $100M)</button>
+                <button class="c1-tier-pill" onclick="updateC1Tier(4, this)">Powerhouse ($100M+)</button>
+              </div>
+              <div class="c1-output-card" id="c1-output">
+                <div class="c1-output-info">
+                  <h4 id="c1-tier-title">${verifiedTiers[2].name}</h4>
+                  <p id="c1-tier-desc">${verifiedTiers[2].desc}</p>
+                </div>
+                <div>
+                  <div class="c1-price-val" id="c1-tier-price">${verifiedTiers[2].price}</div>
+                  <div class="c1-price-sub">Verified Tier Fee</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `;
+    }
+
+    function renderConcept2() {
+      return `
+        <div class="c2-theme">
+          <div class="c2-masthead">
+            <div>Allied Muslim Chamber of Business | Established 2020</div>
+            <div>Bilateral Commercial Corridors • Official Chamber Registry</div>
+          </div>
+          <div class="c2-hero">
+            <div>
+              <div class="c2-eyebrow">Institutional Civic Chamber</div>
+              <h2 class="c2-headline">Building Commercial Institutions That <em>Outlast Generations</em>.</h2>
+              <p class="c2-lead">
+                Connecting North American Muslim enterprises with bilateral trade corridors across the Gulf, Turkiye, and North Africa. Institutional governance, accredited commerce, and international trade missions.
+              </p>
+              <div class="c2-btn-row">
+                <button class="c2-btn-primary" onclick="alert('Simulation: Opening Trade Missions Archive')">Review Trade Missions</button>
+                <button class="c2-btn-secondary" onclick="alert('Simulation: Opening Chamber Registry')">Chamber Registry</button>
+              </div>
+            </div>
+
+            <!-- Ledger Card -->
+            <div class="c2-ledger-card">
+              <div class="c2-ledger-title">Official Chamber Credentials</div>
+              <div class="c2-ledger-row">
+                <span class="c2-ledger-label">Headquarters:</span>
+                <span class="c2-ledger-val">Irvine, California</span>
+              </div>
+              <div class="c2-ledger-row">
+                <span class="c2-ledger-label">Active Trade Mission:</span>
+                <span class="c2-ledger-val">Morocco Business Tour (Oct 2026)</span>
+              </div>
+              <div class="c2-ledger-row">
+                <span class="c2-ledger-label">Peer Advisory Tiers:</span>
+                <span class="c2-ledger-val">5 Distinct Revenue Cohorts</span>
+              </div>
+              <div class="c2-ledger-row">
+                <span class="c2-ledger-label">Indexed Enterprises:</span>
+                <span class="c2-ledger-val">372 Verified Member Companies</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Representative Interaction: Trade Corridor Matrix -->
+          <div class="c2-matrix-sec">
+            <div class="c2-matrix-header">Bilateral Trade Corridors: Select Active Delegation</div>
+            <div class="c2-corridor-grid">
+              <div class="c2-corridor-card active" onclick="selectCorridor('Morocco', 'October 26 to 30, 2026. Bilateral B2B meetings in Rabat, Casablanca, and Marrakech.', this)">
+                <div class="c2-corridor-name">Morocco Delegation 2026</div>
+                <div class="c2-corridor-meta">Active Trade Tour. B2B matchmaking, ministerial briefings, infrastructure investments.</div>
+              </div>
+              <div class="c2-corridor-card" onclick="selectCorridor('Gulf Corridor', 'Private executive trade missions across Dubai, Riyadh, and Doha.', this)">
+                <div class="c2-corridor-name">Gulf Commercial Corridor</div>
+                <div class="c2-corridor-meta">Cross-border capital flow, tech scaleups, logistics, and healthcare ventures.</div>
+              </div>
+              <div class="c2-corridor-card" onclick="selectCorridor('Turkiye Corridor', 'Industrial manufacturing and Halal pharmaceutical supply chains.', this)">
+                <div class="c2-corridor-name">Turkiye Manufacturing</div>
+                <div class="c2-corridor-meta">Advanced industrial engineering, commercial export corridors, bilateral treaties.</div>
+              </div>
+            </div>
+            <div id="corridor-detail" style="margin-top:14px; font-size:13px; color:#A3B3C9; background:rgba(158,123,59,0.08); border:1px solid rgba(158,123,59,0.25); padding:12px; border-radius:4px;">
+              <strong>Active Selection:</strong> Morocco Business Delegation (October 26 to 30, 2026). Pre-matched B2B sessions and ministry briefings.
+            </div>
+          </div>
+
+        </div>
+      `;
+    }
+
+    function renderConcept3() {
+      return `
+        <div class="c3-theme">
+          <div class="c3-ticker">
+            <span>DISPATCH: 372 INDEXED BUSINESSES</span>
+            <span>NEXT MISSION: MOROCCO DELEGATION (OCT 26 TO 30)</span>
+            <span>PEER ADVISORY: 5 CLOSED COHORTS</span>
+          </div>
+
+          <div class="c3-hero">
+            <div>
+              <span class="c3-tag">[ DIRECT EXECUTIVE INTELLIGENCE ]</span>
+              <h2 class="c3-headline">Direct Peer Intelligence for <span>Operating Founders</span>.</h2>
+              <p class="c3-lead">
+                Zero corporate ceremony. Zero promotional slogans. A confidential network where Muslim business owners and chief executives solve operational problems and share verified market intelligence.
+              </p>
+              <div class="c3-btn-row">
+                <button class="c3-btn-primary" onclick="alert('Simulation: Navigating to Peer Intelligence')">Explore Peer Intelligence</button>
+                <button class="c3-btn-secondary" onclick="alert('Simulation: Searching Directory')">Review Member Directory</button>
+              </div>
+            </div>
+
+            <!-- Terminal Box -->
+            <div class="c3-terminal-box">
+              <div style="color:#71717A; font-size:11px; margin-bottom:10px;">// SYSTEM METRICS &amp; STATUS</div>
+              <div class="c3-term-line">
+                <span class="c3-term-key">COMMUNITY ARCHETYPE</span>
+                <span class="c3-term-val">High-Signal Peer Network</span>
+              </div>
+              <div class="c3-term-line">
+                <span class="c3-term-key">CONFIDENTIALITY RULE</span>
+                <span class="c3-term-val">Closed Roundtable Confidentiality</span>
+              </div>
+              <div class="c3-term-line">
+                <span class="c3-term-key">ENTRY QUALIFICATION</span>
+                <span class="c3-term-val">Verified Business Revenue</span>
+              </div>
+              <div class="c3-term-line">
+                <span class="c3-term-key">MEETING CADENCE</span>
+                <span class="c3-term-val">Monthly Closed Roundtable</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Representative Interaction: High-Signal Feed -->
+          <div class="c3-feed-sec">
+            <div class="c3-feed-header">
+              <span>CONFIDENTIAL ROUNDTABLE BRIEFINGS (VERIFIED THEMES)</span>
+              <span>FILTER BY OPERATIONAL DOMAIN</span>
+            </div>
+            <div class="c3-feed-grid">
+              <div class="c3-feed-card active" onclick="selectBriefing('Hiring & Retention', 'Tactical playbook for recruiting executive talent when transitioning past $10M revenue.', this)">
+                <div class="c3-feed-domain">GOVERNANCE &amp; HIRING</div>
+                <div class="c3-feed-title">Scaling Leadership Beyond Founder Delegation</div>
+                <div class="c3-feed-summary">How founders in our Scaling tier transition from direct operational management to executive oversight.</div>
+              </div>
+              <div class="c3-feed-card" onclick="selectBriefing('Capital Allocation', 'Structuring non-debt growth capital and navigating family office syndicates.', this)">
+                <div class="c3-feed-domain">CAPITAL &amp; LIQUIDITY</div>
+                <div class="c3-feed-title">Ethical Growth Capital Structuring</div>
+                <div class="c3-feed-summary">Methods for financing expansion into international facilities without interest-bearing commercial debt.</div>
+              </div>
+              <div class="c3-feed-card" onclick="selectBriefing('International Logistics', 'Navigating North American customs and nearshoring medical supplies.', this)">
+                <div class="c3-feed-domain">GLOBAL SUPPLY CHAINS</div>
+                <div class="c3-feed-title">Nearshoring Logistics Across Mediterranean Hubs</div>
+                <div class="c3-feed-summary">Practical insights from members operating bilateral import pipelines between North America and Morocco.</div>
+              </div>
+            </div>
+            <div id="briefing-detail" style="margin-top:14px; font-family:'JetBrains Mono', monospace; font-size:12px; color:#38BDF8; background:rgba(56,189,248,0.06); border:1px solid rgba(56,189,248,0.2); padding:12px; border-radius:4px;">
+              // ACTIVE BRIEFING: Governance & Hiring. Tactical playbook for recruiting executive leadership without diluting operational discipline.
+            </div>
+          </div>
+
+        </div>
+      `;
+    }
+
+    // View Renderer
+    function updateStage() {
+      const container = document.getElementById('viewport-stage');
+      let contentHtml = '';
+
+      if (activeConcept === 1) contentHtml = renderConcept1();
+      else if (activeConcept === 2) contentHtml = renderConcept2();
+      else if (activeConcept === 3) contentHtml = renderConcept3();
+
+      if (activeMode === 'desktop') {
+        container.innerHTML = `
+          <div class="frame-desktop">
+            <div class="browser-bar">
+              <div class="browser-dots">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-yellow"></div>
+                <div class="dot dot-green"></div>
+              </div>
+              <div class="browser-address">https://amcob.org/concept-${activeConcept}-desktop-opening</div>
+              <div style="font-size:11px; color:#94A3B8;">1440 × 900 Canvas</div>
+            </div>
+            ${contentHtml}
+          </div>
+        `;
+      } else if (activeMode === 'mobile') {
+        container.innerHTML = `
+          <div class="frame-mobile-container">
+            <div style="font-size:12px; color:#94A3B8; font-weight:600;">Simulated 390px Mobile Viewport</div>
+            <div class="frame-mobile">
+              <div class="mobile-speaker-notch"></div>
+              ${contentHtml}
+            </div>
+          </div>
+        `;
+      } else if (activeMode === 'split') {
+        container.innerHTML = `
+          <div class="frame-side-by-side">
+            <div class="frame-desktop">
+              <div class="browser-bar">
+                <div class="browser-dots">
+                  <div class="dot dot-red"></div>
+                  <div class="dot dot-yellow"></div>
+                  <div class="dot dot-green"></div>
+                </div>
+                <div class="browser-address">https://amcob.org/desktop-opening</div>
+                <div style="font-size:11px; color:#94A3B8;">Desktop (1440px)</div>
+              </div>
+              ${contentHtml}
+            </div>
+
+            <div class="frame-mobile-container">
+              <div class="frame-mobile">
+                <div class="mobile-speaker-notch"></div>
+                ${contentHtml}
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (activeMode === 'matrix') {
+        // Scroll smoothly to comparison matrix
+        document.getElementById('architectural-matrix').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Concept Switch Handler
+    function selectConcept(num) {
+      activeConcept = num;
+      document.querySelectorAll('.pill-btn[id^="btn-concept-"]').forEach((btn, i) => {
+        btn.classList.toggle('active', (i + 1) === num);
+      });
+      updateStage();
+    }
+
+    // View Mode Handler
+    function switchViewMode(mode) {
+      activeMode = mode;
+      document.querySelectorAll('.pill-btn[id^="mode-"]').forEach(btn => {
+        btn.classList.toggle('active', btn.id === 'mode-' + mode);
+      });
+      updateStage();
+    }
+
+    // Interactive Handlers for Concept 1
+    function updateC1Tier(idx, el) {
+      document.querySelectorAll('.c1-tier-pill').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('c1-tier-title').textContent = verifiedTiers[idx].name;
+      document.getElementById('c1-tier-desc').textContent = verifiedTiers[idx].desc;
+      document.getElementById('c1-tier-price').textContent = verifiedTiers[idx].price;
+    }
+
+    // Interactive Handlers for Concept 2
+    function selectCorridor(name, detail, el) {
+      document.querySelectorAll('.c2-corridor-card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('corridor-detail').innerHTML = `<strong>Active Selection:</strong> ${name}. ${detail}`;
+    }
+
+    // Interactive Handlers for Concept 3
+    function selectBriefing(domain, summary, el) {
+      document.querySelectorAll('.c3-feed-card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('briefing-detail').textContent = `// ACTIVE BRIEFING: ${domain}. ${summary}`;
+    }
+
+    // Initial Render on Load
+    updateStage();
+  </script>
+
+</body>
+</html>

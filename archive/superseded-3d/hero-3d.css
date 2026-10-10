@@ -1,0 +1,320 @@
+/**
+ * AMCOB Unified Architectural Hero & 3D Chamber Dais
+ * Pure #ffffff dominant background, centered monumental typography,
+ * optical glass transmission dais, and seamless mobile responsiveness.
+ */
+
+.hero-architectural {
+  position: relative;
+  background: #ffffff;
+  padding: 98px 0 32px 0;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-light);
+  text-align: center;
+}
+
+/* Ambient Radial Luma Glow on Pure White */
+.hero-architectural::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1100px;
+  height: 500px;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(2, 132, 199, 0.04) 0%, rgba(206, 137, 36, 0.03) 45%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-editorial-wrapper {
+  position: relative;
+  z-index: 3;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+/* Eyebrow Pill */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0b162c;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  padding: 5px 16px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+.hero-eyebrow-diamond {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #ce8924;
+  transform: rotate(45deg);
+}
+
+/* Monumental Centered Headline */
+.hero-title {
+  font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 850;
+  color: #0b162c;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  max-width: 900px;
+  margin: 0 auto 14px auto;
+}
+
+/* Editorial Subheadline */
+.hero-description {
+  font-size: clamp(15.5px, 1.15vw, 18px);
+  color: #475569;
+  line-height: 1.55;
+  max-width: 720px;
+  margin: 0 auto 20px auto;
+  font-weight: 450;
+}
+
+/* Centered Button Group */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  font-size: 14.5px;
+  font-weight: 650;
+  color: #ffffff;
+  background: #0b162c;
+  border: 1px solid #0b162c;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(11, 22, 44, 0.15);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-hero-primary:hover {
+  background: #0284c7;
+  border-color: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.25);
+  color: #ffffff;
+}
+
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  font-size: 14.5px;
+  font-weight: 650;
+  color: #0b162c;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-hero-secondary:hover {
+  background: #ffffff;
+  border-color: #0b162c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+/* Institutional Metrics Proof Strip */
+.hero-metrics-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 999px;
+  width: fit-content;
+  margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.02);
+}
+
+.hero-metric-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.hero-metric-num {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0b162c;
+  line-height: 1;
+}
+
+.hero-metric-label {
+  font-size: 12.5px;
+  font-weight: 550;
+  color: #64748b;
+  text-transform: capitalize;
+}
+
+.hero-metric-divider {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+/* 3D Architectural Stage (Centered Below Typography) */
+.hero-3d-stage {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1160px;
+  height: 480px;
+  margin: 12px auto 0 auto;
+  overflow: visible;
+  pointer-events: auto;
+}
+
+#hero3dCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Scene Attribution Micro-Pill */
+.hero-scene-caption {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 999px;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+.hero-scene-caption-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ce8924;
+}
+
+/* Static Fallback when WebGL is unavailable */
+.hero-3d-fallback {
+  display: none;
+  width: 100%;
+  max-width: 1080px;
+  margin: 36px auto 0 auto;
+}
+
+.no-webgl .hero-3d-stage,
+@media (prefers-reduced-motion: reduce) {
+  .hero-3d-stage {
+    display: none;
+  }
+  .hero-3d-fallback {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+.fallback-glass-frame {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+}
+
+.fallback-glass-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Responsive Adaptations */
+@media (max-width: 1024px) {
+  .hero-architectural {
+    padding: 110px 0 48px 0;
+  }
+  .hero-3d-stage {
+    height: 440px;
+    margin-top: 28px;
+  }
+  .hero-metrics-bar {
+    gap: 20px;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-architectural {
+    padding: 96px 0 40px 0;
+  }
+  .hero-title {
+    font-size: 34px;
+  }
+  .hero-description {
+    font-size: 16.5px;
+    margin-bottom: 24px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-metrics-bar {
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 320px;
+  }
+  .hero-metric-divider {
+    display: none;
+  }
+  .hero-3d-stage {
+    height: 340px;
+    margin-top: 20px;
+  }
+}

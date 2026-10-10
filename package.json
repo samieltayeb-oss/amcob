@@ -1,0 +1,17 @@
+{
+  "name": "amcob",
+  "version": "1.0.0",
+  "description": "AMCOB: Allied Muslim Chamber of Business Official Multi-Page Platform",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/server.js",
+    "audit:routes": "node scripts/audit-original-routes.js",
+    "audit:links": "node scripts/crawl-and-test-all-links.js",
+    "audit:assets": "node scripts/audit-assets.js",
+    "audit:copy": "node scripts/verify-copy-standards.js",
+    "audit:all": "node scripts/audit-assets.js && node scripts/crawl-and-test-all-links.js && node scripts/audit-original-routes.js && node scripts/verify-copy-standards.js"
+  },
+  "devDependencies": {
+    "gsap": "^3.15.0"
+  }
+}

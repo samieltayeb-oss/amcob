@@ -1,0 +1,668 @@
+/* ==========================================================================
+   AMCOB Interactive Motion Graphics Ecosystem Architecture
+   Direct recreation of the AMCOB 8-Node Dial with modern 2D motion graphics,
+   SVG orbital energy beams, live interaction cockpit, and mobile responsiveness.
+   Dominant background: Pure White (#ffffff). Official logo integration.
+   ========================================================================== */
+
+.ecosystem-section {
+  scroll-margin-top: 100px;
+  background-color: #ffffff;
+  padding: 70px 0 85px 0;
+  border-bottom: 1px solid var(--border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.ecosystem-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 30px auto;
+}
+
+.ecosystem-header .section-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--brand-navy);
+  letter-spacing: -0.02em;
+  margin: 12px 0 16px 0;
+}
+
+.ecosystem-header .section-title .text-gold {
+  color: var(--brand-gold);
+}
+
+.ecosystem-header .ecosystem-intro {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-body);
+  margin: 0 auto;
+}
+
+/* Quick Engine Navigation Bar */
+.ecosystem-chips-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 20px auto 28px auto;
+  max-width: 980px;
+}
+
+.ecosystem-chip {
+  background: #ffffff;
+  border: 1px solid rgba(11, 22, 44, 0.12);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand-navy);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+
+.ecosystem-chip:hover {
+  border-color: var(--brand-gold);
+  color: var(--brand-gold);
+  transform: translateY(-1px);
+}
+
+.ecosystem-chip.active {
+  background: var(--brand-navy);
+  border-color: var(--brand-navy);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(11, 22, 44, 0.18);
+}
+
+.ecosystem-chip.active .chip-num {
+  background: var(--brand-gold);
+  color: #ffffff;
+}
+
+.chip-num {
+  font-size: 11px;
+  font-weight: 750;
+  background: rgba(11, 22, 44, 0.08);
+  color: var(--brand-navy);
+  padding: 2px 6px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+/* Desktop Orbital Arena */
+.ecosystem-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1160px;
+  height: 560px;
+  margin: 0 auto;
+  background: radial-gradient(circle at 50% 50%, rgba(206, 137, 36, 0.035) 0%, rgba(11, 22, 44, 0.015) 50%, rgba(255, 255, 255, 0) 75%);
+  user-select: none;
+}
+
+/* Background SVG Motion Stage */
+.ecosystem-svg-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* SVG Orbital Rings */
+.orbit-ring-outer {
+  stroke: rgba(11, 22, 44, 0.08);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 8;
+  animation: orbitSpin 110s linear infinite;
+  transform-origin: 570px 280px;
+}
+
+.orbit-ring-middle {
+  stroke: rgba(206, 137, 36, 0.3);
+  stroke-width: 1.5;
+  stroke-dasharray: 8 14;
+  animation: orbitSpinRev 75s linear infinite;
+  transform-origin: 570px 280px;
+}
+
+.orbit-pulse-wave {
+  transform-origin: 570px 280px;
+  animation: radarPulse 3.5s ease-out infinite;
+}
+
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbitSpinRev {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes radarPulse {
+  0% { r: 100px; opacity: 0.8; stroke-width: 2.5; stroke: rgba(206, 137, 36, 0.8); }
+  60% { opacity: 0.25; stroke-width: 1.5; }
+  100% { r: 240px; opacity: 0; stroke-width: 0.5; stroke: rgba(11, 22, 44, 0.1); }
+}
+
+/* SVG Connecting Beams */
+.ecosystem-beam {
+  stroke: rgba(11, 22, 44, 0.14);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+.ecosystem-beam.active {
+  stroke: var(--brand-gold);
+  stroke-width: 3;
+  stroke-dasharray: 8 6;
+  animation: laserBeamFlow 0.85s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(206, 137, 36, 0.8));
+}
+
+@keyframes laserBeamFlow {
+  from { stroke-dashoffset: 28; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Central Hub on the Stage */
+.ecosystem-center-hub {
+  position: absolute;
+  top: 280px;
+  left: 570px;
+  transform: translate(-50%, -50%);
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid var(--brand-navy);
+  box-shadow:
+    0 16px 45px -10px rgba(11, 22, 44, 0.18),
+    0 0 0 4px rgba(206, 137, 36, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  z-index: 5;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ecosystem-center-hub:hover {
+  transform: translate(-50%, -50%) scale(1.02);
+  box-shadow:
+    0 22px 55px -10px rgba(11, 22, 44, 0.22),
+    0 0 0 6px rgba(206, 137, 36, 0.3);
+}
+
+.center-hub-crest {
+  width: 145px;
+  height: auto;
+  max-height: 44px;
+  object-fit: contain;
+  margin-bottom: 6px;
+}
+
+.center-hub-title {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--brand-gold);
+}
+
+.center-hub-live-badge {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(11, 22, 44, 0.04);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--brand-navy);
+  border: 1px solid rgba(11, 22, 44, 0.08);
+}
+
+.center-hub-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-gold);
+  animation: liveBeacon 1.5s ease-in-out infinite;
+}
+
+@keyframes liveBeacon {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* Center Ring SVG Pins */
+.ring-pin {
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ring-pin circle {
+  fill: #ffffff;
+  stroke: var(--brand-navy);
+  stroke-width: 2.5;
+  transition: all 0.3s ease;
+}
+
+.ring-pin text {
+  fill: var(--brand-navy);
+  font-size: 12px;
+  font-weight: 800;
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  text-anchor: middle;
+  dominant-baseline: central;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+.ring-pin:hover circle,
+.ring-pin.active circle {
+  fill: var(--brand-gold);
+  stroke: #ffffff;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 8px rgba(206, 137, 36, 0.85));
+}
+
+.ring-pin:hover text,
+.ring-pin.active text {
+  fill: #ffffff;
+  font-weight: 900;
+}
+
+/* Orbital Interactive Pills (The 8 Engines) */
+.ecosystem-pill {
+  position: absolute;
+  width: 325px;
+  height: 72px;
+  background: #ffffff;
+  border: 2px solid rgba(206, 137, 36, 0.38);
+  border-radius: 999px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 18px rgba(11, 22, 44, 0.06);
+  z-index: 15;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Callout Pointer Triangles (pointing toward the center ring) */
+.ecosystem-pill.pill-left::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid rgba(206, 137, 36, 0.6);
+  transition: border-left-color 0.3s ease;
+}
+
+.ecosystem-pill.pill-right::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid rgba(206, 137, 36, 0.6);
+  transition: border-right-color 0.3s ease;
+}
+
+/* Pill Hover and Active States */
+.ecosystem-pill:hover,
+.ecosystem-pill.active {
+  border-color: var(--brand-gold);
+  transform: scale(1.04);
+  box-shadow: 0 10px 30px rgba(206, 137, 36, 0.22), 0 0 0 2px rgba(206, 137, 36, 0.25);
+  z-index: 25;
+}
+
+.ecosystem-pill.pill-left:hover::after,
+.ecosystem-pill.pill-left.active::after {
+  border-left-color: var(--brand-gold);
+}
+
+.ecosystem-pill.pill-right:hover::after,
+.ecosystem-pill.pill-right.active::after {
+  border-right-color: var(--brand-gold);
+}
+
+/* Pill Internal Elements */
+.pill-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--brand-navy);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13.5px;
+  font-weight: 800;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(11, 22, 44, 0.15);
+}
+
+.ecosystem-pill:hover .pill-badge,
+.ecosystem-pill.active .pill-badge {
+  background: var(--brand-gold);
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.pill-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pill-title {
+  font-size: 14.5px;
+  font-weight: 750;
+  color: var(--brand-navy);
+  line-height: 1.25;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.pill-subtitle {
+  font-size: 11px;
+  font-weight: 550;
+  color: var(--text-muted);
+  line-height: 1.2;
+  margin-top: 2px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Individual Pill Absolute Positions on Desktop (1140x560 stage) */
+/* Left Column (Pill 01, 08, 07, 06) */
+#pill-0 { top: 22px; left: 16px; }       /* 01 Peer Advisory */
+#pill-7 { top: 162px; left: 0px; }       /* 08 Sponsorship */
+#pill-6 { top: 302px; left: 0px; }       /* 07 Accelerator */
+#pill-5 { top: 442px; left: 16px; }      /* 06 Capital Raising */
+
+/* Right Column (Pill 02, 03, 04, 05) */
+#pill-1 { top: 22px; right: 16px; }      /* 02 Lead Generation */
+#pill-2 { top: 162px; right: 0px; }      /* 03 Networking Mixers */
+#pill-3 { top: 302px; right: 0px; }      /* 04 Podcasts */
+#pill-4 { top: 442px; right: 16px; }     /* 05 Workshops */
+
+/* Interactive Cockpit HUD */
+.ecosystem-cockpit {
+  max-width: 1040px;
+  margin: 32px auto 0 auto;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--brand-gold);
+  border-radius: 12px;
+  padding: 24px 32px;
+  box-shadow: 0 8px 30px rgba(11, 22, 44, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  transition: all 0.3s ease;
+}
+
+.cockpit-left {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex: 1;
+}
+
+.cockpit-num {
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--brand-gold);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.cockpit-details h3 {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--brand-navy);
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cockpit-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--brand-gold);
+  background: rgba(206, 137, 36, 0.1);
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+.cockpit-details p {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text-body);
+  margin: 0;
+}
+
+.cockpit-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.cockpit-btn {
+  background: var(--brand-navy);
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(11, 22, 44, 0.15);
+}
+
+.cockpit-btn:hover {
+  background: var(--brand-gold);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(206, 137, 36, 0.3);
+}
+
+/* Cockpit Steppers & Play Controls */
+.cockpit-stepper-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--brand-navy);
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.cockpit-stepper-btn:hover {
+  background: var(--brand-navy);
+  color: #ffffff;
+  border-color: var(--brand-navy);
+}
+
+/* Play/Pause Control Button in bar */
+.ecosystem-toggle-play {
+  background: transparent;
+  border: 1px dashed rgba(11, 22, 44, 0.25);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.ecosystem-toggle-play:hover {
+  border-color: var(--brand-navy);
+  color: var(--brand-navy);
+}
+
+/* ==========================================================================
+   Responsive Adaptations (Tablet & Mobile)
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .ecosystem-stage {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .ecosystem-svg-stage {
+    display: none;
+  }
+
+  .ecosystem-center-hub {
+    position: static;
+    transform: none;
+    margin: 0 auto 28px auto;
+    width: 210px;
+    height: 210px;
+  }
+
+  .ecosystem-pill {
+    position: static;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    transform: none !important;
+  }
+
+  .ecosystem-pill::after {
+    display: none !important;
+  }
+
+  .ecosystem-nodes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* Natural sequential 01-08 ordering in responsive flow */
+  #pill-0 { order: 1; }
+  #pill-1 { order: 2; }
+  #pill-2 { order: 3; }
+  #pill-3 { order: 4; }
+  #pill-4 { order: 5; }
+  #pill-5 { order: 6; }
+  #pill-6 { order: 7; }
+  #pill-7 { order: 8; }
+
+  .ecosystem-cockpit {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .cockpit-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 680px) {
+  .ecosystem-section {
+    padding: 50px 0 60px 0;
+  }
+
+  .ecosystem-header .section-title {
+    font-size: 28px;
+  }
+
+  .ecosystem-nodes-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .ecosystem-pill {
+    height: auto;
+    padding: 12px 16px;
+  }
+
+  .pill-title {
+    white-space: normal;
+  }
+
+  .pill-subtitle {
+    white-space: normal;
+  }
+
+  .cockpit-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .cockpit-num {
+    font-size: 28px;
+  }
+
+  .cockpit-right {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .cockpit-btn {
+    justify-content: center;
+  }
+}

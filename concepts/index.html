@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMCOB | Allied Muslim Chamber of Business</title>
+  
+  <!-- Disciplined Typography: High-Contrast Editorial Serif + Balanced Modern Grotesque -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================================
+       DESIGN TOKENS: PURE WHITE ARCHITECTURAL FOUNDATION
+       ========================================================================= */
+    :root {
+      /* Backgrounds: Pure white foundation throughout */
+      --bg-page: #FFFFFF;
+      --bg-subtle: #F8FAFC;
+      --bg-muted: #F1F5F9;
+      --bg-dark: #0A1120;
+      
+      /* Typography Colors: Crisp, high-contrast, deeply legible */
+      --text-main: #0F172A;        /* Deep slate ink */
+      --text-secondary: #334155;   /* Balanced body charcoal */
+      --text-muted: #64748B;       /* Subdued secondary captions */
+      --text-inverse: #FFFFFF;
+      
+      /* Brand Identity: Authentic AMCOB Navy & Architectural Slate */
+      --brand-navy: #0F2C59;       /* Official AMCOB corporate deep navy */
+      --brand-navy-light: #1E3A8A;
+      --border-subtle: #E2E8F0;    /* Crisp 1px hairline border */
+      --border-strong: #CBD5E1;
+      
+      /* Typography System */
+      --font-display: 'Newsreader', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Layout & Spacing */
+      --container-width: 1200px;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+    }
+
+    /* Reset & Base Setup */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-page);
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Container Utility */
+    .container {
+      width: 100%;
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Accessible Skip Link */
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 20px;
+      background: var(--brand-navy);
+      color: #FFF;
+      padding: 10px 18px;
+      font-weight: 600;
+      font-size: 14px;
+      z-index: 9999;
+      transition: top 0.2s ease;
+      border-radius: var(--radius-sm);
+    }
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    /* Focus States */
+    :focus-visible {
+      outline: 2px solid var(--brand-navy);
+      outline-offset: 3px;
+    }
+
+    /* =========================================================================
+       GLOBAL NAVIGATION MASTHEAD
+       ========================================================================= */
+    .site-header {
+      background-color: var(--bg-page);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: border-color 0.2s ease;
+    }
+    
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 84px;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .brand-link img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-link {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s ease;
+      position: relative;
+    }
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+    .nav-link.active {
+      color: var(--brand-navy);
+      font-weight: 600;
+    }
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--brand-navy);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    
+    .btn-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 12px;
+      transition: color 0.15s ease;
+    }
+    .btn-text:hover {
+      color: var(--text-main);
+    }
+
+    .btn-solid {
+      background-color: var(--brand-navy);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      border: 1px solid var(--brand-navy);
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      display: inline-block;
+    }
+    .btn-solid:hover {
+      background-color: #0B2144;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-block;
+    }
+    .btn-outline:hover {
+      border-color: var(--text-main);
+      background-color: var(--bg-subtle);
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    /* =========================================================================
+       HERO COMPOSITION: EDITORIAL MASTHEAD + DOCUMENTARY CROP
+       ========================================================================= */
+    .hero-section {
+      padding: 72px 0 88px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brand-navy);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 54px;
+      line-height: 1.12;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--brand-navy);
+    }
+
+    .hero-lead {
+      font-size: 19px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+      max-width: 580px;
+    }
+
+    .hero-action-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      object-position: center 25%;
+      border-radius: var(--radius-sm);
+      display: block;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .photo-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 6px;
+    }
+
+    /* =========================================================================
+       SECTION: PEER ADVISORY GROUPS & INTERACTIVE COHORT EXPLORER
+       ========================================================================= */
+    .section-spacious {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .editorial-header {
+      margin-bottom: 56px;
+      max-width: 720px;
+    }
+    .section-kicker {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brand-navy);
+      margin-bottom: 12px;
+    }
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 38px;
+      line-height: 1.2;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .section-desc {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* Peer Advisory Interactive Explorer */
+    .explorer-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .tier-list-nav {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .tier-tab-btn {
+      background: var(--bg-page);
+      border: none;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 20px;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .tier-tab-btn:last-child {
+      border-bottom: none;
+    }
+    .tier-tab-btn:hover {
+      background-color: var(--bg-subtle);
+    }
+    .tier-tab-btn.active {
+      background-color: var(--bg-subtle);
+      border-left: 3px solid var(--brand-navy);
+    }
+    .tier-tab-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .tier-tab-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .tier-detail-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 40px;
+    }
+
+    .tier-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .tier-title-large {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .tier-revenue-badge {
+      font-size: 13px;
+      color: var(--brand-navy);
+      font-weight: 600;
+    }
+    .tier-pricing-block {
+      text-align: right;
+    }
+    .tier-price-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1;
+    }
+    .tier-price-period {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .tier-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .spec-block h4 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .spec-block p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* =========================================================================
+       SECTION: GATHERINGS & TRADE MISSIONS (DIGNIFIED HORIZONTAL DOSSIER)
+       ========================================================================= */
+    .events-feature-box {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      background: var(--bg-page);
+    }
+    .events-feature-media {
+      background: #111827;
+      position: relative;
+    }
+    .events-feature-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+    .events-feature-body {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .event-status-pill {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--brand-navy);
+      margin-bottom: 16px;
+    }
+    .event-title-main {
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 1.25;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+    .event-summary {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    .event-meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 28px;
+      font-size: 14px;
+    }
+    .event-meta-table td {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .event-meta-table td:first-child {
+      color: var(--text-muted);
+      width: 110px;
+    }
+    .event-meta-table td:last-child {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* Secondary Events Grid */
+    .secondary-events-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 36px;
+    }
+    .event-secondary-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 32px;
+      background: var(--bg-page);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .event-secondary-card h4 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .event-secondary-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    /* =========================================================================
+       SECTION: LEADERSHIP & THE FOUNDING CIRCLE (DOCUMENTARY EDITORIAL)
+       ========================================================================= */
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .founder-profile {
+      border-top: 2px solid var(--text-main);
+      padding-top: 20px;
+    }
+    .founder-image-wrap {
+      width: 100%;
+      height: 280px;
+      background: var(--bg-muted);
+      margin-bottom: 18px;
+      overflow: hidden;
+      border-radius: var(--radius-sm);
+    }
+    .founder-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .founder-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: var(--text-main);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .founder-role {
+      font-size: 13px;
+      color: var(--brand-navy);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .founder-company {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .founder-quote {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      font-style: italic;
+      border-left: 2px solid var(--border-strong);
+      padding-left: 12px;
+    }
+
+    /* =========================================================================
+       SECTION: COMPLETE MEMBERSHIP TABLE & VERIFIED DIRECTORY
+       ========================================================================= */
+    .comparison-table-wrapper {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+      background: var(--bg-page);
+    }
+    .ledger-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      text-align: left;
+    }
+    .ledger-table th, .ledger-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: middle;
+    }
+    .ledger-table th {
+      background: var(--bg-subtle);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+    .ledger-table tr:last-child td {
+      border-bottom: none;
+    }
+    .ledger-table strong {
+      color: var(--text-main);
+    }
+
+    .discrepancy-box {
+      margin-top: 24px;
+      padding: 18px 24px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--brand-navy);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+    }
+
+    /* Directory Sample */
+    .directory-search-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .search-input-field {
+      flex: 1;
+      min-width: 260px;
+      padding: 12px 18px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--bg-page);
+      color: var(--text-main);
+    }
+    .search-input-field:focus {
+      outline: 2px solid var(--brand-navy);
+    }
+
+    .directory-listing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .business-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+      background: var(--bg-page);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.15s ease;
+    }
+    .business-card:hover {
+      border-color: var(--border-strong);
+    }
+    .biz-sector {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand-navy);
+      margin-bottom: 8px;
+    }
+    .biz-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .biz-location {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .biz-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+    .biz-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* =========================================================================
+       FOOTER: ARCHITECTURAL & DIGNIFIED
+       ========================================================================= */
+    .site-footer {
+      background: var(--bg-page);
+      border-top: 1px solid var(--border-subtle);
+      padding: 72px 0 40px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .footer-brand p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-top: 16px;
+      max-width: 320px;
+    }
+    .footer-col h5 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-main);
+      margin-bottom: 18px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
+    .footer-bottom-bar {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Modal Dialog */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(2px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal-card {
+      background: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      max-width: 560px;
+      width: 100%;
+      padding: 36px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    /* =========================================================================
+       RESPONSIVE DESIGN (TABLET & MOBILE BREAKPOINTS)
+       ========================================================================= */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-title {
+        font-size: 44px;
+      }
+      .hero-image {
+        height: 380px;
+      }
+      .explorer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .tier-list-nav {
+        flex-direction: row;
+        overflow-x: auto;
+      }
+      .tier-tab-btn {
+        border-bottom: none;
+        border-right: 1px solid var(--border-subtle);
+        min-width: 180px;
+      }
+      .events-feature-box {
+        grid-template-columns: 1fr;
+      }
+      .founders-grid, .directory-listing-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+      .header-inner {
+        height: 72px;
+      }
+      .main-nav, .header-actions {
+        display: none;
+      }
+      .mobile-menu-toggle {
+        display: block;
+      }
+      .hero-section {
+        padding: 48px 0 64px;
+      }
+      .hero-title {
+        font-size: 36px;
+      }
+      .hero-lead {
+        font-size: 17px;
+      }
+      .hero-image {
+        height: 280px;
+      }
+      .section-spacious {
+        padding: 64px 0;
+      }
+      .section-heading {
+        font-size: 30px;
+      }
+      .tier-detail-card {
+        padding: 24px;
+      }
+      .tier-content-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .events-feature-body {
+        padding: 28px;
+      }
+      .secondary-events-row {
+        grid-template-columns: 1fr;
+      }
+      .founders-grid, .directory-listing-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: var(--bg-page);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 24px;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 99;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .mobile-drawer.open {
+      display: flex;
+    }
+    .mobile-drawer a {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Global Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#overview" class="brand-link">
+        <img src="/assets/optimized/logos/logo.png" alt="AMCOB Allied Muslim Chamber of Business" width="150" height="42" style="height:40px; width:auto; display:block;">
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#overview" class="nav-link active">Overview</a>
+        <a href="#membership" class="nav-link">Membership</a>
+        <a href="#events" class="nav-link">Events</a>
+        <a href="#directory" class="nav-link">Business directory</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://my.amcob.org/" target="_blank" rel="noopener noreferrer" class="btn-text">Member login</a>
+        <a href="#membership" class="btn-solid">Explore membership</a>
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Open mobile navigation menu" onclick="toggleMobileMenu()">☰</button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+      <a href="#overview" onclick="toggleMobileMenu()">Overview</a>
+      <a href="#membership" onclick="toggleMobileMenu()">Membership</a>
+      <a href="#events" onclick="toggleMobileMenu()">Events</a>
+      <a href="#directory" onclick="toggleMobileMenu()">Business directory</a>
+      <a href="https://my.amcob.org/" target="_blank" rel="noopener noreferrer" style="color:var(--brand-navy); font-weight:600;">Member login</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+
+    <!-- =====================================================================
+         HERO SECTION: EDITORIAL COMPOSITION
+         ===================================================================== -->
+    <section class="hero-section" id="overview">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <div class="hero-text-column">
+            <div class="hero-kicker">Allied Muslim Chamber of Business</div>
+            <h1 class="hero-title">
+              The higher you climb, the <em>smaller the room</em> gets.
+            </h1>
+            <p class="hero-lead">
+              Running a growing company brings unique challenges, especially when you carry the responsibility alone. AMCOB brings together Muslim founders, chief executives, and business owners in confidential peer advisory groups, structured referral exchanges, and bilateral trade missions.
+            </p>
+            <div class="hero-action-row">
+              <a href="#membership" class="btn-solid">Explore peer advisory tiers</a>
+              <a href="#events" class="btn-outline">View upcoming events</a>
+            </div>
+          </div>
+
+          <div class="hero-photo-wrap">
+            <img src="/assets/optimized/events/WVxXGzlIkhJuZjVaUcALnLmQh3JvBSfjAgxM8emt.jpg" alt="AMCOB LEAD Summit executive roundtable session" class="hero-image" width="1920" height="1080">
+            <div class="photo-caption">
+              <span>Documentary photography from AMCOB LEAD Summit</span>
+              <span>Executive roundtable in session</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 1: PEER ADVISORY GROUPS & INTERACTIVE REVENUE EXPLORER
+         ===================================================================== -->
+    <section class="section-spacious" id="membership">
+      <div class="container">
+        
+        <div class="editorial-header">
+          <div class="section-kicker">Peer Advisory Groups</div>
+          <h2 class="section-heading">Confidential counsel with peers who match your scale</h2>
+          <p class="section-desc">
+            AMCOB peer advisory groups group business leaders with non-competing peers who operate at a similar revenue scale. Groups meet monthly in confidential sessions led by a trained facilitator to address operating decisions, governance, and executive leadership.
+          </p>
+        </div>
+
+        <!-- The Distinctive Interaction: Clean Revenue & Cohort Explorer -->
+        <div class="explorer-grid">
+          
+          <div class="tier-list-nav" role="tablist" aria-label="Select your enterprise revenue bracket">
+            <button class="tier-tab-btn" role="tab" aria-selected="false" onclick="selectTier(0, this)">
+              <span class="tier-tab-name">Emerging Enterprises</span>
+              <span class="tier-tab-meta">Under $1 Million revenue</span>
+            </button>
+            <button class="tier-tab-btn" role="tab" aria-selected="false" onclick="selectTier(1, this)">
+              <span class="tier-tab-name">Booming Enterprises</span>
+              <span class="tier-tab-meta">$1 Million to $5 Million revenue</span>
+            </button>
+            <button class="tier-tab-btn active" role="tab" aria-selected="true" onclick="selectTier(2, this)">
+              <span class="tier-tab-name">Scaling Enterprises</span>
+              <span class="tier-tab-meta">$5 Million to $25 Million revenue</span>
+            </button>
+            <button class="tier-tab-btn" role="tab" aria-selected="false" onclick="selectTier(3, this)">
+              <span class="tier-tab-name">Summit Council</span>
+              <span class="tier-tab-meta">$25 Million to $100 Million revenue</span>
+            </button>
+            <button class="tier-tab-btn" role="tab" aria-selected="false" onclick="selectTier(4, this)">
+              <span class="tier-tab-name">Powerhouse Council</span>
+              <span class="tier-tab-meta">$100 Million+ revenue</span>
+            </button>
+          </div>
+
+          <div class="tier-detail-card" id="tier-display-panel" role="tabpanel">
+            <div class="tier-header-row">
+              <div>
+                <h3 class="tier-title-large" id="panel-title">Scaling Enterprises Peer Advisory</h3>
+                <div class="tier-revenue-badge" id="panel-revenue">Eligible business revenue: $5 Million to $25 Million</div>
+              </div>
+              <div class="tier-pricing-block">
+                <div class="tier-price-number" id="panel-price">$3,850</div>
+                <div class="tier-price-period">per year / official tier</div>
+              </div>
+            </div>
+
+            <div class="tier-content-grid">
+              <div class="spec-block">
+                <h4>Focus and operating challenges</h4>
+                <p id="panel-focus">
+                  Managing mid-market growth, recruiting executive leadership, building sustainable governance structures, and preparing for regional or international expansion.
+                </p>
+              </div>
+              <div class="spec-block">
+                <h4>Meeting rhythm and structure</h4>
+                <p id="panel-format">
+                  Closed monthly 3-hour roundtable with 8 to 10 non-competing peers. Guided by a certified facilitator with strict confidentiality.
+                </p>
+              </div>
+              <div class="spec-block">
+                <h4>Included chamber benefits</h4>
+                <p id="panel-benefits">
+                  Full AMCOB Connect client referral access included, priority registration for bilateral trade missions, and executive retreat access.
+                </p>
+              </div>
+              <div class="spec-block">
+                <h4>Application and verification</h4>
+                <p id="panel-process">
+                  Confidential revenue verification review followed by a placement interview to ensure cohort alignment and avoid commercial conflicts.
+                </p>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+              <button class="btn-solid" onclick="openApplicationModal('Scaling Enterprises')">Inquire about this cohort</button>
+              <span style="font-size:13px; color:var(--text-muted);">Confidential intake process</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 2: EVENTS & INTERNATIONAL TRADE DELEGATIONS
+         ===================================================================== -->
+    <section class="section-spacious" id="events">
+      <div class="container">
+        
+        <div class="editorial-header">
+          <div class="section-kicker">Trade Missions and Events</div>
+          <h2 class="section-heading">Bilateral trade delegations and regional executive gatherings</h2>
+          <p class="section-desc">
+            AMCOB connects North American enterprise with international commercial corridors through structured trade tours, annual conferences, and regional dinner mixers.
+          </p>
+        </div>
+
+        <!-- Featured Gathering: Morocco Business Delegation -->
+        <article class="events-feature-box">
+          <div class="events-feature-media">
+            <img src="/assets/optimized/events/JOl1IgeholTShviK796AzY6HgbtMYqVVIV8FrVt2.png" alt="AMCOB executive strategy and delegation briefing" width="640" height="427" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div class="events-feature-body">
+            <span class="event-status-pill">Active Upcoming Delegation</span>
+            <h3 class="event-title-main">AMCOB Tours: Morocco Business and Investment Delegation</h3>
+            <p class="event-summary">
+              A five-day executive trade mission connecting North American Muslim business owners with industrial, agricultural, and technological opportunities across Morocco.
+            </p>
+            
+            <table class="event-meta-table">
+              <tr>
+                <td>Dates:</td>
+                <td>October 26 to 30, 2026</td>
+              </tr>
+              <tr>
+                <td>Locations:</td>
+                <td>Rabat, Casablanca, and Marrakech</td>
+              </tr>
+              <tr>
+                <td>Format:</td>
+                <td>Pre-matched B2B sessions, ministerial briefings, and industrial site tours</td>
+              </tr>
+              <tr>
+                <td>Sectors:</td>
+                <td>Agri-tech, renewable infrastructure, logistics, and medical supplies</td>
+              </tr>
+            </table>
+
+            <div>
+              <button class="btn-solid" onclick="openEventModal('Morocco Business Delegation')">Request delegation briefing</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Secondary Events: LEAD Summit and Connect Sessions -->
+        <div class="secondary-events-row">
+          <div class="event-secondary-card">
+            <div>
+              <span class="event-status-pill">Annual Flagship Conference</span>
+              <h4>LEAD Summit Anaheim</h4>
+              <p>
+                Our annual gathering bringing together enterprise founders, investors, and community leaders for keynote panels, sector roundtables, and structured networking in Southern California.
+              </p>
+            </div>
+            <div>
+              <button class="btn-outline" onclick="openEventModal('LEAD Summit Anaheim')">View conference details</button>
+            </div>
+          </div>
+
+          <div class="event-secondary-card">
+            <div>
+              <span class="event-status-pill">Client Referral Program</span>
+              <h4>AMCOB Connect Referral Sessions</h4>
+              <p>
+                Structured referral meetings where business owners present their ideal client profiles and exchange warm introductions with trusted chamber members.
+              </p>
+            </div>
+            <div>
+              <button class="btn-outline" onclick="openEventModal('AMCOB Connect Referral Session')">Learn about Connect</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 3: COMMUNITY & FOUNDING CIRCLE (DOCUMENTARY PROFILES)
+         ===================================================================== -->
+    <section class="section-spacious">
+      <div class="container">
+        
+        <div class="editorial-header">
+          <div class="section-kicker">Community Leadership</div>
+          <h2 class="section-heading">Founders and executives building enduring institutions</h2>
+          <p class="section-desc">
+            AMCOB brings together experienced leaders whose integrity and commercial execution set the standard for our community.
+          </p>
+        </div>
+
+        <div class="founders-grid">
+          
+          <!-- Dr. Sohail Masood -->
+          <article class="founder-profile">
+            <div class="founder-image-wrap">
+              <img src="/assets/optimized/leadership/1516800934459.webp" alt="Dr. Sohail Masood, CEO of KabaFusion" width="400" height="400" loading="lazy">
+            </div>
+            <h3 class="founder-name">Dr. Sohail Masood</h3>
+            <div class="founder-role">Founder, Chairman and CEO</div>
+            <div class="founder-company">KabaFusion (Specialty Infusion Healthcare)</div>
+            <p class="founder-quote">
+              "Building institutions that last beyond individual founders requires patient stewardship and honest peer accountability."
+            </p>
+          </article>
+
+          <!-- Kamal Solaiman -->
+          <article class="founder-profile">
+            <div class="founder-image-wrap">
+              <img src="/assets/optimized/leadership/1734487025310.webp" alt="Kamal Solaiman, Managing Partner" width="400" height="400" loading="lazy">
+            </div>
+            <h3 class="founder-name">Kamal Solaiman</h3>
+            <div class="founder-role">Managing Partner</div>
+            <div class="founder-company">Primary Capital Holdings (Real Estate and Advisory)</div>
+            <p class="founder-quote">
+              "Three decades across global markets taught me that long-term resilience requires values-aligned partners who speak plainly."
+            </p>
+          </article>
+
+          <!-- Umair Shah -->
+          <article class="founder-profile">
+            <div class="founder-image-wrap">
+              <img src="/assets/optimized/leadership/umair-shah.jpg" alt="Umair Shah, Managing Partner" width="400" height="400" loading="lazy">
+            </div>
+            <h3 class="founder-name">Umair Shah</h3>
+            <div class="founder-role">Co-Founder and Managing Partner</div>
+            <div class="founder-company">Arbisoft Global LLC (Enterprise Software Engineering)</div>
+            <p class="founder-quote">
+              "Grounded leadership prioritizes institutional strength and responsibility over temporary commercial shortcuts."
+            </p>
+          </article>
+
+        </div>
+
+        <!-- Corporate Enterprise Anchor Marks -->
+        <div style="margin-top:48px; padding-top:32px; border-top:1px solid var(--border-subtle);">
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); margin-bottom:20px;">
+            Founding Member Enterprises and Corporate Partners
+          </div>
+          <div style="display:flex; align-items:center; gap:40px; flex-wrap:wrap; opacity:0.85;">
+            <img src="/assets/optimized/logos/kabafusion.jpeg" alt="KabaFusion Healthcare" style="height:36px; width:auto; filter:grayscale(100%);">
+            <img src="/assets/optimized/logos/arbisoft.svg" alt="Arbisoft Global" style="height:26px; width:auto; filter:grayscale(100%);">
+            <img src="/assets/optimized/logos/primaryCapitalHoldings.webp" alt="Primary Capital Holdings" style="height:28px; width:auto; filter:grayscale(100%);">
+            <img src="/assets/optimized/logos/merrillImage.webp" alt="Merrill Lynch Wealth Management" style="height:26px; width:auto; filter:grayscale(100%);">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 4: COMPLETE MEMBERSHIP PROGRAMS LEDGER
+         ===================================================================== -->
+    <section class="section-spacious">
+      <div class="container">
+        
+        <div class="editorial-header">
+          <div class="section-kicker">Membership Architecture</div>
+          <h2 class="section-heading">All verified AMCOB membership and advisory programs</h2>
+          <p class="section-desc">
+            Participation is structured according to enterprise size and commercial objectives. All fees are in US Dollars and billed on an annual basis.
+          </p>
+        </div>
+
+        <div class="comparison-table-wrapper">
+          <table class="ledger-table" aria-label="Official Membership and Advisory Programs Table">
+            <thead>
+              <tr>
+                <th>Program</th>
+                <th>Eligibility criteria</th>
+                <th>Program inclusions</th>
+                <th>Annual fee</th>
+                <th>Next step</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Affiliate Membership</strong></td>
+                <td>Solo practitioners, service professionals, early builders</td>
+                <td>Directory listing, virtual mixers, newsletter announcements</td>
+                <td><strong>$550.00</strong> / year</td>
+                <td><button class="btn-outline" style="padding:6px 14px; font-size:13px;" onclick="openApplicationModal('Affiliate Membership')">Apply</button></td>
+              </tr>
+              <tr>
+                <td><strong>AMCOB Connect</strong></td>
+                <td>B2B companies seeking structured client referrals</td>
+                <td>Structured referral meetings, portal customer matching, directory listing</td>
+                <td><strong>$850.00</strong> / year</td>
+                <td><button class="btn-outline" style="padding:6px 14px; font-size:13px;" onclick="openApplicationModal('AMCOB Connect')">Join</button></td>
+              </tr>
+              <tr>
+                <td><strong>PAG: Emerging Enterprises</strong></td>
+                <td>Annual revenue under $1 Million</td>
+                <td>Monthly confidential peer cohort with full AMCOB Connect included</td>
+                <td><strong>$1,925.00</strong> / year</td>
+                <td><button class="btn-solid" style="padding:6px 14px; font-size:13px;" onclick="openApplicationModal('Emerging Enterprises')">Inquire</button></td>
+              </tr>
+              <tr>
+                <td><strong>PAG: Booming Enterprises</strong></td>
+                <td>Annual revenue $1 Million to $5 Million</td>
+                <td>Monthly peer mastermind, certified facilitation, executive accountability</td>
+                <td><strong>$2,750.00</strong> / year</td>
+                <td><button class="btn-solid" style="padding:6px 14px; font-size:13px;" onclick="openApplicationModal('Booming Enterprises')">Inquire</button></td>
+              </tr>
+              <tr>
+                <td><strong>PAG: Scaling Enterprises</strong></td>
+                <td>Annual revenue $5 Million to $25 Million</td>
+                <td>Mid-market CEO council, executive hiring, M&amp;A discussions, retreat priority</td>
+                <td><strong>$3,850.00</strong> / year</td>
+                <td><button class="btn-solid" style="padding:6px 14px; font-size:13px;" onclick="openApplicationModal('Scaling Enterprises')">Inquire</button></td>
+              </tr>
+              <tr>
+                <td><strong>PAG: Summit Council</strong></td>
+                <td>Annual revenue $25 Million to $100 Million</td>
+                <td>Upper-tier enterprise council, capital allocation, institutional legacy</td>
+                <td><strong>$4,675.00</strong> / year</td>
+                <td><button class="btn-solid" style="padding:6px 14px; font-size:13px;" onclick="openApplicationModal('Summit Council')">Inquire</button></td>
+              </tr>
+              <tr>
+                <td><strong>PAG: Powerhouse Council</strong></td>
+                <td>Annual revenue $100 Million+</td>
+                <td>Closed boardroom cohort of large enterprise leaders</td>
+                <td><strong>$5,500.00</strong> / year</td>
+                <td><button class="btn-solid" style="padding:6px 14px; font-size:13px;" onclick="openApplicationModal('Powerhouse Council')">Inquire</button></td>
+              </tr>
+              <tr>
+                <td><strong>Khadija Collective</strong></td>
+                <td>Muslim women business owners and corporate executives</td>
+                <td>Dedicated women's peer cohorts, specialized workshops, executive interviews</td>
+                <td><strong>Application only</strong></td>
+                <td><button class="btn-outline" style="padding:6px 14px; font-size:13px;" onclick="openApplicationModal('Khadija Collective')">Interview</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="discrepancy-box">
+          <strong>Documented internal questions for AMCOB review:</strong><br>
+          1. <em>Connect Meeting Schedule:</em> The Connect landing page lists bi-weekly meetings, while the Join page lists weekly sessions. Recurrence details are kept in the project issue log pending confirmation.<br>
+          2. <em>Accelerator Program:</em> The live site features both Emerging Enterprises ($1,925/year) and a separately published Virtual Accelerator Program ($500/month on `/pag/virtual-accelerator-program`, while `/virtual-accelerator-program` returns 404). Kept distinct in documentation pending confirmation.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 5: MEMBER BUSINESS DIRECTORY
+         ===================================================================== -->
+    <section class="section-spacious" id="directory">
+      <div class="container">
+        
+        <div class="editorial-header">
+          <div class="section-kicker">Member Business Directory</div>
+          <h2 class="section-heading">Verified member companies across North America</h2>
+          <p class="section-desc">
+            A representative selection from AMCOB's directory of 372 businesses. Member contact details are protected to maintain privacy.
+          </p>
+        </div>
+
+        <div class="directory-search-bar">
+          <input type="text" class="search-input-field" id="dir-search" placeholder="Filter by company name, sector, or city..." onkeyup="filterDirectory()">
+          <button class="btn-outline" onclick="resetDirectory()">Show all</button>
+        </div>
+
+        <div class="directory-listing-grid" id="directory-container">
+          
+          <article class="business-card">
+            <div>
+              <div class="biz-sector">Healthcare &amp; Clinical Care</div>
+              <h3 class="biz-name">KabaFusion</h3>
+              <div class="biz-location">Irvine, California • National network</div>
+              <p class="biz-desc">
+                Patient-focused home infusion therapy services combining national clinical scale with specialized patient care.
+              </p>
+            </div>
+            <div class="biz-footer">
+              Leadership: Dr. Sohail Masood • Direct introductions available to members
+            </div>
+          </article>
+
+          <article class="business-card">
+            <div>
+              <div class="biz-sector">Enterprise Software</div>
+              <h3 class="biz-name">Arbisoft Global</h3>
+              <div class="biz-location">Global • Technology centers in US and Asia</div>
+              <p class="biz-desc">
+                Full-cycle software engineering, machine learning pipelines, and digital infrastructure for high-growth enterprises.
+              </p>
+            </div>
+            <div class="biz-footer">
+              Leadership: Umair Shah • Direct introductions available to members
+            </div>
+          </article>
+
+          <article class="business-card">
+            <div>
+              <div class="biz-sector">Cloud &amp; IT Solutions</div>
+              <h3 class="biz-name">XOFTSYSTEMS LLC</h3>
+              <div class="biz-location">Huntington Beach, California</div>
+              <p class="biz-desc">
+                Microsoft Solutions and Licensing Partner delivering managed enterprise cloud infrastructure and modern workplace solutions.
+              </p>
+            </div>
+            <div class="biz-footer">
+              Leadership: Arshad Mahmood • Direct introductions available to members
+            </div>
+          </article>
+
+          <article class="business-card">
+            <div>
+              <div class="biz-sector">Clean Beauty &amp; Fragrance</div>
+              <h3 class="biz-name">Salam Collections</h3>
+              <div class="biz-location">Fremont, California</div>
+              <p class="biz-desc">
+                Parent enterprise of Zoha Fragrances, developing clean, skin-safe, alcohol-free essential oil perfumes.
+              </p>
+            </div>
+            <div class="biz-footer">
+              Leadership: Shakeel Akhter • Direct introductions available to members
+            </div>
+          </article>
+
+          <article class="business-card">
+            <div>
+              <div class="biz-sector">Specialty Pharmacy</div>
+              <h3 class="biz-name">Vital Care of Hopkinton</h3>
+              <div class="biz-location">Hopkinton, Massachusetts</div>
+              <p class="biz-desc">
+                Dedicated home infusion pharmacy providing clinical nursing support and vital therapies directly to patients across New England.
+              </p>
+            </div>
+            <div class="biz-footer">
+              Leadership: Hadee Alkhandak • Direct introductions available to members
+            </div>
+          </article>
+
+          <article class="business-card">
+            <div>
+              <div class="biz-sector">Secondary Education</div>
+              <h3 class="biz-name">Toronto Global Academy</h3>
+              <div class="biz-location">Ontario, Canada</div>
+              <p class="biz-desc">
+                Inspected virtual secondary school offering accredited Ontario Secondary School Diplomas to students worldwide.
+              </p>
+            </div>
+            <div class="biz-footer">
+              Leadership: Arslan Arif • Direct introductions available to members
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         SECTION 6: ACTIVE MEMBER NETWORK MOSAIC
+         ===================================================================== -->
+    <section class="section-spacious" style="border-bottom:none; padding-bottom:64px;">
+      <div class="container">
+        
+        <div class="editorial-header" style="margin-bottom:32px;">
+          <div class="section-kicker">Member Network</div>
+          <h2 class="section-heading">Leaders across every major industry sector</h2>
+          <p class="section-desc">
+            AMCOB members lead companies in healthcare, enterprise technology, real estate, manufacturing, financial services, and institutional philanthropy.
+          </p>
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <img src="/assets/optimized/programs/JoinAMCOBBannerWebsite.webp" alt="AMCOB active member network across North America" width="1920" height="680" style="width:100%; height:auto; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); display:block;" loading="lazy">
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; border-top:1px solid var(--border-subtle); padding-top:16px;">
+          <span style="font-size:13px; color:var(--text-muted);">Verified member network archive</span>
+          <span style="font-size:13px; color:var(--brand-navy); font-weight:600;">Over 370 member enterprises across North America</span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <img src="/assets/optimized/logos/logo.png" alt="AMCOB Allied Muslim Chamber of Business" width="140" height="38" style="height:38px; width:auto; display:block;">
+          <p>
+            Allied Muslim Chamber of Business (AMCOB LLC). Connecting Muslim founders, executives, and enterprise owners across North America and international commercial markets.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Membership</h5>
+          <ul class="footer-links">
+            <li><a href="#membership">Affiliate ($550/yr)</a></li>
+            <li><a href="#membership">AMCOB Connect ($850/yr)</a></li>
+            <li><a href="#membership">Peer Advisory Groups</a></li>
+            <li><a href="#membership">Khadija Collective</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Events &amp; Tours</h5>
+          <ul class="footer-links">
+            <li><a href="#events">Morocco Trade Delegation</a></li>
+            <li><a href="#events">LEAD Summit Anaheim</a></li>
+            <li><a href="#events">PRISM Retreat</a></li>
+            <li><a href="#events">Connect Sessions</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Chamber Headquarters</h5>
+          <ul class="footer-links">
+            <li>300 Spectrum Center Dr, Suite 400</li>
+            <li>Irvine, CA 92618</li>
+            <li>Phone: (949) 617-0529</li>
+            <li>Hours: Monday to Friday, 9:00 AM to 5:00 PM PST</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 AMCOB LLC. All rights reserved. Stage 1 Visual Validation.</div>
+        <div style="display:flex; gap:16px;">
+          <span>Provisional design preview</span>
+          <a href="concept-studio.html" style="color:var(--brand-navy); text-decoration:none;">Compare with concept studio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Simulation Modal Dialog -->
+  <div class="modal-backdrop" id="sim-modal" onclick="closeModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeModalDirect()" aria-label="Close dialog">×</button>
+      <div id="modal-content-target">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Verified Peer Advisory Data
+    const peerTiers = [
+      {
+        title: "Emerging Enterprises Peer Advisory",
+        revenue: "Eligible business revenue: Under $1 Million",
+        price: "$1,925",
+        focus: "Establishing disciplined operating rhythms, early executive hiring, unit economics, and client acquisition through the chamber network.",
+        format: "Closed monthly roundtable with 8 to 10 peers. Guided by a certified facilitator with complete confidentiality.",
+        benefits: "Full AMCOB Connect client referral membership included, public directory listing, and regional mixer invitations.",
+        process: "Confidential revenue review followed by an intake consultation to ensure cohort balance and zero commercial conflicts."
+      },
+      {
+        title: "Booming Enterprises Peer Advisory",
+        revenue: "Eligible business revenue: $1 Million to $5 Million",
+        price: "$2,750",
+        focus: "Overcoming founder bottlenecks, recruiting senior operational managers, refining cash flow cycles, and managing early expansion.",
+        format: "Closed monthly roundtable with peers operating at the seven-figure threshold. Professional facilitation.",
+        benefits: "Full AMCOB Connect included, priority invitations to international trade delegations, and executive workshops.",
+        process: "Confidential financial verification and placement consultation."
+      },
+      {
+        title: "Scaling Enterprises Peer Advisory",
+        revenue: "Eligible business revenue: $5 Million to $25 Million",
+        price: "$3,850",
+        focus: "Managing mid-market growth, recruiting executive leadership, building sustainable governance structures, and preparing for regional or international expansion.",
+        format: "Closed monthly 3-hour roundtable with 8 to 10 non-competing peers. Guided by a certified facilitator with strict confidentiality.",
+        benefits: "Full AMCOB Connect client referral access included, priority registration for bilateral trade missions, and executive retreat access.",
+        process: "Confidential revenue verification review followed by a placement interview to ensure cohort alignment and avoid commercial conflicts."
+      },
+      {
+        title: "Summit Peer Advisory Council",
+        revenue: "Eligible business revenue: $25 Million to $100 Million",
+        price: "$4,675",
+        focus: "Capital allocation, board governance, institutional acquisitions, enterprise risk management, and legacy stewardship.",
+        format: "High-level closed council with established enterprise founders and chief executives. Quarterly deep-dive reviews.",
+        benefits: "Full chamber access, dedicated bilateral liaison for international delegations, and private retreat priority.",
+        process: "Executive committee review and personal interview with chamber leadership."
+      },
+      {
+        title: "Powerhouse Peer Advisory Council",
+        revenue: "Eligible business revenue: $100 Million+",
+        price: "$5,500",
+        focus: "Global conglomerate governance, cross-border capital syndication, multi-generational family office structuring, and civic impact.",
+        format: "Exclusive boardroom gathering of high-scale enterprise owners and international corporate chairs.",
+        benefits: "Comprehensive institutional representation, diplomatic delegation leadership, and bespoke council facilitation.",
+        process: "By invitation or executive committee referral."
+      }
+    ];
+
+    function selectTier(idx, btn) {
+      document.querySelectorAll('.tier-tab-btn').forEach((b, i) => {
+        const isCurrent = (i === idx);
+        b.classList.toggle('active', isCurrent);
+        b.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+      });
+
+      const data = peerTiers[idx];
+      document.getElementById('panel-title').textContent = data.title;
+      document.getElementById('panel-revenue').textContent = data.revenue;
+      document.getElementById('panel-price').textContent = data.price;
+      document.getElementById('panel-focus').textContent = data.focus;
+      document.getElementById('panel-format').textContent = data.format;
+      document.getElementById('panel-benefits').textContent = data.benefits;
+      document.getElementById('panel-process').textContent = data.process;
+    }
+
+    function filterDirectory() {
+      const q = document.getElementById('dir-search').value.toLowerCase();
+      document.querySelectorAll('.business-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    function resetDirectory() {
+      document.getElementById('dir-search').value = '';
+      document.querySelectorAll('.business-card').forEach(c => c.style.display = 'flex');
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-drawer').classList.toggle('open');
+    }
+
+    function openApplicationModal(tierName) {
+      const slot = document.getElementById('modal-content-target');
+      slot.innerHTML = `
+        <div style="font-size:12px; font-weight:700; color:var(--brand-navy); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Intake Request</div>
+        <h3 style="font-family:var(--font-display); font-size:26px; color:var(--text-main); margin-bottom:12px;">Inquire about ${tierName}</h3>
+        <p style="font-size:15px; color:var(--text-secondary); line-height:1.6; margin-bottom:24px;">
+          This local prototype demonstrates the qualification funnel. In accordance with Stage 1 validation boundaries, zero external data is transmitted and no live payments are collected.
+        </p>
+        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:24px;">
+          <input type="text" class="search-input-field" value="Prospective Executive" disabled style="background:var(--bg-muted);">
+          <input type="text" class="search-input-field" value="Verified Commercial Enterprise" disabled style="background:var(--bg-muted);">
+        </div>
+        <button class="btn-solid" onclick="alert('Simulation: In production, this submits the verified intake application to the AMCOB admissions committee.')">Complete intake simulation</button>
+      `;
+      document.getElementById('sim-modal').classList.add('open');
+    }
+
+    function openEventModal(eventName) {
+      const slot = document.getElementById('modal-content-target');
+      slot.innerHTML = `
+        <div style="font-size:12px; font-weight:700; color:var(--brand-navy); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">Delegation Briefing</div>
+        <h3 style="font-family:var(--font-display); font-size:26px; color:var(--text-main); margin-bottom:12px;">${eventName}</h3>
+        <p style="font-size:15px; color:var(--text-secondary); line-height:1.6; margin-bottom:24px;">
+          Participants receive pre-scheduled B2B matchmaking meetings, ministerial briefings, and accommodation logistics through AMCOB Tours.
+        </p>
+        <div style="padding:16px; background:var(--bg-subtle); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); margin-bottom:24px; font-size:13px; color:var(--text-secondary);">
+          <div><strong>Inquiry Email:</strong> delegations@amcob.org (Official demonstration)</div>
+          <div><strong>Status:</strong> Active upcoming mission registration</div>
+        </div>
+        <button class="btn-solid" onclick="alert('Simulation: In production, this opens the verified delegation intake questionnaire.')">Simulate delegation intake</button>
+      `;
+      document.getElementById('sim-modal').classList.add('open');
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'sim-modal') closeModalDirect();
+    }
+    function closeModalDirect() {
+      document.getElementById('sim-modal').classList.remove('open');
+    }
+  </script>
+
+</body>
+</html>

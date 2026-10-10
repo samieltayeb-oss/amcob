@@ -1,0 +1,642 @@
+[
+  {
+    "id": 1,
+    "slug": "multipliers-by-liz-wiseman",
+    "title": "multipliers by liz wiseman",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/UNf0fTej233oHV1MDlkzUyHQfJGi3Rbf22dktfgQ.png",
+    "url": "/books/multipliers-by-liz-wiseman",
+    "localImage": "/assets/optimized/books/UNf0fTej233oHV1MDlkzUyHQfJGi3Rbf22dktfgQ.png"
+  },
+  {
+    "id": 2,
+    "slug": "hctor-garca-francesc-miralles",
+    "title": "hctor garca francesc miralles",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/7RZTLBhIIDotSghfQ0VOCmr5yfT8lkMPQjqeD0fz.png",
+    "url": "/books/hctor-garca-francesc-miralles",
+    "localImage": "/assets/optimized/books/7RZTLBhIIDotSghfQ0VOCmr5yfT8lkMPQjqeD0fz.png"
+  },
+  {
+    "id": 3,
+    "slug": "the-100-startup",
+    "title": "the 100 startup",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/oQJZIh2MgM0lEud6X8AJNGiKiE46TkJfng5PtrwS.png",
+    "url": "/books/the-100-startup",
+    "localImage": "/assets/optimized/books/oQJZIh2MgM0lEud6X8AJNGiKiE46TkJfng5PtrwS.png"
+  },
+  {
+    "id": 4,
+    "slug": "the-7-habits-of-highly-effective-people",
+    "title": "the 7 habits of highly effective people",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/DnRgdUrJfY2Baz8QPmwMWn8db4u2R8TfFsTAh8EC.png",
+    "url": "/books/the-7-habits-of-highly-effective-people",
+    "localImage": "/assets/optimized/books/DnRgdUrJfY2Baz8QPmwMWn8db4u2R8TfFsTAh8EC.png"
+  },
+  {
+    "id": 5,
+    "slug": "the-21-irrefutable-laws-of-leadership",
+    "title": "the 21 irrefutable laws of leadership",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/RltY19gMZUezn02Li9uEmGoAzqRH36ydLBhMU5bN.jpg",
+    "url": "/books/the-21-irrefutable-laws-of-leadership",
+    "localImage": "/assets/optimized/books/RltY19gMZUezn02Li9uEmGoAzqRH36ydLBhMU5bN.jpg"
+  },
+  {
+    "id": 6,
+    "slug": "start-where-you-are",
+    "title": "start where you are",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/book/images/PeuODGznCQp2PbbWXyOPLCWlFlfhdrjuUUdKjqaJ.jpg",
+    "url": "/books/start-where-you-are",
+    "localImage": "/assets/optimized/books/PeuODGznCQp2PbbWXyOPLCWlFlfhdrjuUUdKjqaJ.jpg"
+  },
+  {
+    "id": 7,
+    "slug": "the-alchemist",
+    "title": "the alchemist",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/0hhKbLSCN4Slf0fgy5CBcM6871MI9Rm9ayBeCu6N.jpg",
+    "url": "/books/the-alchemist",
+    "localImage": "/assets/optimized/books/0hhKbLSCN4Slf0fgy5CBcM6871MI9Rm9ayBeCu6N.jpg"
+  },
+  {
+    "id": 8,
+    "slug": "in-the-four-agreements-by-don-miguel-ruiz",
+    "title": "in the four agreements by don miguel ruiz",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/G3IoHuvf8qU4cA58mdzCrjQcgu9QhknPPjFUpwHJ.png",
+    "url": "/books/in-the-four-agreements-by-don-miguel-ruiz",
+    "localImage": "/assets/optimized/books/G3IoHuvf8qU4cA58mdzCrjQcgu9QhknPPjFUpwHJ.png"
+  },
+  {
+    "id": 9,
+    "slug": "in-the-art-of-possibility-by-rosamund-stone-zander-and-benjamin-zander",
+    "title": "in the art of possibility by rosamund stone zander and benjamin zander",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/in-the-art-of-possibility-by-rosamund-stone-zander-and-benjamin-zander",
+    "localImage": ""
+  },
+  {
+    "id": 10,
+    "slug": "the-pumpkin-plan-a-simple-strategy-to-grow-a-remarkable-business-in-any-field",
+    "title": "the pumpkin plan a simple strategy to grow a remarkable business in any field",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/the-pumpkin-plan-a-simple-strategy-to-grow-a-remarkable-business-in-any-field",
+    "localImage": ""
+  },
+  {
+    "id": 11,
+    "slug": "beyond-fintech-technology-applications-for-the-islamic-economy",
+    "title": "beyond fintech technology applications for the islamic economy",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/beyond-fintech-technology-applications-for-the-islamic-economy",
+    "localImage": ""
+  },
+  {
+    "id": 12,
+    "slug": "the-courage-to-be-disliked",
+    "title": "the courage to be disliked",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/the-courage-to-be-disliked",
+    "localImage": ""
+  },
+  {
+    "id": 13,
+    "slug": "essentialism-the-disciplined-pursuit-of-less",
+    "title": "essentialism the disciplined pursuit of less",
+    "author": "doing less with clarity and purpose.",
+    "description": "",
+    "image": "https://amcob.org/storage/book/images/0MYgKKrmUgT6uujKtWyLzWtSoS8evHLxJtLpMtme.png",
+    "url": "/books/essentialism-the-disciplined-pursuit-of-less",
+    "localImage": "/assets/optimized/books/0MYgKKrmUgT6uujKtWyLzWtSoS8evHLxJtLpMtme.png"
+  },
+  {
+    "id": 14,
+    "slug": "leading-with-noble-purpose-by-lisa-earle-mcleod",
+    "title": "leading with noble purpose by lisa earle mcleod",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/book/images/01o5DUsTu9rVitxJoFeNDHbh4xSQT8u0CrMomW4U.png",
+    "url": "/books/leading-with-noble-purpose-by-lisa-earle-mcleod",
+    "localImage": "/assets/optimized/books/01o5DUsTu9rVitxJoFeNDHbh4xSQT8u0CrMomW4U.png"
+  },
+  {
+    "id": 15,
+    "slug": "allah-loves-by-omar-suleiman",
+    "title": "allah loves by omar suleiman",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/ygqkfFmQP8k0PuEWbbw8LgBSJyUSmN8zSZxm4UMD.jpg",
+    "url": "/books/allah-loves-by-omar-suleiman",
+    "localImage": "/assets/optimized/books/ygqkfFmQP8k0PuEWbbw8LgBSJyUSmN8zSZxm4UMD.jpg"
+  },
+  {
+    "id": 16,
+    "slug": "the-leadership-of-muhammad-pbuh-by-joel-hayward",
+    "title": "the leadership of muhammad pbuh by joel hayward",
+    "author": "Joel Hayward",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/pNsH4AhsECQw1XuG5I4WSGdgJVjxB6TPmAGmpSro.jpg",
+    "url": "/books/the-leadership-of-muhammad-pbuh-by-joel-hayward",
+    "localImage": "/assets/optimized/books/pNsH4AhsECQw1XuG5I4WSGdgJVjxB6TPmAGmpSro.jpg"
+  },
+  {
+    "id": 17,
+    "slug": "the-islamic-business-administration-by-rafik-issa-beekun",
+    "title": "the islamic business administration by rafik issa beekun",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/the-islamic-business-administration-by-rafik-issa-beekun",
+    "localImage": ""
+  },
+  {
+    "id": 18,
+    "slug": "the-heart-of-business",
+    "title": "the heart of business",
+    "author": "Hubert Joly on AMCOB learn how purpose and people drive true business success.",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/6dwPXfyxSHjOYojcNhooMlO9SaXZBo2oNjgBV6xY.png",
+    "url": "/books/the-heart-of-business",
+    "localImage": "/assets/optimized/books/6dwPXfyxSHjOYojcNhooMlO9SaXZBo2oNjgBV6xY.png"
+  },
+  {
+    "id": 19,
+    "slug": "measure-what-matters",
+    "title": "measure what matters",
+    "author": "John Doerr on AMCOB learn how OKRs drive growth",
+    "description": "",
+    "image": "https://amcob.org/storage/book/images/UoU0vkc6zoQ8DTMXFOVg9whaa745ujMMeFBnTOI6.png",
+    "url": "/books/measure-what-matters",
+    "localImage": "/assets/optimized/books/UoU0vkc6zoQ8DTMXFOVg9whaa745ujMMeFBnTOI6.png"
+  },
+  {
+    "id": 20,
+    "slug": "the-industries-of-the-future",
+    "title": "the industries of the future",
+    "author": "Alec Ross",
+    "description": "",
+    "image": "https://amcob.org/storage/book/images/BKYrG179eTrPcoPvAsXtJ32dazVAlvCSCH27DC8G.jpg",
+    "url": "/books/the-industries-of-the-future",
+    "localImage": "/assets/optimized/books/BKYrG179eTrPcoPvAsXtJ32dazVAlvCSCH27DC8G.jpg"
+  },
+  {
+    "id": 21,
+    "slug": "rising-strong-by-bren-brown",
+    "title": "rising strong by bren brown",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/xGMLcwFd4VKSbWRfievvcKlTZvu29m9CWkZC1u3D.jpg",
+    "url": "/books/rising-strong-by-bren-brown",
+    "localImage": "/assets/optimized/books/xGMLcwFd4VKSbWRfievvcKlTZvu29m9CWkZC1u3D.jpg"
+  },
+  {
+    "id": 22,
+    "slug": "grit-the-power-of-passion-and-perseverance-by-angela-duckworth",
+    "title": "grit the power of passion and perseverance by angela duckworth",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/grit-the-power-of-passion-and-perseverance-by-angela-duckworth",
+    "localImage": ""
+  },
+  {
+    "id": 23,
+    "slug": "daring-greatly-by-bren-brown",
+    "title": "daring greatly by bren brown",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/rMbYzOropcgmHrqcM9bYD15yf876TrjF72gkaU7z.jpg",
+    "url": "/books/daring-greatly-by-bren-brown",
+    "localImage": "/assets/optimized/books/rMbYzOropcgmHrqcM9bYD15yf876TrjF72gkaU7z.jpg"
+  },
+  {
+    "id": 24,
+    "slug": "principles-life-and-work-by-ray-dalios",
+    "title": "principles life and work by ray dalios",
+    "author": "Ray Dalio. Explore insights at AMCOB.",
+    "description": "",
+    "image": "",
+    "url": "/books/principles-life-and-work-by-ray-dalios",
+    "localImage": ""
+  },
+  {
+    "id": 25,
+    "slug": "start-with-why-how-great-leaders-inspire-everyone-to-take-action",
+    "title": "start with why how great leaders inspire everyone to take action",
+    "author": "Simon Sinek",
+    "description": "",
+    "image": "",
+    "url": "/books/start-with-why-how-great-leaders-inspire-everyone-to-take-action",
+    "localImage": ""
+  },
+  {
+    "id": 26,
+    "slug": "your-brain-and-business-the-neuroscience-of-great-leaders-by-srinivasan-s-pillay",
+    "title": "your brain and business the neuroscience of great leaders by srinivasan s pillay",
+    "author": "Srinivasan S. Pillay. Learn more at AMCOB.",
+    "description": "",
+    "image": "",
+    "url": "/books/your-brain-and-business-the-neuroscience-of-great-leaders-by-srinivasan-s-pillay",
+    "localImage": ""
+  },
+  {
+    "id": 27,
+    "slug": "influence-the-psychology-of-persuasion-by-robert-b-cialdini-a-summary",
+    "title": "influence the psychology of persuasion by robert b cialdini a summary",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/influence-the-psychology-of-persuasion-by-robert-b-cialdini-a-summary",
+    "localImage": ""
+  },
+  {
+    "id": 28,
+    "slug": "smartcuts-hacking-the-ladder-to-success-a-summary-by-shane-snow",
+    "title": "smartcuts hacking the ladder to success a summary by shane snow",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/smartcuts-hacking-the-ladder-to-success-a-summary-by-shane-snow",
+    "localImage": ""
+  },
+  {
+    "id": 29,
+    "slug": "the-art-of-the-good-life-a-guide-to-wiser-thinking-and-better-decisions",
+    "title": "the art of the good life a guide to wiser thinking and better decisions",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/the-art-of-the-good-life-a-guide-to-wiser-thinking-and-better-decisions",
+    "localImage": ""
+  },
+  {
+    "id": 30,
+    "slug": "the-technology-trap-by-carl-benedikt",
+    "title": "the technology trap by carl benedikt",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/XzXPsDHN2iZgUckZ1FaEHPOhrdjbTuakdz7cUZhi.jpg",
+    "url": "/books/the-technology-trap-by-carl-benedikt",
+    "localImage": "/assets/optimized/books/XzXPsDHN2iZgUckZ1FaEHPOhrdjbTuakdz7cUZhi.jpg"
+  },
+  {
+    "id": 31,
+    "slug": "permission-to-come-home-reclaiming-mental-health-as-asian-americans",
+    "title": "permission to come home reclaiming mental health as asian americans",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/permission-to-come-home-reclaiming-mental-health-as-asian-americans",
+    "localImage": ""
+  },
+  {
+    "id": 32,
+    "slug": "dare-to-lead",
+    "title": "dare to lead",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/mtcpVBYikzUJVzUjLNVu2KIPIkyRorMjqoJIbqao.jpg",
+    "url": "/books/dare-to-lead",
+    "localImage": "/assets/optimized/books/mtcpVBYikzUJVzUjLNVu2KIPIkyRorMjqoJIbqao.jpg"
+  },
+  {
+    "id": 33,
+    "slug": "good-to-great-why-some-companies-make-the-leapand-others-dont-by-jim-collins-a-detailed-summary",
+    "title": "good to great why some companies make the leapand others dont by jim collins a detailed summary",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/good-to-great-why-some-companies-make-the-leapand-others-dont-by-jim-collins-a-detailed-summary",
+    "localImage": ""
+  },
+  {
+    "id": 34,
+    "slug": "think-remarkable",
+    "title": "think remarkable",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/tVNQteIjiIxZwJ89iz6ikOYq7lGRY4PupEuyJbBq.jpg",
+    "url": "/books/think-remarkable",
+    "localImage": "/assets/optimized/books/tVNQteIjiIxZwJ89iz6ikOYq7lGRY4PupEuyJbBq.jpg"
+  },
+  {
+    "id": 35,
+    "slug": "never-finished",
+    "title": "never finished",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/book/images/UExCXWQWb2PIjfdJr6GisQH9PuOvdremVbTaNXt7.png",
+    "url": "/books/never-finished",
+    "localImage": "/assets/optimized/books/UExCXWQWb2PIjfdJr6GisQH9PuOvdremVbTaNXt7.png"
+  },
+  {
+    "id": 36,
+    "slug": "the-allornothing-marriage",
+    "title": "the allornothing marriage",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/the-allornothing-marriage",
+    "localImage": ""
+  },
+  {
+    "id": 37,
+    "slug": "five-dysfunctions-of-a-team",
+    "title": "five dysfunctions of a team",
+    "author": "Patrick Lencioni",
+    "description": "",
+    "image": "https://amcob.org/storage/book/images/PrStLioMjDfwIDBi951yzErgZfNJHIORLDomlrmB.jpg",
+    "url": "/books/five-dysfunctions-of-a-team",
+    "localImage": "/assets/optimized/books/PrStLioMjDfwIDBi951yzErgZfNJHIORLDomlrmB.jpg"
+  },
+  {
+    "id": 38,
+    "slug": "boundaries",
+    "title": "boundaries",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/book/images/getLqFe0G4WuKNYLm0ycRDgqWCnricymKxzDa8PR.jpg",
+    "url": "/books/boundaries",
+    "localImage": "/assets/optimized/books/getLqFe0G4WuKNYLm0ycRDgqWCnricymKxzDa8PR.jpg"
+  },
+  {
+    "id": 39,
+    "slug": "25-ways-to-win-with-people-by-john-maxwell-and-leslie-parrott",
+    "title": "25 ways to win with people by john maxwell and leslie parrott",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/25-ways-to-win-with-people-by-john-maxwell-and-leslie-parrott",
+    "localImage": ""
+  },
+  {
+    "id": 40,
+    "slug": "the-road-less-stupid-by-keith-j-cunningham",
+    "title": "the road less stupid by keith j cunningham",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/ah74Y1ZAp9ZmxjciTMzsEU6koyaOQGIEEc6y9GzC.jpg",
+    "url": "/books/the-road-less-stupid-by-keith-j-cunningham",
+    "localImage": "/assets/optimized/books/ah74Y1ZAp9ZmxjciTMzsEU6koyaOQGIEEc6y9GzC.jpg"
+  },
+  {
+    "id": 41,
+    "slug": "let-them-by-mel-robbins",
+    "title": "let them by mel robbins",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/ZxlzOICKbgtf09UBI2dB7D0UuqGV3cBia2PpbaN0.jpg",
+    "url": "/books/let-them-by-mel-robbins",
+    "localImage": "/assets/optimized/books/ZxlzOICKbgtf09UBI2dB7D0UuqGV3cBia2PpbaN0.jpg"
+  },
+  {
+    "id": 42,
+    "slug": "the-great-ceo-within-by-matt-mochary",
+    "title": "the great ceo within by matt mochary",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/7QHTz2AvpyhfmnocE6vIgyQYGhu8bdTk1UqaDUCh.jpg",
+    "url": "/books/the-great-ceo-within-by-matt-mochary",
+    "localImage": "/assets/optimized/books/7QHTz2AvpyhfmnocE6vIgyQYGhu8bdTk1UqaDUCh.jpg"
+  },
+  {
+    "id": 43,
+    "slug": "thinking-in-bets-by-annie-duke",
+    "title": "thinking in bets by annie duke",
+    "author": "embracing uncertainty and probability.",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/ZceG27D3t5iFIuEASH1dFbGeXQOO3ctp4c8PUJ93.png",
+    "url": "/books/thinking-in-bets-by-annie-duke",
+    "localImage": "/assets/optimized/books/ZceG27D3t5iFIuEASH1dFbGeXQOO3ctp4c8PUJ93.png"
+  },
+  {
+    "id": 44,
+    "slug": "the-infinite-game-by-simon-sinek",
+    "title": "the infinite game by simon sinek",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/JEWNyxPSXEB91LguIgBDrQ0VjcC8DsudCcMLCcbC.jpg",
+    "url": "/books/the-infinite-game-by-simon-sinek",
+    "localImage": "/assets/optimized/books/JEWNyxPSXEB91LguIgBDrQ0VjcC8DsudCcMLCcbC.jpg"
+  },
+  {
+    "id": 45,
+    "slug": "range-why-generalists-triumph-in-a-specialized-world-by-david-epstein",
+    "title": "range why generalists triumph in a specialized world by david epstein",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/range-why-generalists-triumph-in-a-specialized-world-by-david-epstein",
+    "localImage": ""
+  },
+  {
+    "id": 46,
+    "slug": "book-summary-of-seeing-the-big-picture-by-kevin-r",
+    "title": "book summary of seeing the big picture by kevin r",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/book-summary-of-seeing-the-big-picture-by-kevin-r",
+    "localImage": ""
+  },
+  {
+    "id": 47,
+    "slug": "the-diary-of-a-young-girl",
+    "title": "the diary of a young girl",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/x7nwURiKZljEuOBoNaIeLYHZKLWNxXWKfR6r88K5.jpg",
+    "url": "/books/the-diary-of-a-young-girl",
+    "localImage": "/assets/optimized/books/x7nwURiKZljEuOBoNaIeLYHZKLWNxXWKfR6r88K5.jpg"
+  },
+  {
+    "id": 48,
+    "slug": "islamic-finance-why-it-makes-sense",
+    "title": "islamic finance why it makes sense",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/islamic-finance-why-it-makes-sense",
+    "localImage": ""
+  },
+  {
+    "id": 49,
+    "slug": "the-case-for-good-jobs",
+    "title": "the case for good jobs",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/IZrzZeDCSqHlp8rZMif55tBqfErjoNdhMmWgmgTs.jpg",
+    "url": "/books/the-case-for-good-jobs",
+    "localImage": "/assets/optimized/books/IZrzZeDCSqHlp8rZMif55tBqfErjoNdhMmWgmgTs.jpg"
+  },
+  {
+    "id": 50,
+    "slug": "conscious-capitalism",
+    "title": "conscious capitalism",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/A3kYT3MVIxjujTcN8XaGetZrLEuZOPKbRPXxcL9F.jpg",
+    "url": "/books/conscious-capitalism",
+    "localImage": "/assets/optimized/books/A3kYT3MVIxjujTcN8XaGetZrLEuZOPKbRPXxcL9F.jpg"
+  },
+  {
+    "id": 51,
+    "slug": "the-muslim-entrepreneur-10-success-principles-from-the-greatest-muslim-entrepreneurs",
+    "title": "the muslim entrepreneur 10 success principles from the greatest muslim entrepreneurs",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/the-muslim-entrepreneur-10-success-principles-from-the-greatest-muslim-entrepreneurs",
+    "localImage": ""
+  },
+  {
+    "id": 52,
+    "slug": "the-corporation-in-the-twentyfirst-century-by-john-kay",
+    "title": "the corporation in the twentyfirst century by john kay",
+    "author": "John Kay",
+    "description": "",
+    "image": "",
+    "url": "/books/the-corporation-in-the-twentyfirst-century-by-john-kay",
+    "localImage": ""
+  },
+  {
+    "id": 53,
+    "slug": "supremacy-ai-chatgpt-and-the-race-that-will-change-the-world-by-parmy-olson",
+    "title": "supremacy ai chatgpt and the race that will change the world by parmy olson",
+    "author": "Parmy Olson",
+    "description": "",
+    "image": "",
+    "url": "/books/supremacy-ai-chatgpt-and-the-race-that-will-change-the-world-by-parmy-olson",
+    "localImage": ""
+  },
+  {
+    "id": 54,
+    "slug": "deep-work-by-cal-newport",
+    "title": "deep work by cal newport",
+    "author": "Cal Newport",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/KwpAZAIUrZrXUso5aDczFqiyOvKbtE6acAuzgWoJ.jpg",
+    "url": "/books/deep-work-by-cal-newport",
+    "localImage": "/assets/optimized/books/KwpAZAIUrZrXUso5aDczFqiyOvKbtE6acAuzgWoJ.jpg"
+  },
+  {
+    "id": 55,
+    "slug": "mindset-the-new-psychology-of-success-by-carol-dweck",
+    "title": "mindset the new psychology of success by carol dweck",
+    "author": "Carol Dweck",
+    "description": "",
+    "image": "",
+    "url": "/books/mindset-the-new-psychology-of-success-by-carol-dweck",
+    "localImage": ""
+  },
+  {
+    "id": 56,
+    "slug": "the-e-myth-revisited-by-michael-e-gerber",
+    "title": "the e myth revisited by michael e gerber",
+    "author": "Michael E. Gerber",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/po2PvmbQHVx1oz83f7A8Z0egfl6Tx2rhvTAydL5t.jpg",
+    "url": "/books/the-e-myth-revisited-by-michael-e-gerber",
+    "localImage": "/assets/optimized/books/po2PvmbQHVx1oz83f7A8Z0egfl6Tx2rhvTAydL5t.jpg"
+  },
+  {
+    "id": 57,
+    "slug": "zero-to-one-by-peter-thiel",
+    "title": "zero to one by peter thiel",
+    "author": "Peter Thiel",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/8sYcO3tBOn0oCYkCRDYvpXhfxL3kOzYEmP2Dqelf.jpg",
+    "url": "/books/zero-to-one-by-peter-thiel",
+    "localImage": "/assets/optimized/books/8sYcO3tBOn0oCYkCRDYvpXhfxL3kOzYEmP2Dqelf.jpg"
+  },
+  {
+    "id": 58,
+    "slug": "never-split-the-difference-chris-voss",
+    "title": "never split the difference chris voss",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/book/images/nozUMgnoe7o8hiiV5RFm3O8ZhJTnNHUHqdm5N6dn.jpg",
+    "url": "/books/never-split-the-difference-chris-voss",
+    "localImage": "/assets/optimized/books/nozUMgnoe7o8hiiV5RFm3O8ZhJTnNHUHqdm5N6dn.jpg"
+  },
+  {
+    "id": 59,
+    "slug": "blue-ocean-strategy-w-chan-kim-and-renee-mauborgne",
+    "title": "blue ocean strategy w chan kim and renee mauborgne",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/blue-ocean-strategy-w-chan-kim-and-renee-mauborgne",
+    "localImage": ""
+  },
+  {
+    "id": 60,
+    "slug": "the-almanack-of-naval-ravikant-by-eric-jorgenson",
+    "title": "the almanack of naval ravikant by eric jorgenson",
+    "author": "Eric Jorgenson",
+    "description": "",
+    "image": "",
+    "url": "/books/the-almanack-of-naval-ravikant-by-eric-jorgenson",
+    "localImage": ""
+  },
+  {
+    "id": 61,
+    "slug": "the-barakah-effect-more-with-less-by-mohammed-faris",
+    "title": "the barakah effect more with less by mohammed faris",
+    "author": "Mohammed Faris",
+    "description": "",
+    "image": "",
+    "url": "/books/the-barakah-effect-more-with-less-by-mohammed-faris",
+    "localImage": ""
+  },
+  {
+    "id": 62,
+    "slug": "the-productive-muslim-where-faith-meets-productivity",
+    "title": "the productive muslim where faith meets productivity",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "",
+    "url": "/books/the-productive-muslim-where-faith-meets-productivity",
+    "localImage": ""
+  },
+  {
+    "id": 63,
+    "slug": "company-of-one-by-paul-jarvis",
+    "title": "company of one by paul jarvis",
+    "author": "Executive Insight",
+    "description": "",
+    "image": "https://amcob.org/storage/books/images/eYZ3RCTbrKs4iv2PW2w48cpluWyHaQUWQ0ELcxQN.png",
+    "url": "/books/company-of-one-by-paul-jarvis",
+    "localImage": "/assets/optimized/books/eYZ3RCTbrKs4iv2PW2w48cpluWyHaQUWQ0ELcxQN.png"
+  },
+  {
+    "id": 64,
+    "slug": "leaders-eat-last-by-simon-sinek",
+    "title": "leaders eat last by simon sinek",
+    "author": "Simon Sinek",
+    "description": "",
+    "image": "",
+    "url": "/books/leaders-eat-last-by-simon-sinek",
+    "localImage": ""
+  }
+]

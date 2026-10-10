@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMCOB | The Living Circle (Stage 1 Prototype)</title>
+  
+  <!-- Typography: Warm Modern Grotesque + Distinctive Editorial Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS Custom Properties: The Living Circle (Refined Contemporary Tone) */
+    :root {
+      --color-canvas: #0B132B;
+      --color-surface: #121E3E;
+      --color-surface-elevated: #1B2B54;
+      --color-surface-card: #FFFFFF;
+      --color-text-card: #0F172A;
+      --color-card-muted: #475569;
+      
+      --color-text-primary: #F8FAFC;
+      --color-text-secondary: #94A3B8;
+      --color-text-muted: #64748B;
+      
+      /* Calibrated Accent: Warm Terracotta Ochre (Passing WCAG AA 4.5:1) */
+      --color-accent: #C28732;
+      --color-accent-light: #E0A652;
+      --color-accent-glow: rgba(194, 135, 50, 0.18);
+      
+      --color-border: rgba(255, 255, 255, 0.12);
+      --color-border-card: #E2E8F0;
+      
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      
+      --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.15);
+      --shadow-elevated: 0 16px 36px rgba(0, 0, 0, 0.25);
+      
+      --container-max: 1200px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--color-canvas);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Accessibility Focus Styles */
+    :focus-visible {
+      outline: 2px solid var(--color-accent-light);
+      outline-offset: 3px;
+    }
+
+    /* Skip Navigation */
+    .skip-to-content {
+      position: absolute;
+      top: -40px;
+      left: 16px;
+      background: var(--color-accent);
+      color: #000;
+      padding: 8px 16px;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      z-index: 9999;
+      transition: top 0.2s ease;
+    }
+    .skip-to-content:focus {
+      top: 16px;
+    }
+
+    /* Container Utility */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Prototype Banner */
+    .proto-banner {
+      background: #1E293B;
+      border-bottom: 1px solid var(--color-border);
+      padding: 8px 16px;
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .proto-banner a {
+      color: var(--color-accent-light);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .proto-tag {
+      background: rgba(194, 135, 50, 0.2);
+      color: var(--color-accent-light);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Primary Navigation */
+    .site-header {
+      position: sticky;
+      top: 0;
+      background: rgba(11, 19, 43, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 1000;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo img {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      transition: color 0.15s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #FFF;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .btn-login {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+    }
+    .btn-login:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .btn-primary {
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--color-accent);
+      color: #FFF;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background: var(--color-accent-light);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      font-size: 14px;
+      font-weight: 600;
+      background: transparent;
+      color: #FFF;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Mobile Hamburger */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      color: #FFF;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Page Navigation Tabs (Prototype Navigator) */
+    .proto-views-nav {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: 10px 0;
+    }
+    .proto-views-container {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .proto-view-tab {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--color-text-secondary);
+      padding: 6px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .proto-view-tab:hover {
+      color: #FFF;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .proto-view-tab.active {
+      background: var(--color-surface-elevated);
+      color: #FFF;
+      border-color: var(--color-border);
+    }
+
+    /* Prototype Section Views */
+    .experience-view {
+      display: none;
+    }
+    .experience-view.active {
+      display: block;
+    }
+
+    /* ------------------------------------------------------------- */
+    /* EXPERIENCE A: HOMEPAGE                                        */
+    /* ------------------------------------------------------------- */
+    .hero-section {
+      padding: 80px 0 60px;
+      position: relative;
+    }
+    .hero-content {
+      max-width: 880px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 20px;
+    }
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5.2vw, 58px);
+      line-height: 1.15;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--color-accent-light);
+    }
+    .hero-lead {
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+      max-width: 720px;
+      margin-bottom: 36px;
+    }
+
+    /* Intent-Led Navigator (The Signature Interactive Experience) */
+    .intent-navigator {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-top: 40px;
+      box-shadow: var(--shadow-elevated);
+      position: relative;
+    }
+    .navigator-header {
+      margin-bottom: 24px;
+    }
+    .navigator-question {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      color: #FFF;
+      margin-bottom: 8px;
+    }
+    .navigator-subtext {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+    .intent-paths {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .intent-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 18px 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: inherit;
+    }
+    .intent-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .intent-card.active {
+      background: var(--color-surface-elevated);
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 1px var(--color-accent);
+    }
+    .intent-icon {
+      font-size: 20px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+    .intent-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #FFF;
+      line-height: 1.3;
+    }
+    .intent-desc {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    /* Dynamic Intent Result Panel */
+    .navigator-result {
+      background: var(--color-surface-card);
+      color: var(--color-text-card);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .result-content h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--color-text-card);
+    }
+    .result-content p {
+      font-size: 14px;
+      color: var(--color-card-muted);
+      line-height: 1.5;
+      max-width: 620px;
+    }
+    .result-action {
+      flex-shrink: 0;
+    }
+
+    /* Purpose & Ecosystem Section */
+    .section-py {
+      padding: 90px 0;
+    }
+    .section-header {
+      margin-bottom: 48px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 600;
+      color: #FFF;
+      margin-bottom: 12px;
+    }
+    .section-lead {
+      font-size: 16px;
+      color: var(--color-text-secondary);
+      max-width: 640px;
+    }
+
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .eco-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .eco-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .eco-card-top h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 12px;
+    }
+    .eco-card-top p {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .eco-card-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-accent-light);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Documented Proof / The Circle of Trust */
+    .council-section {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .council-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .member-profile-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .member-headshot-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .member-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 2px solid var(--color-accent);
+      object-fit: cover;
+      background: #1E293B;
+      flex-shrink: 0;
+    }
+    .member-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #FFF;
+    }
+    .member-title {
+      font-size: 13px;
+      color: var(--color-accent-light);
+    }
+    .member-company {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+    .member-reflection {
+      font-size: 13px;
+      color: #CBD5E1;
+      line-height: 1.5;
+      font-style: italic;
+      border-left: 2px solid var(--color-accent);
+      padding-left: 12px;
+      margin-top: 4px;
+    }
+    .provisional-badge {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-text-muted);
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
+    /* ------------------------------------------------------------- */
+    /* EXPERIENCE B: MEMBERSHIP & PEER GROUPS                        */
+    /* ------------------------------------------------------------- */
+    .tier-matrix-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .tier-matrix-table th,
+    .tier-matrix-table td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 14px;
+    }
+    .tier-matrix-table th {
+      background: var(--color-surface-elevated);
+      color: #FFF;
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .tier-matrix-table tr:last-child td {
+      border-bottom: none;
+    }
+    .tier-price-cell {
+      font-weight: 700;
+      color: var(--color-accent-light);
+      font-family: var(--font-mono);
+    }
+    .conflict-callout {
+      background: rgba(217, 119, 6, 0.12);
+      border: 1px solid rgba(217, 119, 6, 0.35);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      font-size: 13px;
+      color: #FDE68A;
+      margin-top: 24px;
+      line-height: 1.5;
+    }
+    .conflict-callout strong {
+      color: #FFF;
+    }
+
+    /* ------------------------------------------------------------- */
+    /* EXPERIENCE C: GATHERINGS CALENDAR                             */
+    /* ------------------------------------------------------------- */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      align-items: center;
+    }
+    .filter-btn {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-secondary);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--color-surface-elevated);
+      color: #FFF;
+      border-color: var(--color-accent);
+    }
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .event-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      transition: border-color 0.2s ease;
+    }
+    .event-card:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+    .event-date-box {
+      border-right: 1px solid var(--color-border);
+      padding-right: 20px;
+    }
+    .event-day {
+      font-size: 26px;
+      font-weight: 700;
+      color: #FFF;
+      font-family: var(--font-display);
+      line-height: 1;
+    }
+    .event-month-year {
+      font-size: 13px;
+      color: var(--color-accent-light);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .event-status-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .status-upcoming { background: #065F46; color: #6EE7B7; }
+    .status-recurring { background: #1E3A8A; color: #93C5FD; }
+    .status-concluded { background: #334155; color: #94A3B8; }
+    
+    .event-details h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 4px;
+    }
+    .event-meta-line {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      display: flex;
+      gap: 16px;
+    }
+
+    /* ------------------------------------------------------------- */
+    /* EXPERIENCE D: BUSINESS DISCOVERY & DIRECTORY                 */
+    /* ------------------------------------------------------------- */
+    .search-bar-wrap {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .search-input {
+      flex: 1;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      font-size: 15px;
+      color: #FFF;
+      font-family: inherit;
+    }
+    .search-input::placeholder {
+      color: var(--color-text-muted);
+    }
+    .directory-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .directory-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .directory-card:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-2px);
+    }
+    .dir-industry-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent-light);
+    }
+    .dir-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFF;
+    }
+    .dir-meta {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+    .dir-bio {
+      font-size: 13px;
+      color: #CBD5E1;
+      line-height: 1.5;
+    }
+    .privacy-notice-badge {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      border-top: 1px solid var(--color-border);
+      padding-top: 10px;
+      margin-top: auto;
+    }
+
+    /* Modal / Drawer for Event Detail & Directory Detail */
+    .proto-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .proto-modal-backdrop.open {
+      display: flex;
+    }
+    .proto-modal {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      max-width: 600px;
+      width: 100%;
+      padding: 32px;
+      position: relative;
+      box-shadow: var(--shadow-elevated);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      color: var(--color-text-muted);
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .modal-close-btn:hover { color: #FFF; }
+
+    /* Footer */
+    .site-footer {
+      background: #070D1E;
+      border-top: 1px solid var(--color-border);
+      padding: 60px 0 30px;
+      margin-top: 80px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin-top: 14px;
+      max-width: 320px;
+      line-height: 1.6;
+    }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #FFF;
+      margin-bottom: 16px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+    .footer-links a:hover { color: #FFF; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 992px) {
+      .ecosystem-grid,
+      .council-grid,
+      .directory-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .intent-paths {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .event-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .event-date-box {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 12px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links, .header-actions {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .ecosystem-grid,
+      .council-grid,
+      .directory-grid,
+      .intent-paths,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .intent-navigator {
+        padding: 24px 18px;
+      }
+      .navigator-result {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-title {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+  <!-- Prototype Review Header -->
+  <aside class="proto-banner" aria-label="Prototype Banner">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span class="proto-tag">Local Creative Validation</span>
+      <span><strong>Hypothesis:</strong> The Living Circle (Isolated Prototype Stage 1)</span>
+    </div>
+    <div>
+      <span>Compare other directions: </span>
+      <a href="concept-studio.html">Open Three Concept Studio</a>
+    </div>
+  </aside>
+
+  <!-- Global Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#homepage" class="brand-logo" onclick="switchExperience('homepage')">
+        <img src="https://amcob.org/assets/images/home/logo.png" alt="AMCOB: Allied Muslim Chamber of Business" width="160" height="42">
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#homepage" class="nav-item active" onclick="switchExperience('homepage')">Overview</a></li>
+          <li><a href="#membership" class="nav-item" onclick="switchExperience('membership')">Membership</a></li>
+          <li><a href="#gatherings" class="nav-item" onclick="switchExperience('gatherings')">Events</a></li>
+          <li><a href="#directory" class="nav-item" onclick="switchExperience('directory')">Business directory</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://my.amcob.org/" target="_blank" rel="noopener noreferrer" class="btn-login">Member Login</a>
+        <button class="btn-primary" onclick="switchExperience('membership')">Explore Pathways</button>
+      </div>
+
+      <button class="mobile-menu-btn" aria-label="Open Navigation Menu" onclick="alert('Simulated Mobile Menu: Use the view tabs directly below to test different flows.')">☰</button>
+    </div>
+  </header>
+
+  <!-- Prototype Experience View Switcher -->
+  <div class="proto-views-nav">
+    <div class="container proto-views-container">
+      <span style="font-size:12px; color:var(--color-text-muted); align-self:center; margin-right:4px;">Prototype Views:</span>
+      <button class="proto-view-tab active" id="tab-homepage" onclick="switchExperience('homepage')">Overview</button>
+      <button class="proto-view-tab" id="tab-membership" onclick="switchExperience('membership')">Membership</button>
+      <button class="proto-view-tab" id="tab-gatherings" onclick="switchExperience('gatherings')">Events</button>
+      <button class="proto-view-tab" id="tab-directory" onclick="switchExperience('directory')">Business directory</button>
+    </div>
+  </div>
+
+  <!-- Main Content Stage -->
+  <main id="main-content">
+
+    <!-- ============================================================= -->
+    <!-- EXPERIENCE A: HOMEPAGE NARRATIVE                             -->
+    <!-- ============================================================= -->
+    <div class="experience-view active" id="view-homepage">
+      
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="container">
+          <div class="hero-content">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Allied Muslim Chamber of Business
+            </div>
+            <h1 class="hero-title">
+              The Higher You Climb, The <em>Smaller the Room</em> Gets.
+            </h1>
+            <p class="hero-lead">
+              AMCOB connects Muslim business founders, executives, and owners across North America, the UK, and the Gulf. Enter a confidential circle of peers who understand the complexities of leadership and share your values.
+            </p>
+            <div style="display:flex; gap:16px; flex-wrap:wrap;">
+              <button class="btn-primary" onclick="scrollToNavigator()">
+                What Would Move Your Business Forward? ↓
+              </button>
+              <button class="btn-secondary" onclick="switchExperience('gatherings')">
+                View Upcoming Gatherings
+              </button>
+            </div>
+          </div>
+
+          <!-- THE SIGNATURE EXPERIENCE: Intent-Led Navigator -->
+          <div class="intent-navigator" id="intent-navigator-block">
+            <div class="navigator-header">
+              <div class="eyebrow" style="margin-bottom:8px;">The Living Circle Navigator</div>
+              <h2 class="navigator-question">What would move your business forward today?</h2>
+              <p class="navigator-subtext">Select an intent below to see the most relevant pathway within the AMCOB community:</p>
+            </div>
+
+            <div class="intent-paths">
+              <button class="intent-card active" onclick="selectIntent(0)">
+                <span class="intent-icon">🤝</span>
+                <div class="intent-label">Build Business Connections</div>
+                <div class="intent-desc">Structured client referral meetings and business directory listing.</div>
+              </button>
+              
+              <button class="intent-card" onclick="selectIntent(1)">
+                <span class="intent-icon">🛡️</span>
+                <div class="intent-label">Peer Leadership Support</div>
+                <div class="intent-desc">Confidential monthly advisory cohorts matched to your revenue.</div>
+              </button>
+              
+              <button class="intent-card" onclick="selectIntent(2)">
+                <span class="intent-icon">✈️</span>
+                <div class="intent-label">Find a Gathering</div>
+                <div class="intent-desc">Summits, regional dinner mixers, and international delegations.</div>
+              </button>
+              
+              <button class="intent-card" onclick="selectIntent(3)">
+                <span class="intent-icon">📈</span>
+                <div class="intent-label">Explore Partnerships</div>
+                <div class="intent-desc">Corporate sponsorship and Khadija Collective initiatives.</div>
+              </button>
+            </div>
+
+            <!-- Dynamic Result Card -->
+            <div class="navigator-result" id="navigator-result-panel">
+              <div class="result-content">
+                <h4 id="result-title">AMCOB Connect: Client Referrals</h4>
+                <p id="result-text">
+                  Turn word of mouth into consistent client introductions. AMCOB Connect members participate in structured referral meetings and receive a listing in the public business directory.
+                </p>
+              </div>
+              <div class="result-action">
+                <button class="btn-primary" id="result-btn" onclick="switchExperience('membership')">
+                  Explore Connect ($850/yr) →
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Purpose & Ecosystem Pillars -->
+      <section class="section-py" style="background:#090F21; border-top:1px solid var(--color-border);">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">The Structure of the Chamber</h2>
+            <p class="section-lead">A comprehensive community designed around four clear business necessities:</p>
+          </div>
+
+          <div class="ecosystem-grid">
+            <article class="eco-card">
+              <div class="eco-card-top">
+                <h3>Peer Advisory Groups</h3>
+                <p>Monthly confidential roundtables for CEOs and founders, segmented strictly by annual revenue (from Emerging under $1M to Powerhouse $100M+). Solve complex business hurdles with equals.</p>
+              </div>
+              <a href="#membership" onclick="switchExperience('membership')" class="eco-card-link">View Revenue Tiers →</a>
+            </article>
+
+            <article class="eco-card">
+              <div class="eco-card-top">
+                <h3>AMCOB Connect</h3>
+                <p>A structured referral exchange where members define their Ideal Customer Profile and trade qualified business introductions twice a month.</p>
+              </div>
+              <a href="#membership" onclick="switchExperience('membership')" class="eco-card-link">Explore Connect Program →</a>
+            </article>
+
+            <article class="eco-card">
+              <div class="eco-card-top">
+                <h3>Khadija Collective</h3>
+                <p>A dedicated membership circle for Muslim women business owners and executives, combining peer advisory support with targeted leadership resources.</p>
+              </div>
+              <a href="#membership" onclick="switchExperience('membership')" class="eco-card-link">Learn About the Collective →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Documented Community Evidence -->
+      <section class="section-py council-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Leaders in Our Network</h2>
+            <p class="section-lead">Real founders and business leaders active within AMCOB's community:</p>
+          </div>
+
+          <div class="council-grid">
+            <div class="member-profile-card">
+              <div class="member-headshot-row">
+                <img src="https://amcob.org/assets/images/1516800934459.webp" alt="Dr. Sohail Masood" class="member-avatar">
+                <div>
+                  <div class="member-name">Dr. Sohail Masood</div>
+                  <div class="member-title">Founder, Chairman &amp; CEO</div>
+                  <div class="member-company">KabaFusion (Healthcare)</div>
+                </div>
+              </div>
+              <p class="member-reflection">
+                "Building institutions that last beyond individual founders requires patient stewardship and peer accountability."
+              </p>
+              <span class="provisional-badge">Lifetime Founding Circle</span>
+            </div>
+
+            <div class="member-profile-card">
+              <div class="member-headshot-row">
+                <img src="https://amcob.org/assets/images/1734487025310.webp" alt="Kamal Solaiman" class="member-avatar">
+                <div>
+                  <div class="member-name">Kamal Solaiman</div>
+                  <div class="member-title">Managing Partner</div>
+                  <div class="member-company">Primary Capital Holdings</div>
+                </div>
+              </div>
+              <p class="member-reflection">
+                "30 years across global enterprises taught me that longevity requires values-aligned partners who speak plainly."
+              </p>
+              <span class="provisional-badge">Lifetime Founding Circle</span>
+            </div>
+
+            <div class="member-profile-card">
+              <div class="member-headshot-row">
+                <img src="https://amcob.org/assets/images/umair-shah.jpg" alt="Umair Shah" class="member-avatar">
+                <div>
+                  <div class="member-name">Umair Shah</div>
+                  <div class="member-title">Co-Founder &amp; Managing Partner</div>
+                  <div class="member-company">Arbisoft Global LLC</div>
+                </div>
+              </div>
+              <p class="member-reflection">
+                "A founder's mindset grounded in responsibility and long-term institutional strength over short-term gain."
+              </p>
+              <span class="provisional-badge">Lifetime Founding Circle</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- EXPERIENCE B: MEMBERSHIP                                      -->
+    <!-- ============================================================= -->
+    <div class="experience-view" id="view-membership">
+      <section class="section-py">
+        <div class="container">
+          <div class="section-header">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> Membership and Advisory Programs</div>
+            <h2 class="section-title">Membership and Peer Advisory Tiers</h2>
+            <p class="section-lead">AMCOB provides structured participation based on business stage and strategic requirement.</p>
+          </div>
+
+          <!-- Membership Tiers Table -->
+          <table class="tier-matrix-table" aria-label="Membership Tiers and Pricing Matrix">
+            <thead>
+              <tr>
+                <th>Program</th>
+                <th>Eligibility</th>
+                <th>Program Inclusions</th>
+                <th>Annual Fee</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Affiliate Membership</strong></td>
+                <td>Service professionals, solo practitioners, early builders</td>
+                <td>Directory listing, virtual mixers, newsletter features</td>
+                <td class="tier-price-cell">$550.00 / yr</td>
+                <td><button class="btn-secondary" style="padding:6px 14px; font-size:12px;" onclick="simulateApplication('Affiliate Membership')">Apply</button></td>
+              </tr>
+              <tr>
+                <td><strong>AMCOB Connect</strong></td>
+                <td>B2B businesses seeking structured client referrals</td>
+                <td>Structured referral meetings, portal customer matching, directory profile</td>
+                <td class="tier-price-cell">$850.00 / yr</td>
+                <td><button class="btn-secondary" style="padding:6px 14px; font-size:12px;" onclick="simulateApplication('AMCOB Connect')">Join</button></td>
+              </tr>
+              <tr>
+                <td><strong>PAG: Emerging Enterprises</strong></td>
+                <td>Annual business revenue <strong>under $1 Million</strong></td>
+                <td>Monthly confidential peer advisory cohort with full AMCOB Connect included</td>
+                <td class="tier-price-cell">$1,925.00 / yr</td>
+                <td><button class="btn-primary" style="padding:6px 14px; font-size:12px;" onclick="simulateApplication('Emerging Enterprises Peer Advisory')">Inquire</button></td>
+              </tr>
+              <tr>
+                <td><strong>PAG: Booming Enterprises</strong></td>
+                <td>Annual revenue <strong>$1 Million to $5 Million</strong></td>
+                <td>Monthly peer mastermind, certified facilitation, executive accountability</td>
+                <td class="tier-price-cell">$2,750.00 / yr</td>
+                <td><button class="btn-primary" style="padding:6px 14px; font-size:12px;" onclick="simulateApplication('Booming Enterprises Peer Advisory')">Inquire</button></td>
+              </tr>
+              <tr>
+                <td><strong>PAG: Scaling Enterprises</strong></td>
+                <td>Annual revenue <strong>$5 Million to $25 Million</strong></td>
+                <td>Mid-market CEO council, board hiring, M&amp;A discussions, retreat priority</td>
+                <td class="tier-price-cell">$3,850.00 / yr</td>
+                <td><button class="btn-primary" style="padding:6px 14px; font-size:12px;" onclick="simulateApplication('Scaling Enterprises Peer Advisory')">Inquire</button></td>
+              </tr>
+              <tr>
+                <td><strong>PAG: Summit</strong></td>
+                <td>Annual revenue <strong>$25 Million to $100 Million</strong></td>
+                <td>Upper-tier enterprise council, capital allocation, institutional legacy</td>
+                <td class="tier-price-cell">$4,675.00 / yr</td>
+                <td><button class="btn-primary" style="padding:6px 14px; font-size:12px;" onclick="simulateApplication('Summit Peer Advisory')">Inquire</button></td>
+              </tr>
+              <tr>
+                <td><strong>PAG: Powerhouse</strong></td>
+                <td>Annual revenue <strong>$100 Million+</strong></td>
+                <td>Closed-door boardroom cohort of enterprise conglomerates</td>
+                <td class="tier-price-cell">$5,500.00 / yr</td>
+                <td><button class="btn-primary" style="padding:6px 14px; font-size:12px;" onclick="simulateApplication('Powerhouse Peer Advisory')">Inquire</button></td>
+              </tr>
+              <tr>
+                <td><strong>Khadija Collective</strong></td>
+                <td>Muslim women business owners &amp; corporate executives</td>
+                <td>Dedicated women's peer cohorts, specialized workshops, CEO interview intake</td>
+                <td class="tier-price-cell">Application Only</td>
+                <td><button class="btn-secondary" style="padding:6px 14px; font-size:12px;" onclick="simulateApplication('Khadija Collective')">Interview</button></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Unresolved Discrepancy Callout -->
+          <div class="conflict-callout">
+            <strong>Internal Discrepancy Log (For AMCOB Confirmation):</strong><br>
+            • <em>Schedule Contradiction:</em> Connect meeting frequency is listed as bi-weekly on the Connect page and weekly on the Join page. Disputed recurrence details are omitted from the public presentation pending confirmation.<br>
+            • <em>Accelerator Program vs. Emerging Enterprises:</em> The live site features both Emerging Enterprises ($1,925/yr) and a separately published Virtual Accelerator Program ($500/month on `/pag/virtual-accelerator-program`, while `/virtual-accelerator-program` returns 404). Kept distinct in documentation pending confirmation.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- EXPERIENCE C: TEMPORAL GATHERINGS HUB                         -->
+    <!-- ============================================================= -->
+    <div class="experience-view" id="view-gatherings">
+      <section class="section-py">
+        <div class="container">
+          <div class="section-header">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> Calendar &amp; Gatherings</div>
+            <h2 class="section-title">Events, Mixers &amp; Trade Delegations</h2>
+            <p class="section-lead">Events are strictly classified into upcoming, ongoing recurring, and concluded archives.</p>
+          </div>
+
+          <div class="filter-bar">
+            <span style="font-size:13px; color:var(--color-text-muted); margin-right:8px;">Filter by status:</span>
+            <button class="filter-btn active" onclick="filterEvents('all')">All Events</button>
+            <button class="filter-btn" onclick="filterEvents('upcoming')">Upcoming &amp; Live</button>
+            <button class="filter-btn" onclick="filterEvents('recurring')">Ongoing Recurring</button>
+            <button class="filter-btn" onclick="filterEvents('concluded')">Concluded Archives</button>
+          </div>
+
+          <div class="events-list">
+            <!-- Upcoming Trade Delegation -->
+            <div class="event-card" data-category="upcoming">
+              <div class="event-date-box">
+                <div class="event-day">26 to 30</div>
+                <div class="event-month-year">Oct 2026</div>
+              </div>
+              <div class="event-details">
+                <span class="event-status-badge status-upcoming">Active Upcoming Delegation</span>
+                <h3>AMCOB Tours: Morocco Business &amp; Investment Delegation</h3>
+                <div class="event-meta-line">
+                  <span>📍 Rabat, Casablanca &amp; Marrakech</span>
+                  <span>⏱️ 5-Day Bilateral B2B Mission</span>
+                </div>
+              </div>
+              <div>
+                <button class="btn-primary" onclick="openEventModal('Morocco Delegation')">View Delegation Dossier</button>
+              </div>
+            </div>
+
+            <!-- Ongoing Recurring Virtual Mixer -->
+            <div class="event-card" data-category="recurring">
+              <div class="event-date-box">
+                <div class="event-day">1st &amp; 3rd</div>
+                <div class="event-month-year">Friday Monthly</div>
+              </div>
+              <div class="event-details">
+                <span class="event-status-badge status-recurring">Ongoing Recurring Program</span>
+                <h3>AMCOB Connect: Bi-Weekly Referral Session</h3>
+                <div class="event-meta-line">
+                  <span>📍 Virtual (Zoom)</span>
+                  <span>⏱️ 8:00 AM to 9:15 AM PST</span>
+                </div>
+              </div>
+              <div>
+                <button class="btn-secondary" onclick="openEventModal('Connect Virtual Session')">Session Details</button>
+              </div>
+            </div>
+
+            <!-- Upcoming Annual Summit -->
+            <div class="event-card" data-category="upcoming">
+              <div class="event-date-box">
+                <div class="event-day">TBA</div>
+                <div class="event-month-year">Fall 2026</div>
+              </div>
+              <div class="event-details">
+                <span class="event-status-badge status-upcoming">Announcing Soon</span>
+                <h3>LEAD Summit Anaheim: Annual Business Conference</h3>
+                <div class="event-meta-line">
+                  <span>📍 Anaheim Convention Corridor, CA</span>
+                  <span>⏱️ Multi-Track Keynotes &amp; Capital Lounges</span>
+                </div>
+              </div>
+              <div>
+                <button class="btn-secondary" onclick="openEventModal('LEAD Summit')">Waitlist Intake</button>
+              </div>
+            </div>
+
+            <!-- Concluded Event Archive -->
+            <div class="event-card" data-category="concluded">
+              <div class="event-date-box">
+                <div class="event-day">18</div>
+                <div class="event-month-year">Oct 2025</div>
+              </div>
+              <div class="event-details">
+                <span class="event-status-badge status-concluded">Concluded Archive</span>
+                <h3>Orange County Executive Dinner Mixer</h3>
+                <div class="event-meta-line">
+                  <span>📍 Irvine / Newport Beach, CA</span>
+                  <span>👥 45 Attending Founders</span>
+                </div>
+              </div>
+              <div>
+                <button class="btn-secondary" style="opacity:0.6;" onclick="alert('This event has concluded. Photo gallery available in archives.')">View Gallery</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- EXPERIENCE D: BUSINESS DISCOVERY                             -->
+    <!-- ============================================================= -->
+    <div class="experience-view" id="view-directory">
+      <section class="section-py">
+        <div class="container">
+          <div class="section-header">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> Ecosystem Directory</div>
+            <h2 class="section-title">Verified Member Business Directory</h2>
+            <p class="section-lead">A verified sample from AMCOB's 372+ indexed businesses across North America.</p>
+          </div>
+
+          <div class="search-bar-wrap">
+            <input type="text" class="search-input" id="dir-search-box" placeholder="Search by company name, industry, or city..." onkeyup="filterDirectory()">
+            <button class="btn-secondary" onclick="alert('Filter by Industry: Healthcare, Technology, Legal, Logistics')">Industries ▾</button>
+            <button class="btn-secondary" onclick="alert('Filter by Location: USA, Canada, UAE, UK')">Location ▾</button>
+          </div>
+
+          <div class="directory-grid" id="directory-cards-container">
+            <!-- Sample 1 -->
+            <article class="directory-card" onclick="openDirectoryModal('KabaFusion', 'Healthcare', 'Dr. Sohail Masood', 'Irvine, CA', 'National home infusion provider delivering clinical therapies across the United States.')">
+              <div class="dir-industry-tag">Healthcare &amp; Clinical Care</div>
+              <h3 class="dir-name">KabaFusion</h3>
+              <div class="dir-meta">📍 Irvine, CA • National Network</div>
+              <p class="dir-bio">Specialized patient-focused home infusion therapy services combining clinical scale with ethical patient care.</p>
+              <div class="privacy-notice-badge">Verified Member • Direct contact available to members</div>
+            </article>
+
+            <!-- Sample 2 -->
+            <article class="directory-card" onclick="openDirectoryModal('Arbisoft Global', 'Technology & Software', 'Umair Shah', 'Global / US & Asia', 'Enterprise software development partner building scalable software solutions.')">
+              <div class="dir-industry-tag">Enterprise Software</div>
+              <h3 class="dir-name">Arbisoft Global</h3>
+              <div class="dir-meta">📍 US &amp; Global Technology Centers</div>
+              <p class="dir-bio">Full-cycle software engineering, machine learning pipelines, and digital products for high-growth enterprises.</p>
+              <div class="privacy-notice-badge">Verified Member • Direct contact available to members</div>
+            </article>
+
+            <!-- Sample 3 -->
+            <article class="directory-card" onclick="openDirectoryModal('XOFTSYSTEMS LLC', 'Cloud & Managed Services', 'Arshad Mahmood', 'Huntington Beach, CA', 'Microsoft Solutions and Licensing Partner delivering cloud and AI services.')">
+              <div class="dir-industry-tag">Cloud &amp; Microsoft AI</div>
+              <h3 class="dir-name">XOFTSYSTEMS LLC</h3>
+              <div class="dir-meta">📍 Huntington Beach, CA</div>
+              <p class="dir-bio">Microsoft Solutions partner delivering managed enterprise IT, cloud migrations, and business applications.</p>
+              <div class="privacy-notice-badge">Verified Member • Direct contact available to members</div>
+            </article>
+
+            <!-- Sample 4 -->
+            <article class="directory-card" onclick="openDirectoryModal('Salam Collections / Zoha', 'Consumer Goods', 'Shakeel Akhter', 'Fremont, CA', 'Alcohol-free clean beauty and oil-based fragrance brand.')">
+              <div class="dir-industry-tag">Clean Beauty &amp; Fragrance</div>
+              <h3 class="dir-name">Salam Collections</h3>
+              <div class="dir-meta">📍 Fremont, CA</div>
+              <p class="dir-bio">Parent company of Zoha Fragrances, pioneering skin-safe, alcohol-free essential oil perfumes.</p>
+              <div class="privacy-notice-badge">Verified Member • Direct contact available to members</div>
+            </article>
+
+            <!-- Sample 5 -->
+            <article class="directory-card" onclick="openDirectoryModal('Vital Care of Hopkinton', 'Infusion Pharmacy', 'Hadee Alkhandak', 'Hopkinton, MA', 'Local infusion pharmacy delivering therapies to patient doorsteps.')">
+              <div class="dir-industry-tag">Specialty Pharmacy</div>
+              <h3 class="dir-name">Vital Care of Hopkinton</h3>
+              <div class="dir-meta">📍 Hopkinton, MA</div>
+              <p class="dir-bio">Dedicated home infusion pharmacy providing clinical nursing support and vital treatments across Massachusetts.</p>
+              <div class="privacy-notice-badge">Verified Member • Direct contact available to members</div>
+            </article>
+
+            <!-- Sample 6 -->
+            <article class="directory-card" onclick="openDirectoryModal('Toronto Global Academy', 'Education', 'Arslan Arif', 'Ontario, Canada', 'Online high school granting the Ontario Secondary School Diploma worldwide.')">
+              <div class="dir-industry-tag">Online Education</div>
+              <h3 class="dir-name">Toronto Global Academy</h3>
+              <div class="dir-meta">📍 Ontario, Canada</div>
+              <p class="dir-bio">Inspected virtual school providing flexible secondary school diplomas to international students.</p>
+              <div class="privacy-notice-badge">Verified Member • Direct contact available to members</div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Prototype Modal for Simulated Interactions -->
+  <div class="proto-modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
+    <div class="proto-modal" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeModalDirect()" aria-label="Close dialog">×</button>
+      <div id="modal-content-slot">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="https://amcob.org/assets/images/home/logo.png" alt="AMCOB Logo" width="140" height="38">
+          <p>
+            Allied Muslim Chamber of Business (AMCOB LLC). Headquartered in Irvine, California. Connecting Muslim business leadership across North America and international commercial corridors.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Membership</h4>
+          <ul class="footer-links">
+            <li><a href="#membership" onclick="switchExperience('membership')">Affiliate ($550/yr)</a></li>
+            <li><a href="#membership" onclick="switchExperience('membership')">AMCOB Connect ($850/yr)</a></li>
+            <li><a href="#membership" onclick="switchExperience('membership')">Peer Advisory Groups</a></li>
+            <li><a href="#membership" onclick="switchExperience('membership')">Khadija Collective</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Gatherings</h4>
+          <ul class="footer-links">
+            <li><a href="#gatherings" onclick="switchExperience('gatherings')">Morocco Trade Tour</a></li>
+            <li><a href="#gatherings" onclick="switchExperience('gatherings')">LEAD Summit Anaheim</a></li>
+            <li><a href="#gatherings" onclick="switchExperience('gatherings')">PRISM Retreat</a></li>
+            <li><a href="#gatherings" onclick="switchExperience('gatherings')">Dinner Mixers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Chamber Info</h4>
+          <ul class="footer-links">
+            <li>300 Spectrum Center Dr, Suite 400</li>
+            <li>Irvine, CA 92618</li>
+            <li>Phone: (949) 617-0529</li>
+            <li>Hours: Monday to Friday, 9:00 AM to 5:00 PM PST</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 AMCOB LLC. All rights reserved. Stage 1 Local Prototype.</div>
+        <div style="display:flex; gap:16px;">
+          <span>Provisional Study</span>
+          <a href="concept-studio.html" style="color:var(--color-accent-light)">View Concept Studio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tabbed Experience Navigation
+    function switchExperience(id) {
+      document.querySelectorAll('.experience-view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.proto-view-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.nav-links .nav-item').forEach(n => n.classList.remove('active'));
+      
+      const targetView = document.getElementById('view-' + id);
+      const targetTab = document.getElementById('tab-' + id);
+      
+      if (targetView) targetView.classList.add('active');
+      if (targetTab) targetTab.classList.add('active');
+      
+      // Update primary nav active state
+      document.querySelectorAll(`.nav-links a[href="#${id}"]`).forEach(a => a.classList.add('active'));
+      
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Scroll to Intent Navigator
+    function scrollToNavigator() {
+      const el = document.getElementById('intent-navigator-block');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Intent Navigator Data
+    const intents = [
+      {
+        title: "AMCOB Connect: Warm B2B Introductions",
+        text: "Turn word of mouth into a steady flow of warm client introductions. Connect members meet on the 1st and 3rd Friday of every month at 8:00 AM PST for structured referral exchanges and public directory placement.",
+        btn: "Explore Connect ($850/yr) →",
+        target: "membership"
+      },
+      {
+        title: "Peer Advisory Groups: Confidential CEO Counsel",
+        text: "Escape executive isolation in a closed-door monthly forum with 8 to 10 peers matched strictly to your company revenue (Emerging under $1M up to Powerhouse $100M+). Guided by certified facilitators.",
+        btn: "View Revenue Tiers →",
+        target: "membership"
+      },
+      {
+        title: "International Delegations & Gatherings",
+        text: "Join structured business missions such as the upcoming Morocco Business Delegation (October 26 to 30, 2026), regional executive dinners, or the annual LEAD Summit.",
+        btn: "View Gathering Schedule →",
+        target: "gatherings"
+      },
+      {
+        title: "Institutional Partnerships & Khadija Collective",
+        text: "Partner with AMCOB to support Muslim economic leadership through corporate sponsorships, or apply for the Khadija Collective, dedicated to Muslim women entrepreneurs.",
+        btn: "View Collective Details →",
+        target: "membership"
+      }
+    ];
+
+    function selectIntent(idx) {
+      document.querySelectorAll('.intent-card').forEach((card, i) => {
+        card.classList.toggle('active', i === idx);
+      });
+      document.getElementById('result-title').textContent = intents[idx].title;
+      document.getElementById('result-text').textContent = intents[idx].text;
+      document.getElementById('result-btn').textContent = intents[idx].btn;
+      document.getElementById('result-btn').onclick = () => switchExperience(intents[idx].target);
+    }
+
+    // Event Filtering
+    function filterEvents(category) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      document.querySelectorAll('.event-card').forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'grid';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Directory Instant Search Filter
+    function filterDirectory() {
+      const q = document.getElementById('dir-search-box').value.toLowerCase();
+      document.querySelectorAll('.directory-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    // Modal Handlers
+    function openEventModal(name) {
+      const slot = document.getElementById('modal-content-slot');
+      slot.innerHTML = `
+        <div style="font-size:12px; font-weight:700; color:var(--color-accent); text-transform:uppercase; margin-bottom:8px;">Gathering Overview</div>
+        <h3 style="font-size:24px; color:#FFF; font-family:var(--font-display); margin-bottom:12px;">${name}</h3>
+        <p style="font-size:14px; color:var(--color-text-secondary); line-height:1.6; margin-bottom:20px;">
+          This is an official demonstration profile of the gathering. For live missions such as the Morocco Business Delegation, participants receive pre-matched B2B matchmaking meetings, ministerial briefings, and accommodation logistics.
+        </p>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid var(--color-border); border-radius:8px; padding:16px; margin-bottom:20px; font-size:13px;">
+          <div><strong>Status:</strong> Active Delegation Registration</div>
+          <div><strong>Contact:</strong> delegations@amcob.org (Simulated Handoff)</div>
+        </div>
+        <button class="btn-primary" onclick="alert('Simulation: In production, this opens the verified registration/application flow.')">Simulate Registration</button>
+      `;
+      document.getElementById('modal-backdrop').classList.add('open');
+    }
+
+    function openDirectoryModal(name, ind, leader, loc, bio) {
+      const slot = document.getElementById('modal-content-slot');
+      slot.innerHTML = `
+        <div style="font-size:12px; font-weight:700; color:var(--color-accent); text-transform:uppercase; margin-bottom:8px;">${ind}</div>
+        <h3 style="font-size:24px; color:#FFF; font-family:var(--font-display); margin-bottom:6px;">${name}</h3>
+        <div style="font-size:13px; color:var(--color-text-secondary); margin-bottom:16px;">📍 ${loc} • Leadership: <strong>${leader}</strong></div>
+        <p style="font-size:14px; color:#CBD5E1; line-height:1.6; margin-bottom:20px;">${bio}</p>
+        <div style="background:rgba(255,255,255,0.04); border:1px solid var(--color-border); border-radius:8px; padding:16px; margin-bottom:20px; font-size:13px;">
+          <div style="color:var(--color-accent-light); font-weight:600; margin-bottom:4px;">🔒 Member Privacy Standard</div>
+          <div style="color:var(--color-text-secondary);">Direct phone numbers and emails are protected to prevent web scraping. Verified AMCOB members can initiate an introduction through the member portal.</div>
+        </div>
+        <button class="btn-secondary" onclick="alert('Simulation: In production, member login required to request warm introduction.')">Request Introduction (Member Sign-In)</button>
+      `;
+      document.getElementById('modal-backdrop').classList.add('open');
+    }
+
+    function simulateApplication(tier) {
+      const slot = document.getElementById('modal-content-slot');
+      slot.innerHTML = `
+        <div style="font-size:12px; font-weight:700; color:var(--color-accent); text-transform:uppercase; margin-bottom:8px;">Intake Simulation</div>
+        <h3 style="font-size:22px; color:#FFF; font-family:var(--font-display); margin-bottom:12px;">Inquire About ${tier}</h3>
+        <p style="font-size:14px; color:var(--color-text-secondary); line-height:1.6; margin-bottom:20px;">
+          This local prototype demonstrates the qualification funnel. In accordance with Stage 1 constraints, zero live submissions or payments are processed.
+        </p>
+        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px;">
+          <input type="text" class="search-input" placeholder="Your Name" value="Prospective Executive" disabled style="opacity:0.7;">
+          <input type="text" class="search-input" placeholder="Company Name & Revenue" value="Verified Enterprise" disabled style="opacity:0.7;">
+        </div>
+        <button class="btn-primary" onclick="alert('Simulation Complete: This illustrates the multi-step intake modal without transmitting live data.')">Complete Intake Simulation</button>
+      `;
+      document.getElementById('modal-backdrop').classList.add('open');
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'modal-backdrop') {
+        document.getElementById('modal-backdrop').classList.remove('open');
+      }
+    }
+    function closeModalDirect() {
+      document.getElementById('modal-backdrop').classList.remove('open');
+    }
+  </script>
+</body>
+</html>
