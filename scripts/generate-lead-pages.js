@@ -32,6 +32,42 @@ const sponsors = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/lead-s
 const summit = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/lead-summit.json'), 'utf8'));
 const articles = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/lead-articles.json'), 'utf8'));
 const houston = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/lead-houston.json'), 'utf8'));
+let scrapedFaqs = [];
+try {
+  scrapedFaqs = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/lead-faqs-scraped.json'), 'utf8'));
+} catch (e) {
+  scrapedFaqs = summit.faqs || [];
+}
+
+// 16 Official Summit Sponsor Logos
+const sponsorLogos = [
+  { name: 'IHT Wealth Management', file: '/assets/optimized/lead/sponsors/IHT_Logo.png' },
+  { name: 'Merger Lawyer', file: '/assets/optimized/lead/sponsors/merger-lawyer-logo.webp' },
+  { name: 'Aprosoft', file: '/assets/optimized/lead/sponsors/aprosoft-logo.png' },
+  { name: 'Optimize', file: '/assets/optimized/lead/sponsors/optimize-logo.png' },
+  { name: 'Invest Serene', file: '/assets/optimized/lead/sponsors/invest-serene.webp' },
+  { name: 'HHRD', file: '/assets/optimized/lead/sponsors/HHRDLogo.png' },
+  { name: 'Med Aura', file: '/assets/optimized/lead/sponsors/med-aura-logo.webp' },
+  { name: 'Önal Gallant & Partners PC', file: '/assets/optimized/lead/sponsors/onal-gallant-logo.png' },
+  { name: 'The Neighbor Project', file: '/assets/optimized/lead/sponsors/TheNeighborProject.webp' },
+  { name: 'Synergy Financial', file: '/assets/optimized/lead/sponsors/synerygy-logo.webp' },
+  { name: 'Halal Outreach', file: '/assets/optimized/lead/sponsors/halaloutreach-logo.png' },
+  { name: 'KodeKaizen', file: '/assets/optimized/lead/sponsors/kodekaizen-logo-white.png' },
+  { name: 'Guidance Residential', file: '/assets/optimized/lead/sponsors/guidance-residential.png' },
+  { name: 'Autism Care Therapy', file: '/assets/optimized/lead/sponsors/autism-care-therapy.webp' },
+  { name: 'Trivium Global', file: '/assets/optimized/lead/sponsors/trivium-global.png' },
+  { name: 'SourceMotive', file: '/assets/optimized/lead/sponsors/sourcemotive-white.png' }
+];
+
+// 6 Community Partner Logos
+const partnerLogos = [
+  { name: 'LaunchGood', file: '/assets/optimized/lead/partners/launchgood-logo-primary.svg' },
+  { name: 'OPEN Global', file: '/assets/optimized/lead/partners/open-global-logo.png' },
+  { name: 'PCC USA', file: '/assets/optimized/lead/partners/pcc-usa-logo.png' },
+  { name: 'Illinois Muslim Chamber of Commerce', file: '/assets/optimized/lead/partners/illinois-muslim-logo.png' },
+  { name: 'Muslim Professionals', file: '/assets/optimized/lead/partners/muslim-professionals.png' },
+  { name: 'IBA Karachi', file: '/assets/optimized/lead/partners/iba-logo.png' }
+];
 
 // Ensure output dirs
 const leadDir = path.join(__dirname, '../lead');
@@ -39,16 +75,27 @@ const leadBlogDir = path.join(leadDir, 'blog');
 if (!fs.existsSync(leadDir)) fs.mkdirSync(leadDir, { recursive: true });
 if (!fs.existsSync(leadBlogDir)) fs.mkdirSync(leadBlogDir, { recursive: true });
 
+// Common standalone LEAD brand layout wrapper options
+const leadLayoutDefaults = {
+  brandLogo: '/assets/optimized/lead/lead-logo.svg',
+  brandUrl: '/lead',
+  brandTitle: 'LEAD Summit Anaheim | AMCOB Flagship',
+  brandLogoWidth: 150,
+  activeNav: 'lead'
+};
+
 // Sub-navigation bar for LEAD section
 function renderLeadSubnav(activeTab = 'overview') {
   const tabs = [
     { id: 'overview', label: 'Summit Overview', url: '/lead' },
     { id: 'speakers', label: 'Speakers (' + speakers.length + ')', url: '/lead/speakers' },
     { id: 'sponsorship', label: 'Sponsorship Packages', url: '/lead/sponsorship' },
-    { id: 'tickets', label: 'Register &amp; Tickets', url: '/lead/tickets' },
-    { id: 'hotel', label: 'Hotel &amp; Travel', url: '/lead/hotel' },
+    { id: 'tickets', label: 'Register & Passes', url: '/lead/tickets' },
+    { id: 'agenda', label: '3-Day Agenda', url: '/lead/agenda' },
+    { id: 'expo', label: 'Business Expo', url: '/lead#expo' },
+    { id: 'hotel', label: 'Hotel & Travel', url: '/lead/hotel' },
     { id: 'houston', label: 'Houston Retrospective', url: '/lead/houston' },
-    { id: 'blog', label: 'Summit Editorial', url: '/lead/blog' }
+    { id: 'blog', label: 'Summit Editorial (' + articles.length + ')', url: '/lead/blog' }
   ];
 
   return `
@@ -75,7 +122,7 @@ function renderLeadSubnav(activeTab = 'overview') {
   `;
 }
 
-console.log('Generating LEAD Summit pages...');
+console.log('Generating comprehensive LEAD Summit standalone pages...');
 
 // ==========================================
 // 1. LEAD Index (Master Anaheim 2027 Portal)
@@ -95,7 +142,7 @@ const indexContent = `
               Flagship Annual Gathering
             </span>
             <span style="font-size: 13px; color: rgba(255,255,255,0.75); font-weight: 600;">
-              Anaheim, CA &bull; March 26-28, 2027
+              Anaheim, CA &bull; March 26 to 28, 2027
             </span>
           </div>
 
@@ -135,7 +182,7 @@ const indexContent = `
         <div>
           <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.3); border-radius: 16px; padding: 28px; box-shadow: 0 12px 36px rgba(0,0,0,0.4);">
             <div style="position: relative; border-radius: 10px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1);">
-              <img src="/assets/optimized/lead/hero-poster.webp" alt="LEAD Summit Highlight Video" style="width: 100%; height: auto; display: block;">
+              <img src="/assets/optimized/lead/hero-poster.webp" alt="LEAD Summit Highlight Preview" style="width: 100%; height: auto; display: block;">
               <div style="position: absolute; inset: 0; background: rgba(6,18,51,0.4); display: flex; align-items: center; justify-content: center;">
                 <div style="width: 56px; height: 56px; border-radius: 50%; background: #ce8924; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 22px; box-shadow: 0 4px 16px rgba(0,0,0,0.5);">
                   &#9654;
@@ -154,6 +201,159 @@ const indexContent = `
             <a href="/lead/hotel" class="btn btn-outline btn-sm" style="width: 100%; text-align: center; color: #ffffff; border-color: rgba(255,255,255,0.3);">
               View Hotel &amp; Travel Guide &rarr;
             </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Built For Everyone in the Room (Interactive 3-Tab Component) -->
+  <section class="section" id="for-everyone" style="background: #ffffff; border-bottom: 1px solid var(--border-light);">
+    <div class="container" style="max-width: 1100px;">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 36px auto;">
+        <span class="badge" style="background: rgba(206,137,36,0.12); color: #b45309; border: 1px solid rgba(206,137,36,0.3); text-transform: uppercase; font-size: 11.5px; padding: 5px 12px; font-weight: 700; margin-bottom: 10px;">
+          Built For Everyone in the Room
+        </span>
+        <h2 style="font-size: 32px; font-weight: 800; color: var(--brand-navy); font-family: var(--font-serif); margin-bottom: 12px;">
+          Whatever Seat You Take, You Walk Out With Something You Did Not Have Friday Morning
+        </h2>
+        <p style="font-size: 16px; color: var(--text-muted); line-height: 1.65; margin: 0;">
+          Select your role to explore the tailored deliverables and commercial advantages engineered into every summit session.
+        </p>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 32px;">
+        <button type="button" class="fe-tab-btn active" onclick="switchLeadTab('attendees')" id="btn-attendees" style="padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; background: #ce8924; color: #ffffff; border: 1px solid #ce8924;">
+          Attendees (8 Outcomes)
+        </button>
+        <button type="button" class="fe-tab-btn" onclick="switchLeadTab('exhibitors')" id="btn-exhibitors" style="padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; background: var(--bg-subtle); color: var(--brand-navy); border: 1px solid var(--border-light);">
+          Exhibitors (7 Deliverables)
+        </button>
+        <button type="button" class="fe-tab-btn" onclick="switchLeadTab('sponsors')" id="btn-sponsors" style="padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; background: var(--bg-subtle); color: var(--brand-navy); border: 1px solid var(--border-light);">
+          Sponsors (6 Advantages)
+        </button>
+      </div>
+
+      <!-- Tab Panes -->
+      <div style="background: var(--bg-subtle); border: 1px solid var(--border-light); border-radius: 16px; padding: 36px; box-shadow: var(--shadow-sm);">
+        <!-- Attendees Pane -->
+        <div id="pane-attendees" class="fe-tab-pane" style="display: block;">
+          <h3 style="font-size: 20px; font-weight: 750; color: var(--brand-navy); margin-bottom: 18px;">
+            Core Deliverables for Registered Summit Attendees
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Leave with a clearer answer to why you are building your enterprise than you arrived with, backed by a room of peers who hold you to it.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Receive an objective personal behavioral and cognitive assessment profiling how you think, decide, and lead best under pressure.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Take home a practical, AMCOB-built playbook for closing enterprise contracts: an operational working tool rather than generic theory.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Learn directly from founders who have built, scaled, and exited real high-growth companies across North America.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Join focused breakout tracks on executive leadership, operational scaling, and top-tier talent acquisition.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Participate in capital and equity funding discussions directly with active private equity allocators and financial advisors.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Connect with relevant commercial buyers and potential partners through curated, ICP-based peer matching sessions.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Form an enduring peer accountability circle that meets regularly across the year to review milestones and KPIs.</p>
+            </div>
+          </div>
+          <div style="margin-top: 24px; text-align: center;">
+            <a href="/lead/tickets" class="btn btn-primary" style="background: #ce8924; border-color: #ce8924;">Claim an Attendee Seat &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Exhibitors Pane -->
+        <div id="pane-exhibitors" class="fe-tab-pane" style="display: none;">
+          <h3 style="font-size: 20px; font-weight: 750; color: var(--brand-navy); margin-bottom: 18px;">
+            Commercial Advantages for Business Expo Exhibitors
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Put your product in front of 300 business leaders who are actively building, actively hiring, and actively buying.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Showcase your commercial solutions directly to 300 qualified decision-makers with corporate budget authority.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Generate qualified high-intent sales leads across three full days in the dedicated convention expo hall.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Gain prominent brand visibility with dedicated booth frontage, physical signage, and printed summit guides.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Engage founders, corporate executives, and capital allocators in focused, non-crowded conversation spaces.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Build lasting commercial supplier relationships within a curated, high-trust peer environment.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Extend your commercial exposure into future LEAD Summit regional tour cities across North America.</p>
+            </div>
+          </div>
+          <div style="margin-top: 24px; text-align: center;">
+            <a href="#expo" class="btn btn-primary" style="background: #ce8924; border-color: #ce8924;">Reserve Expo Booth ($1,800) &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Sponsors Pane -->
+        <div id="pane-sponsors" class="fe-tab-pane" style="display: none;">
+          <h3 style="font-size: 20px; font-weight: 750; color: var(--brand-navy); margin-bottom: 18px;">
+            Strategic Impact for Corporate Summit Sponsors
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Attach your name to the room Muslim business leaders reference for the rest of the year, not just another conference.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Position your brand in front of 300 high-caliber enterprise founders, corporate leaders, and institutional innovators.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Gain premium visibility through mainstage positioning, digital channels, and physical signage across all three days.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Align your organization with a respected, mission-driven national chamber dedicated to ethical business advancement.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Access warm personal introductions to high-growth entrepreneurs, family office managers, and institutional investors.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid var(--border-light);">
+              <span style="color: var(--brand-emerald); font-weight: bold; font-size: 16px;">&#10003;</span>
+              <p style="font-size: 14px; line-height: 1.55; color: var(--text-body); margin: 0;">Advertise in official printed summit materials with full-page and half-page institutional editorial spreads.</p>
+            </div>
+          </div>
+          <div style="margin-top: 24px; text-align: center;">
+            <a href="/lead/sponsorship" class="btn btn-primary" style="background: #ce8924; border-color: #ce8924;">Explore 11 Sponsor Tiers &rarr;</a>
           </div>
         </div>
       </div>
@@ -254,9 +454,242 @@ const indexContent = `
               <span class="badge" style="background: var(--bg-subtle); color: var(--brand-navy); border: 1px solid var(--border-light); font-size: 10.5px; margin-bottom: 8px;">Executive Faculty</span>
             `}
             <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 6px;">${esc(sp.name)}</h3>
-            <p style="font-size: 12.5px; line-height: 1.45; color: var(--text-muted); margin: 0;">${esc(sp.title)}</p>
+            <p style="font-size: 12.5px; line-height: 1.45; color: var(--text-muted); margin: 0;">${cleanCopy(sp.title)}</p>
           </div>
         `).join('')}
+      </div>
+    </div>
+  </section>
+
+  <!-- The Business Expo Section -->
+  <section class="section" id="expo" style="background: #ffffff;">
+    <div class="container" style="max-width: 1140px;">
+      <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center;">
+        <div>
+          <span class="badge" style="background: rgba(206,137,36,0.12); color: #b45309; border: 1px solid rgba(206,137,36,0.3); text-transform: uppercase; font-size: 11.5px; padding: 5px 12px; font-weight: 700; margin-bottom: 12px;">
+            Commercial Exhibition
+          </span>
+          <h2 style="font-size: 32px; font-weight: 800; color: var(--brand-navy); font-family: var(--font-serif); margin-bottom: 16px;">
+            The Business Expo Floor
+          </h2>
+          <p style="font-size: 16px; line-height: 1.7; color: var(--text-body); margin-bottom: 16px;">
+            The LEAD Summit Anaheim Expo is built into the fabric of the summit. Over three days, the expo floor puts you face to face with businesses, service providers, and decision-makers who are there for one reason: to do business.
+          </p>
+          <p style="font-size: 15.5px; line-height: 1.7; color: var(--text-muted); margin-bottom: 24px;">
+            This is not a trade show floor with 200 tables and foot traffic that never converts. It is a curated room of 300 verified commercial buyers. This is one of the most targeted business networking events in Anaheim.
+          </p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="mailto:info@amcob.org?subject=LEAD%20Summit%20Expo%20Booth%20Reservation" class="btn btn-primary" style="background: #ce8924; border-color: #ce8924;">
+              Reserve Standard Booth ($1,800) &rarr;
+            </a>
+            <a href="/lead/sponsorship" class="btn btn-outline">
+              Compare All 11 Sponsor Tiers
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="card" style="border: 2px solid #ce8924; padding: 32px; background: var(--bg-subtle);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+              <span class="badge" style="background: #ce8924; color: #ffffff; font-size: 11px;">Standard Booth</span>
+              <div style="font-size: 32px; font-weight: 800; color: var(--brand-navy); font-family: var(--font-serif);">$1,800</div>
+            </div>
+            <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+              LEAD Summit Anaheim Expo &bull; 3 Days on the Floor
+            </div>
+
+            <ul style="list-style: none; padding: 0; margin: 0 0 24px 0; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; color: var(--text-body);">
+              <li style="display: flex; gap: 8px; align-items: baseline;">
+                <span style="color: var(--brand-emerald); font-weight: bold;">&#10003;</span>
+                <span>Full 3-day summit floor access</span>
+              </li>
+              <li style="display: flex; gap: 8px; align-items: baseline;">
+                <span style="color: var(--brand-emerald); font-weight: bold;">&#10003;</span>
+                <span>Total 2 passes: 1 Booth Pass plus 1 Staff Pass</span>
+              </li>
+              <li style="display: flex; gap: 8px; align-items: baseline;">
+                <span style="color: var(--brand-emerald); font-weight: bold;">&#10003;</span>
+                <span>Dedicated banner and physical signage space</span>
+              </li>
+              <li style="display: flex; gap: 8px; align-items: baseline;">
+                <span style="color: var(--brand-emerald); font-weight: bold;">&#10003;</span>
+                <span>Brand visibility in printed guide and mobile portal</span>
+              </li>
+              <li style="display: flex; gap: 8px; align-items: baseline;">
+                <span style="color: var(--brand-emerald); font-weight: bold;">&#10003;</span>
+                <span>Direct lead generation before 300 business leaders</span>
+              </li>
+            </ul>
+
+            <div style="font-size: 12px; color: #b45309; background: rgba(206,137,36,0.12); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(206,137,36,0.25);">
+              Booth count is strictly capped to keep the floor curated, not crowded.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 Official Sponsor Logos & 6 Community Partners Grid -->
+  <section class="section" style="background: linear-gradient(135deg, #040c1e 0%, #0a193b 100%); color: #ffffff; border-top: 1px solid rgba(212,175,55,0.25); border-bottom: 1px solid rgba(212,175,55,0.25);">
+    <div class="container" style="max-width: 1140px;">
+      <div style="text-align: center; max-width: 760px; margin: 0 auto 40px auto;">
+        <span class="badge" style="background: rgba(206,137,36,0.2); color: #f59e0b; border: 1px solid rgba(206,137,36,0.4); text-transform: uppercase; font-size: 11px; padding: 5px 12px; font-weight: 700; margin-bottom: 10px;">
+          Commercial Backers
+        </span>
+        <h2 style="font-size: 30px; font-weight: 800; color: #ffffff; font-family: var(--font-serif); margin-bottom: 12px;">
+          Organizations Who Made LEAD Summit Possible
+        </h2>
+        <p style="font-size: 15px; color: rgba(255,255,255,0.75); margin: 0;">
+          We honor the enterprise sponsors and corporate partners who champion ethical business leadership and commercial innovation.
+        </p>
+      </div>
+
+      <!-- 16 Official Sponsor Logos Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 16px; margin-bottom: 48px;">
+        ${sponsorLogos.map(s => `
+          <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 18px 20px; display: flex; align-items: center; justify-content: center; min-height: 85px; transition: transform 0.2s ease, border-color 0.2s ease;">
+            <img src="${s.file}" alt="${esc(s.name)}" title="${esc(s.name)}" style="max-height: 48px; max-width: 130px; object-fit: contain; filter: brightness(1);" loading="lazy">
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- 6 Community Partners Grid -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: #ce8924; letter-spacing: 0.08em;">
+          Community Partners &amp; Chambers
+        </span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+        ${partnerLogos.map(p => `
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; justify-content: center; min-height: 80px;">
+            <img src="${p.file}" alt="${esc(p.name)}" title="${esc(p.name)}" style="max-height: 44px; max-width: 130px; object-fit: contain;" loading="lazy">
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Note: Why We Built This (Kashif Zubair) -->
+  <section style="background: #040c1e; color: #ffffff; padding: 72px 0; border-bottom: 1px solid rgba(212,175,55,0.25);">
+    <div class="container" style="max-width: 860px; margin: 0 auto; text-align: center;">
+      <span class="badge" style="background: rgba(206,137,36,0.2); color: #f59e0b; border: 1px solid rgba(206,137,36,0.4); text-transform: uppercase; font-size: 11px; padding: 5px 14px; font-weight: 700; margin-bottom: 16px; display: inline-block;">
+        A Note From AMCOB Leadership
+      </span>
+      <h2 style="font-size: 32px; font-weight: 800; color: #ffffff; font-family: var(--font-serif); margin-bottom: 28px;">
+        Why We Built This
+      </h2>
+      <blockquote style="font-size: 17.5px; line-height: 1.8; color: rgba(255,255,255,0.9); font-style: italic; margin: 0 0 28px 0; text-align: left; padding: 0 24px; border-left: 3px solid #ce8924;">
+        <p style="margin-bottom: 16px;">"I have sat in enough rooms to know the difference between one that performs community and one that actually holds it."</p>
+        <p style="margin-bottom: 16px;">"Most business conferences hand you a lanyard, a schedule, and a feed full of people you will never speak to again. We did not want to build that. We wanted a room where you could be a serious entrepreneur and a person of faith without translating yourself in either direction, where growing your business and growing your purpose were the same conversation, not two competing ones."</p>
+        <p style="margin-bottom: 16px;">"AMCOB exists because too many of us have built successful companies while quietly wondering if success was ever really the point. The LEAD Summit is our answer to that question, compressed into 48 hours: a room built for founders who want to close deals on Saturday and still recognize themselves on Sunday."</p>
+        <p style="margin-bottom: 20px;">"We did not build this to fill seats. We built it because the entrepreneurs in our community deserve one weekend a year that is entirely theirs. I hope you will be in the room."</p>
+        <footer style="font-size: 15px; font-weight: 700; font-style: normal; color: #f59e0b;">
+          Kashif Zubair &bull; Founder and President, AMCOB
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Multi-City Tour Pipeline -->
+  <section class="section" style="background: var(--bg-subtle); border-bottom: 1px solid var(--border-light);">
+    <div class="container" style="max-width: 1140px;">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto 40px auto;">
+        <span class="badge" style="background: rgba(206,137,36,0.12); color: #b45309; border: 1px solid rgba(206,137,36,0.3); text-transform: uppercase; font-size: 11.5px; padding: 5px 12px; font-weight: 700; margin-bottom: 10px;">
+          North American Tour
+        </span>
+        <h2 style="font-size: 30px; font-weight: 800; color: var(--brand-navy); font-family: var(--font-serif); margin-bottom: 10px;">
+          The LEAD Summit Multi-City Series
+        </h2>
+        <p style="font-size: 15px; color: var(--text-muted); margin: 0;">
+          From the flagship Anaheim summit to regional tour stops across the continent, AMCOB convenes Muslim enterprise leaders nationwide.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        <div class="card" style="border: 2px solid #ce8924; background: #ffffff; padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <span class="badge" style="background: #ce8924; color: #ffffff; font-size: 10px;">Flagship Summit</span>
+            <span style="font-size: 12px; font-weight: 700; color: #ce8924;">March 26 to 28, 2027</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 750; color: var(--brand-navy); margin-bottom: 6px;">Anaheim, California</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+            300 capped seats. Complete 3-day reset with keynotes, peer circles, and capital lounge.
+          </p>
+          <a href="/lead/tickets" class="btn btn-primary btn-sm" style="width: 100%; text-align: center; background: #ce8924; border-color: #ce8924;">
+            Reserve Anaheim Seat &rarr;
+          </a>
+        </div>
+
+        <div class="card" style="border: 1px solid var(--border-light); background: #ffffff; padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <span class="badge" style="background: var(--bg-subtle); color: var(--brand-navy); font-size: 10px;">Inaugural Edition</span>
+            <span style="font-size: 12px; font-weight: 600; color: var(--text-muted);">Completed</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 750; color: var(--brand-navy); margin-bottom: 6px;">Houston, Texas</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+            250+ delegates gathered for keynotes by Omair Tariq, Aneesa Muthana, and industry leaders.
+          </p>
+          <a href="/lead/houston" class="btn btn-outline btn-sm" style="width: 100%; text-align: center;">
+            View Houston Recap &rarr;
+          </a>
+        </div>
+
+        <div class="card" style="border: 1px solid var(--border-light); background: #ffffff; padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <span class="badge" style="background: rgba(206,137,36,0.15); color: #b45309; font-size: 10px;">Tour Series 2027</span>
+            <span style="font-size: 12px; font-weight: 600; color: #ce8924;">Summer 2027</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 750; color: var(--brand-navy); margin-bottom: 6px;">Calgary, Canada</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+            Convening Western Canadian Muslim founders, energy executives, and technology innovators.
+          </p>
+          <a href="/lead/tickets?city=calgary" class="btn btn-outline btn-sm" style="width: 100%; text-align: center;">
+            Calgary Waitlist &rarr;
+          </a>
+        </div>
+
+        <div class="card" style="border: 1px solid var(--border-light); background: #ffffff; padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <span class="badge" style="background: rgba(206,137,36,0.15); color: #b45309; font-size: 10px;">Tour Series 2027</span>
+            <span style="font-size: 12px; font-weight: 600; color: #ce8924;">Fall 2027</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 750; color: var(--brand-navy); margin-bottom: 6px;">Chicago, Illinois</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+            Midwest executive summit uniting manufacturing leaders, healthcare networks, and venture founders.
+          </p>
+          <a href="/lead/tickets?city=chicago" class="btn btn-outline btn-sm" style="width: 100%; text-align: center;">
+            Chicago Waitlist &rarr;
+          </a>
+        </div>
+
+        <div class="card" style="border: 1px solid var(--border-light); background: #ffffff; padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <span class="badge" style="background: rgba(206,137,36,0.15); color: #b45309; font-size: 10px;">Tour Series 2027</span>
+            <span style="font-size: 12px; font-weight: 600; color: #ce8924;">Fall 2027</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 750; color: var(--brand-navy); margin-bottom: 6px;">New Jersey / New York</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+            East Coast financial and corporate convening for Wall Street professionals, tech leaders, and entrepreneurs.
+          </p>
+          <a href="/lead/tickets?city=new-jersey" class="btn btn-outline btn-sm" style="width: 100%; text-align: center;">
+            Tri-State Waitlist &rarr;
+          </a>
+        </div>
+
+        <div class="card" style="border: 1px solid var(--border-light); background: #ffffff; padding: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <span class="badge" style="background: rgba(206,137,36,0.15); color: #b45309; font-size: 10px;">Tour Series 2027</span>
+            <span style="font-size: 12px; font-weight: 600; color: #ce8924;">Late 2027</span>
+          </div>
+          <h3 style="font-size: 18px; font-weight: 750; color: var(--brand-navy); margin-bottom: 6px;">Toronto, Canada</h3>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+            Greater Toronto Area cross-border commercial summit for Canadian enterprises and international trade.
+          </p>
+          <a href="/lead/tickets?city=toronto" class="btn btn-outline btn-sm" style="width: 100%; text-align: center;">
+            Toronto Waitlist &rarr;
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -309,7 +742,7 @@ const indexContent = `
     </div>
   </section>
 
-  <!-- Comprehensive FAQs -->
+  <!-- Comprehensive FAQs (All 8 Authentically Scraped from lead.amcob.org) -->
   <section class="section" style="background: var(--bg-subtle); border-top: 1px solid var(--border-light);">
     <div class="container" style="max-width: 900px;">
       <div style="text-align: center; margin-bottom: 40px;">
@@ -317,10 +750,13 @@ const indexContent = `
         <h2 style="font-size: 28px; font-weight: 800; color: var(--brand-navy); font-family: var(--font-serif); margin-top: 4px;">
           Frequently Asked Questions
         </h2>
+        <p style="font-size: 15px; color: var(--text-muted); margin-top: 6px;">
+          Everything you need to know before securing your seat in Anaheim.
+        </p>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 16px;">
-        ${summit.faqs.map(faq => `
+        ${scrapedFaqs.map(faq => `
           <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 10px; padding: 22px 26px;">
             <h3 style="font-size: 17px; font-weight: 700; color: var(--brand-navy); margin-bottom: 8px;">${cleanCopy(faq.q)}</h3>
             <p style="font-size: 14.5px; line-height: 1.65; color: var(--text-body); margin: 0;">${cleanCopy(faq.a)}</p>
@@ -329,12 +765,34 @@ const indexContent = `
       </div>
     </div>
   </section>
+
+  <!-- Tab Switcher Script -->
+  <script>
+    function switchLeadTab(tabId) {
+      const tabs = ['attendees', 'exhibitors', 'sponsors'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('btn-' + t);
+        const pane = document.getElementById('pane-' + t);
+        if (t === tabId) {
+          btn.style.background = '#ce8924';
+          btn.style.color = '#ffffff';
+          btn.style.borderColor = '#ce8924';
+          pane.style.display = 'block';
+        } else {
+          btn.style.background = 'var(--bg-subtle)';
+          btn.style.color = 'var(--brand-navy)';
+          btn.style.borderColor = 'var(--border-light)';
+          pane.style.display = 'none';
+        }
+      });
+    }
+  </script>
 `;
 
 const renderedIndex = renderLayout({
+  ...leadLayoutDefaults,
   title: 'LEAD Summit Anaheim 2027 | The 48-Hour Reset',
   description: 'A 3-day working summit for 300 Muslim entrepreneurs and executives in Anaheim, CA. Keynotes, peer advisory boards, and commercial deal-making.',
-  activeNav: 'events',
   breadcrumbs: [{ label: 'Events', url: '/events' }, { label: 'LEAD Summit', url: '/lead' }],
   content: indexContent
 });
@@ -388,9 +846,9 @@ const speakersContent = `
 `;
 
 const renderedSpeakers = renderLayout({
+  ...leadLayoutDefaults,
   title: 'LEAD Summit Speakers | 16 Confirmed Executives & Keynotes',
   description: 'Explore the full speaker roster for LEAD Summit Anaheim 2027 including Omair Tariq, Aneesa Muthana, and Umair Khan.',
-  activeNav: 'events',
   breadcrumbs: [{ label: 'Events', url: '/events' }, { label: 'LEAD Summit', url: '/lead' }, { label: 'Speakers', url: '/lead/speakers' }],
   content: speakersContent
 });
@@ -458,9 +916,9 @@ const sponsorshipContent = `
 `;
 
 const renderedSponsorship = renderLayout({
+  ...leadLayoutDefaults,
   title: 'LEAD Summit Sponsorship Packages | 11 Commercial Tiers',
   description: 'Review corporate sponsorship opportunities for LEAD Summit Anaheim 2027 ranging from $25,000 Title Partner to commercial expo booths.',
-  activeNav: 'events',
   breadcrumbs: [{ label: 'Events', url: '/events' }, { label: 'LEAD Summit', url: '/lead' }, { label: 'Sponsorship', url: '/lead/sponsorship' }],
   content: sponsorshipContent
 });
@@ -604,9 +1062,9 @@ const ticketsContent = `
 `;
 
 const renderedTickets = renderLayout({
+  ...leadLayoutDefaults,
   title: 'LEAD Summit Anaheim Registration | Tickets & Passes',
   description: 'Reserve your pass for LEAD Summit Anaheim 2027. Full summit access, single day passes, and Saturday evening awards dinner tickets.',
-  activeNav: 'events',
   breadcrumbs: [{ label: 'Events', url: '/events' }, { label: 'LEAD Summit', url: '/lead' }, { label: 'Tickets', url: '/lead/tickets' }],
   content: ticketsContent
 });
@@ -614,7 +1072,192 @@ fs.writeFileSync(path.join(leadDir, 'tickets.html'), renderedTickets);
 console.log('Generated lead/tickets.html');
 
 // ==========================================
-// 5. LEAD Hotel & Travel (lead/hotel.html)
+// 5. LEAD Agenda Page (lead/agenda.html)
+// ==========================================
+const agendaContent = `
+  ${renderLeadSubnav('agenda')}
+
+  <section class="page-intro">
+    <div class="container" style="max-width: 960px;">
+      <span class="page-intro-badge">Three-Day Executive Syllabus</span>
+      <h1 class="page-title">LEAD Summit Anaheim 2027 Agenda</h1>
+      <p class="page-subtitle">
+        Hour-by-hour schedule from Friday check-in through Sunday closing synthesis. Designed for maximum focus, authentic peer confidentiality, and tangible deal flow.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 1000px;">
+      <!-- Day 1 -->
+      <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 14px; padding: 32px; margin-bottom: 32px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ce8924; padding-bottom: 12px; margin-bottom: 24px;">
+          <div>
+            <span class="badge" style="background: #ce8924; color: #ffffff; font-size: 11px;">Day 01</span>
+            <h2 style="font-size: 22px; font-weight: 800; color: var(--brand-navy); margin: 6px 0 0 0;">Friday, March 26, 2027</h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">Arrival &amp; Opening Reception</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">3:00 PM: 5:00 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Executive Registration &amp; Delegate Check-in</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Badge collection, delegate kit distribution, and hotel room settlement.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">5:00 PM: 6:00 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Opening Address &amp; Summit Orientation</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Welcome remarks by AMCOB President Kashif Zubair: "Setting the Standard for the 48-Hour Reset."</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">6:00 PM: 7:15 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Opening Keynote: Scaling with Integrity</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Mainstage address by featured industry pioneer on navigating enterprise growth without diluting core values.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">7:30 PM: 9:30 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Welcome Banquet &amp; Peer Introductions</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Catered Halal gourmet dining and structured table networking by industry sector.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 14px; padding: 32px; margin-bottom: 32px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ce8924; padding-bottom: 12px; margin-bottom: 24px;">
+          <div>
+            <span class="badge" style="background: #ce8924; color: #ffffff; font-size: 11px;">Day 02</span>
+            <h2 style="font-size: 22px; font-weight: 800; color: var(--brand-navy); margin: 6px 0 0 0;">Saturday, March 27, 2027</h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">Masterclasses, Peer Cohorts &amp; Awards Gala</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">8:00 AM: 9:00 AM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Executive Breakfast &amp; Expo Open</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Informal morning breakfast and private review of commercial expo booths.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">9:00 AM: 10:15 AM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Mainstage Keynote: Enterprise Resilience</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Insights from Aneesa Muthana and senior founders on operational discipline during economic volatility.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">10:30 AM: 12:30 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Closed-Door Peer Advisory Group Cohorts</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Confidential breakout sessions matched strictly by annual revenue stage ($100k to $3M+) under certified moderator facilitation.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">12:30 PM: 2:00 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Executive Lunch &amp; Business Expo Floor</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Halal executive luncheon and face-to-face commercial discussions across the 30-booth exhibition floor.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">2:00 PM: 3:30 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Capital Allocators &amp; Investment Panel</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Direct access to private equity, venture syndicates, and commercial banking leaders seeking qualified Muslim-owned enterprises.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">3:45 PM: 5:00 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Masterclass: AMCOB Tactical Deal-Closing Framework</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Advanced negotiation clinic, enterprise contract structuring, and B2B pipeline execution tools.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">7:00 PM: 10:00 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">The Annual Leadership Banquet Gala &amp; Awards</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Black-tie optional formal dinner, recognition of outstanding enterprise builders, and keynote reflections.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 14px; padding: 32px; box-shadow: var(--shadow-sm);">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ce8924; padding-bottom: 12px; margin-bottom: 24px;">
+          <div>
+            <span class="badge" style="background: #ce8924; color: #ffffff; font-size: 11px;">Day 03</span>
+            <h2 style="font-size: 22px; font-weight: 800; color: var(--brand-navy); margin: 6px 0 0 0;">Sunday, March 28, 2027</h2>
+          </div>
+          <span style="font-size: 13px; font-weight: 600; color: var(--text-muted);">Cognitive Synthesis &amp; Accountability</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">8:30 AM: 9:30 AM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Sunday Executive Breakfast</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Morning reflection and one-on-one executive deal consultations.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">9:30 AM: 11:30 AM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Cognitive Assessment Debrief &amp; Leadership Mapping</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Facilitated workshop breaking down individual assessment scores and executive decision archetypes.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">12:00 PM: 1:30 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Executive Lunch &amp; Final Expo Floor Hours</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Closing discussions with commercial exhibitors and final deal term sheet signings.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">1:30 PM: 3:30 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">The 48-Hour Reset Synthesis &amp; 12-Month Commitments</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Codifying your peer board accountability schedule and corporate roadmap for the next 12 months.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px; align-items: baseline;">
+            <strong style="color: #ce8924; font-size: 14px;">3:30 PM: 4:30 PM</strong>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">Closing Keynote &amp; 2027 Tour Announcement</h3>
+              <p style="font-size: 13.5px; color: var(--text-body); margin: 0;">Unveiling regional tour stops in Calgary, Chicago, New Jersey, and Toronto, followed by official summit adjournment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+`;
+
+const renderedAgenda = renderLayout({
+  ...leadLayoutDefaults,
+  title: 'LEAD Summit Agenda | 3-Day Executive Master Schedule',
+  description: 'Complete 3-day working agenda for LEAD Summit Anaheim 2027. Keynotes, peer advisory groups, capital panels, and gala dinner.',
+  breadcrumbs: [{ label: 'Events', url: '/events' }, { label: 'LEAD Summit', url: '/lead' }, { label: 'Agenda', url: '/lead/agenda' }],
+  content: agendaContent
+});
+fs.writeFileSync(path.join(leadDir, 'agenda.html'), renderedAgenda);
+console.log('Generated lead/agenda.html');
+
+// ==========================================
+// 6. LEAD Hotel & Travel (lead/hotel.html)
 // ==========================================
 const hotelContent = `
   ${renderLeadSubnav('hotel')}
@@ -650,7 +1293,7 @@ const hotelContent = `
             </li>
             <li style="display: flex; gap: 10px;">
               <span style="color: #ce8924; font-weight: bold;">&bull;</span>
-              <span><strong>Los Angeles International (LAX):</strong> 45-60 minutes depending on traffic. Best for international delegates.</span>
+              <span><strong>Los Angeles International (LAX):</strong> 45 to 60 minutes depending on traffic. Best for international delegates.</span>
             </li>
           </ul>
 
@@ -679,9 +1322,9 @@ const hotelContent = `
 `;
 
 const renderedHotel = renderLayout({
+  ...leadLayoutDefaults,
   title: 'LEAD Summit Hotel & Travel | Anaheim Convention Guide',
   description: 'Travel and accommodation details for LEAD Summit Anaheim 2027 including discounted 3-night room blocks and airport transit.',
-  activeNav: 'events',
   breadcrumbs: [{ label: 'Events', url: '/events' }, { label: 'LEAD Summit', url: '/lead' }, { label: 'Hotel & Travel', url: '/lead/hotel' }],
   content: hotelContent
 });
@@ -689,7 +1332,7 @@ fs.writeFileSync(path.join(leadDir, 'hotel.html'), renderedHotel);
 console.log('Generated lead/hotel.html');
 
 // ==========================================
-// 6. LEAD Houston Retrospective (lead/houston.html)
+// 7. LEAD Houston Retrospective (lead/houston.html)
 // ==========================================
 const houstonContent = `
   ${renderLeadSubnav('houston')}
@@ -740,9 +1383,9 @@ const houstonContent = `
 `;
 
 const renderedHouston = renderLayout({
+  ...leadLayoutDefaults,
   title: 'LEAD Summit Houston Retrospective | Inaugural Gathering',
   description: 'Highlights, statistics, and photo recap from the inaugural LEAD Summit Houston gathering of 250+ Muslim founders and investors.',
-  activeNav: 'events',
   breadcrumbs: [{ label: 'Events', url: '/events' }, { label: 'LEAD Summit', url: '/lead' }, { label: 'Houston Recap', url: '/lead/houston' }],
   content: houstonContent
 });
@@ -750,7 +1393,7 @@ fs.writeFileSync(path.join(leadDir, 'houston.html'), renderedHouston);
 console.log('Generated lead/houston.html');
 
 // ==========================================
-// 7. LEAD Blog Index (lead/blog/index.html)
+// 8. LEAD Blog Index (lead/blog/index.html)
 // ==========================================
 const blogIndexContent = `
   ${renderLeadSubnav('blog')}
@@ -794,9 +1437,9 @@ const blogIndexContent = `
 `;
 
 const renderedBlogIndex = renderLayout({
+  ...leadLayoutDefaults,
   title: 'LEAD Summit Blog & Strategic Articles | AMCOB',
   description: 'In-depth articles covering Muslim business conferences, leadership development, and strategic execution for founders.',
-  activeNav: 'events',
   breadcrumbs: [{ label: 'Events', url: '/events' }, { label: 'LEAD Summit', url: '/lead' }, { label: 'Blog', url: '/lead/blog' }],
   content: blogIndexContent
 });
@@ -804,14 +1447,12 @@ fs.writeFileSync(path.join(leadBlogDir, 'index.html'), renderedBlogIndex);
 console.log('Generated lead/blog/index.html');
 
 // ==========================================
-// 8. Individual LEAD Blog Articles
+// 9. Individual LEAD Blog Articles
 // ==========================================
-articles.forEach((art, index) => {
+articles.forEach((art) => {
   const cleanTitle = cleanCopy(art.title);
   const cleanLead = cleanCopy(art.lead || art.excerpt || '');
   const cleanBody = cleanCopy(art.richHtml || `<p>${cleanLead}</p>`);
-  const prev = articles[(index - 1 + articles.length) % articles.length];
-  const next = articles[(index + 1) % articles.length];
 
   const artContent = `
     ${renderLeadSubnav('blog')}
@@ -849,9 +1490,9 @@ articles.forEach((art, index) => {
   `;
 
   const renderedArt = renderLayout({
+    ...leadLayoutDefaults,
     title: `${cleanTitle} | LEAD Summit`,
     description: cleanLead.substring(0, 155),
-    activeNav: 'events',
     breadcrumbs: [
       { label: 'Events', url: '/events' },
       { label: 'LEAD Summit', url: '/lead' },
@@ -864,3 +1505,5 @@ articles.forEach((art, index) => {
   fs.writeFileSync(path.join(leadBlogDir, `${art.slug}.html`), renderedArt);
 });
 console.log(`Generated all ${articles.length} individual LEAD blog articles!`);
+
+console.log('All LEAD Summit standalone pages generated successfully.');

@@ -17,7 +17,7 @@ function esc(str) {
 }
 
 // Master Layout Generator
-function renderLayout({ title, description, activeNav = '', breadcrumbs = [], content, extraHead = '', extraScripts = '' }) {
+function renderLayout({ title, description, activeNav = '', breadcrumbs = [], content, extraHead = '', extraScripts = '', brandLogo, brandUrl, brandTitle, brandLogoWidth }) {
   const breadcrumbsHtml = breadcrumbs.length > 0 ? `
     <div class="breadcrumbs">
       <div class="container breadcrumbs-inner">
@@ -50,13 +50,19 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
   <!-- Floating Glass Masthead -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="/" class="brand-logo" title="AMCOB: Allied Muslim Chamber of Business">
-        <img src="/assets/optimized/logos/logo-nav-white.webp" alt="AMCOB: Allied Muslim Chamber of Business" width="160" height="45">
+      <a href="${brandUrl || '/'}" class="brand-logo" title="${esc(brandTitle || 'AMCOB: Allied Muslim Chamber of Business')}">
+        <img src="${brandLogo || '/assets/optimized/logos/logo-nav-white.webp'}" alt="${esc(brandTitle || 'AMCOB: Allied Muslim Chamber of Business')}" width="${brandLogoWidth || 160}" height="45" style="object-fit: contain;">
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="nav-desktop" aria-label="Main Navigation">
         <a href="/about" class="nav-link ${activeNav === 'about' ? 'active' : ''}">About</a>
+
+        <!-- Standalone First-Class LEAD Summit Nav Link -->
+        <a href="/lead" class="nav-link ${activeNav === 'lead' ? 'active' : ''}" style="color: #f59e0b; font-weight: 700; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;">
+          <span>LEAD Summit</span>
+          <span style="font-size: 9.5px; font-weight: 800; background: rgba(206,137,36,0.25); color: #f59e0b; border: 1px solid rgba(206,137,36,0.5); padding: 1px 5px; border-radius: 999px; text-transform: uppercase;">2027</span>
+        </a>
 
         <!-- Membership Mega Dropdown -->
         <div class="nav-dropdown-wrapper">
@@ -279,6 +285,21 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
 
   <!-- Mobile Glass Drawer Sheet -->
   <div class="mobile-drawer" id="mobileDrawer">
+    <!-- Dedicated Flagship LEAD Summit Card -->
+    <div style="background: rgba(206,137,36,0.1); border: 1px solid rgba(206,137,36,0.35); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+        <img src="/assets/optimized/lead/lead-logo.svg" alt="LEAD Summit" style="height: 24px; width: auto; object-fit: contain;">
+        <span style="font-size: 11px; font-weight: 750; color: #f59e0b; background: rgba(206,137,36,0.25); border: 1px solid rgba(206,137,36,0.5); padding: 2px 8px; border-radius: 999px; text-transform: uppercase;">Anaheim 2027</span>
+      </div>
+      <div style="font-size: 12.5px; color: rgba(255,255,255,0.85); margin-bottom: 12px; line-height: 1.4;">
+        March 26 to 28, 2027 &bull; 300 Capped Seats
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <a href="/lead" class="btn btn-secondary btn-sm" style="font-size: 12px; text-align: center; color: #ffffff; border-color: rgba(206,137,36,0.4); padding: 8px 12px;">Overview</a>
+        <a href="/lead/tickets" class="btn btn-primary btn-sm" style="font-size: 12px; text-align: center; background: #ce8924; border-color: #ce8924; padding: 8px 12px;">Get Tickets</a>
+      </div>
+    </div>
+
     <div class="mobile-nav-group">
       <span class="mobile-nav-group-title">Navigation</span>
       <a href="/about" class="mobile-nav-link">About AMCOB</a>
@@ -388,6 +409,30 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
           </div>
         </div>
 
+        <!-- LEAD Summit Flagship Column -->
+        <div class="footer-nav-col footer-lead-col">
+          <div style="margin-bottom: 0.85rem;">
+            <a href="/lead" title="LEAD Summit Anaheim 2027">
+              <img src="/assets/optimized/lead/lead-logo.svg" alt="LEAD Summit" width="130" height="38" style="object-fit: contain; display: block;">
+            </a>
+          </div>
+          <span style="display: inline-block; font-size: 10.5px; font-weight: 750; color: #f59e0b; background: rgba(206,137,36,0.18); border: 1px solid rgba(206,137,36,0.4); padding: 2px 8px; border-radius: 999px; text-transform: uppercase; margin-bottom: 8px;">
+            Flagship 2027
+          </span>
+          <div style="font-size: 0.75rem; color: #ce8924; font-weight: 600; margin-bottom: 0.75rem; line-height: 1.35;">
+            March 26 to 28, 2027<br>Anaheim, CA &bull; 300 Seats
+          </div>
+          <ul class="footer-nav-list">
+            <li><a href="/lead" style="color: #f59e0b; font-weight: 600;">Summit Overview</a></li>
+            <li><a href="/lead/speakers">Keynote Speakers</a></li>
+            <li><a href="/lead/sponsorship">Sponsor Packages</a></li>
+            <li><a href="/lead/tickets">Reserve Passes</a></li>
+            <li><a href="/lead/agenda">3-Day Agenda</a></li>
+            <li><a href="/lead/houston">Houston Retrospective</a></li>
+            <li><a href="/lead/blog">Summit Articles</a></li>
+          </ul>
+        </div>
+
         <!-- Membership Column -->
         <div class="footer-nav-col">
           <h4 class="footer-nav-title">Membership</h4>
@@ -404,9 +449,9 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
         <div class="footer-nav-col">
           <h4 class="footer-nav-title">Engage</h4>
           <ul class="footer-nav-list">
-            <li><a href="/lead" style="color: #ce8924; font-weight: 600;">LEAD Summit Anaheim</a></li>
             <li><a href="/events">Events Calendar</a></li>
             <li><a href="/dinner-mixers">Regional Dinner Mixers</a></li>
+            <li><a href="/virtual-mixers">Virtual Mixers</a></li>
             <li><a href="/ambassador-program">Ambassador Program</a></li>
             <li><a href="/sponsorship">Corporate Sponsorship</a></li>
             <li><a href="/opportunities">Investment Opportunities</a></li>

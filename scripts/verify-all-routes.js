@@ -68,13 +68,16 @@ const routes = [
   '/lead/speakers',
   '/lead/sponsorship',
   '/lead/tickets',
+  '/lead/agenda',
   '/lead/hotel',
   '/lead/houston',
   '/lead/blog',
   '/lead/blog/what-is-lead-summit',
   '/lead/blog/how-to-build-leaders-who-lead',
+  '/assets/optimized/lead/lead-logo.svg',
   '/assets/optimized/lead/hero-poster.webp',
-  '/assets/optimized/lead/speakers/omair-tariq.png'
+  '/assets/optimized/lead/speakers/omair-tariq.png',
+  '/assets/optimized/lead/sponsors/IHT_Logo.png'
 ];
 
 function testRoute(route) {

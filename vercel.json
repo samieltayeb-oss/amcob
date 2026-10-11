@@ -14,9 +14,14 @@
     { "source": "/blog", "destination": "/blog/index.html" },
     { "source": "/books", "destination": "/books/index.html" },
     { "source": "/lead", "destination": "/lead/index.html" },
+    { "source": "/lead/agenda", "destination": "/lead/agenda.html" },
     { "source": "/lead/blog", "destination": "/lead/blog/index.html" },
     { "source": "/lead-ticket", "destination": "/lead/tickets.html" },
-    { "source": "/lead-ticket/:path*", "destination": "/lead/tickets.html" }
+    { "source": "/lead-ticket/:path*", "destination": "/lead/tickets.html" },
+    { "source": "/events/lead-summit-houston", "destination": "/lead/houston.html" },
+    { "source": "/speakers", "destination": "/lead/speakers.html" },
+    { "source": "/hotel", "destination": "/lead/hotel.html" },
+    { "source": "/expo", "destination": "/lead/index.html#expo" }
   ],
   "headers": [
     {

@@ -97,7 +97,7 @@ const membershipContent = `
         <div class="card" style="border: 2px solid var(--brand-navy);">
           <span class="badge badge-gold" style="width: fit-content; margin-bottom: 12px;">Executive Flagship</span>
           <h3 style="font-size: 24px; font-weight: 700; color: var(--brand-navy); margin-bottom: 6px;">Peer Advisory Groups</h3>
-          <div style="font-size: 32px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">$1,925 - $5,500 <span style="font-size: 15px; font-weight: 400; color: var(--text-muted);">/ yr</span></div>
+          <div style="font-size: 32px; font-weight: 750; color: var(--brand-navy); margin-bottom: 4px;">$1,925 to $5,500 <span style="font-size: 15px; font-weight: 400; color: var(--text-muted);">/ yr</span></div>
           <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">Matched strictly by verified revenue stage ($100k to $3M+).</p>
           <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 14px; margin-bottom: 24px; flex-grow: 1;">
             <li>&#10003; Monthly 3-Hour Closed-Door Board Sessions</li>

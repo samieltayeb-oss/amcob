@@ -205,28 +205,28 @@ const pagScheduleContent = `
         <div class="card" style="padding: 24px;">
           <span class="badge badge-gold" style="width: fit-content; margin-bottom: 8px;">Emerging Cohort ($100k-$500k)</span>
           <h3 style="font-size: 18px; font-weight: 700; color: var(--brand-navy); margin-bottom: 6px;">Monthly Advisory Board | First Thursday</h3>
-          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Next Session: Thursday, 10:00 AM - 1:00 PM Central Time</p>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Next Session: Thursday, 10:00 AM to 1:00 PM Central Time</p>
           <p style="font-size: 14px; color: var(--text-body); margin: 0;">Agenda: Operational hiring metrics, cash reserves, and customer lifetime value review.</p>
         </div>
 
         <div class="card" style="padding: 24px;">
           <span class="badge badge-gold" style="width: fit-content; margin-bottom: 8px;">Scaling Cohort ($500k-$1M)</span>
           <h3 style="font-size: 18px; font-weight: 700; color: var(--brand-navy); margin-bottom: 6px;">Monthly Advisory Board | Second Tuesday</h3>
-          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Next Session: Tuesday, 1:00 PM - 4:00 PM Eastern Time</p>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Next Session: Tuesday, 1:00 PM to 4:00 PM Eastern Time</p>
           <p style="font-size: 14px; color: var(--text-body); margin: 0;">Agenda: Crossing seven figures, gross margin optimization, and bank credit facilities.</p>
         </div>
 
         <div class="card" style="padding: 24px;">
           <span class="badge badge-gold" style="width: fit-content; margin-bottom: 8px;">Booming Cohort ($1M-$3M)</span>
           <h3 style="font-size: 18px; font-weight: 700; color: var(--brand-navy); margin-bottom: 6px;">Monthly Advisory Board | Third Wednesday</h3>
-          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Next Session: Wednesday, 10:00 AM - 1:00 PM Pacific Time</p>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Next Session: Wednesday, 10:00 AM to 1:00 PM Pacific Time</p>
           <p style="font-size: 14px; color: var(--text-body); margin: 0;">Agenda: Executive management compensation, enterprise commercial sales, and M&amp;A readiness.</p>
         </div>
 
         <div class="card" style="padding: 24px;">
           <span class="badge badge-gold" style="width: fit-content; margin-bottom: 8px;">Powerhouse Cohort ($3M+)</span>
           <h3 style="font-size: 18px; font-weight: 700; color: var(--brand-navy); margin-bottom: 6px;">Monthly Advisory Board | Fourth Thursday</h3>
-          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Next Session: Thursday, 1:00 PM - 4:00 PM Central Time</p>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">Next Session: Thursday, 1:00 PM to 4:00 PM Central Time</p>
           <p style="font-size: 14px; color: var(--text-body); margin: 0;">Agenda: Formal board governance, private equity buyout evaluation, and succession planning.</p>
         </div>
       </div>
