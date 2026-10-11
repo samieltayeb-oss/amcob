@@ -108,7 +108,7 @@ async function capture() {
       await new Promise(r => setTimeout(r, 1000));
 
       await send('Runtime.evaluate', {
-        expression: `document.querySelector('${scrollSelector}').scrollIntoView({ behavior: 'instant', block: 'center' });`
+        expression: `document.querySelector('${scrollSelector}').scrollIntoView({ behavior: 'instant', block: 'start' });`
       });
       await new Promise(r => setTimeout(r, 800));
 
