@@ -12,7 +12,11 @@
     { "source": "/ambassador-program", "destination": "/ambassador-program/index.html" },
     { "source": "/business-directory", "destination": "/business-directory/index.html" },
     { "source": "/blog", "destination": "/blog/index.html" },
-    { "source": "/books", "destination": "/books/index.html" }
+    { "source": "/books", "destination": "/books/index.html" },
+    { "source": "/lead", "destination": "/lead/index.html" },
+    { "source": "/lead/blog", "destination": "/lead/blog/index.html" },
+    { "source": "/lead-ticket", "destination": "/lead/tickets.html" },
+    { "source": "/lead-ticket/:path*", "destination": "/lead/tickets.html" }
   ],
   "headers": [
     {

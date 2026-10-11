@@ -63,7 +63,18 @@ const routes = [
   '/data/books.json',
   '/data/events.json',
   '/assets/optimized/logos/logo.png',
-  '/assets/optimized/logos/logo-monochrome.png'
+  '/assets/optimized/logos/logo-monochrome.png',
+  '/lead',
+  '/lead/speakers',
+  '/lead/sponsorship',
+  '/lead/tickets',
+  '/lead/hotel',
+  '/lead/houston',
+  '/lead/blog',
+  '/lead/blog/what-is-lead-summit',
+  '/lead/blog/how-to-build-leaders-who-lead',
+  '/assets/optimized/lead/hero-poster.webp',
+  '/assets/optimized/lead/speakers/omair-tariq.png'
 ];
 
 function testRoute(route) {

@@ -1,0 +1,146 @@
+[
+  {
+    "name": "Faruk Bhagani",
+    "slug": "faruk-bhagani",
+    "title": "Co-Founder, Menasa",
+    "image": "/assets/optimized/lead/speakers/faruk-bhagani.jpg",
+    "remoteImage": "/storage/speakers/01KWJDE123HV72PNATAKT69A3H.jpg",
+    "linkedin": "https://www.linkedin.com/in/farukbhagani",
+    "isKeynote": false
+  },
+  {
+    "name": "Omair Tariq",
+    "slug": "omair-tariq",
+    "title": "Founder & CEO, cart.com",
+    "image": "/assets/optimized/lead/speakers/omair-tariq.png",
+    "remoteImage": "/storage/speakers/01M00MRXGWJJ0KBS849WN1TC7Y.png",
+    "linkedin": null,
+    "isKeynote": true
+  },
+  {
+    "name": "Nejat H Abdurahman",
+    "slug": "nejat-h-abdurahman",
+    "title": "Founder, N-BAC | Author of The Art of Managing Up",
+    "image": "/assets/optimized/lead/speakers/nejat-h-abdurahman.png",
+    "remoteImage": "/storage/speakers/01KS0RAQXGPFKFAKSK8ZW9V6E2.png",
+    "linkedin": null,
+    "isKeynote": false
+  },
+  {
+    "name": "Kamal Solaiman",
+    "slug": "kamal-solaiman",
+    "title": "General Partner & CEO, Sinbad Capital",
+    "image": "/assets/optimized/lead/speakers/kamal-solaiman.png",
+    "remoteImage": "/storage/speakers/01KS0RC4P66M9QAK0BJWS98VMQ.png",
+    "linkedin": "https://www.linkedin.com/in/ksolaiman/",
+    "isKeynote": false
+  },
+  {
+    "name": "Aneesa Muthana",
+    "slug": "aneesa-muthana",
+    "title": "CEO and Co-Owner, Pioneer Service Inc. and M&M Quality Grinding",
+    "image": "/assets/optimized/lead/speakers/aneesa-muthana.png",
+    "remoteImage": "/storage/speakers/01KS0RXH1HQPYHRGK322MBA6JX.png",
+    "linkedin": "https://www.linkedin.com/in/aneesamuthana/",
+    "isKeynote": true
+  },
+  {
+    "name": "Umair Khan",
+    "slug": "umair-khan",
+    "title": "Founding Partner, Mentors Fund; Founder & Chairman, Folio3; Visiting Professor, UC Berkeley; Co-Owner, Zareen’s Restaurants",
+    "image": "/assets/optimized/lead/speakers/umair-khan.jpg",
+    "remoteImage": "/storage/speakers/01KZZEAE5AFD46TPSM2KN6610F.jpg",
+    "linkedin": null,
+    "isKeynote": true
+  },
+  {
+    "name": "Dr. Mohammad Shehata",
+    "slug": "dr-mohammad-shehata",
+    "title": "Neuroscience PhD and CEO, FiLiCiTi",
+    "image": "/assets/optimized/lead/speakers/dr-mohammad-shehata.png",
+    "remoteImage": "/storage/speakers/01KS0RDZQCZGTB4WP1ZXAFVVWE.png",
+    "linkedin": "https://www.linkedin.com/in/mohammad-h-shehata",
+    "isKeynote": false
+  },
+  {
+    "name": "Sajjad Chowdhry",
+    "slug": "sajjad-chowdhry",
+    "title": "Principal, Trivium Global / C-Level Executive",
+    "image": "/assets/optimized/lead/speakers/sajjad-chowdhry.png",
+    "remoteImage": "/storage/speakers/01KS0S4VP4TDPZBMJKWK4MXN07.png",
+    "linkedin": null,
+    "isKeynote": false
+  },
+  {
+    "name": "Syeda Nazifa Nawroj",
+    "slug": "syeda-nazifa-nawroj",
+    "title": "Principal Attorney, Empowering Legal Solutions PC",
+    "image": "/assets/optimized/lead/speakers/syeda-nazifa-nawroj.png",
+    "remoteImage": "/storage/speakers/01KS0RRZ2MBDDER67QDBSEEN97.png",
+    "linkedin": "https://www.linkedin.com/in/syeda-nazifa-nawroj/",
+    "isKeynote": false
+  },
+  {
+    "name": "Adnan Adrian Wood-Smith",
+    "slug": "adnan-adrian-wood-smith",
+    "title": "Educator, Coach, and Founder, Deeper Muslim",
+    "image": "/assets/optimized/lead/speakers/adnan-adrian-wood-smith.png",
+    "remoteImage": "/storage/speakers/01KS0S56PDNJ9JYBP6KHTTV18H.png",
+    "linkedin": "https://www.linkedin.com/in/adnanwoodsmith/",
+    "isKeynote": false
+  },
+  {
+    "name": "Tasnim Benhalim",
+    "slug": "tasnim-benhalim",
+    "title": "Founder & Chief Learning Officer, DiversityWealth",
+    "image": "/assets/optimized/lead/speakers/tasnim-benhalim.png",
+    "remoteImage": "/storage/speakers/01KS0STYGPH17K4S4WB4T8NP2C.png",
+    "linkedin": null,
+    "isKeynote": false
+  },
+  {
+    "name": "Assad Koshul",
+    "slug": "assad-koshul",
+    "title": "Founder and CEO, Game Changer Mindsets",
+    "image": "/assets/optimized/lead/speakers/assad-koshul.png",
+    "remoteImage": "/storage/speakers/01KS0RFAZ6GCCTYRWN4E2N3X87.png",
+    "linkedin": "https://www.linkedin.com/in/assadkoshul/",
+    "isKeynote": false
+  },
+  {
+    "name": "Ayesha Qureshi",
+    "slug": "ayesha-qureshi",
+    "title": "Founder, Q Line Media",
+    "image": "/assets/optimized/lead/speakers/ayesha-qureshi.png",
+    "remoteImage": "/storage/speakers/01KS0RX5J8R563W484E81SF2YX.png",
+    "linkedin": "https://www.linkedin.com/in/ayeshaqline/",
+    "isKeynote": false
+  },
+  {
+    "name": "Malik Khan",
+    "slug": "malik-khan",
+    "title": "Certified EOS Implementer® | Leadership Coach",
+    "image": "/assets/optimized/lead/speakers/malik-khan.png",
+    "remoteImage": "/storage/speakers/01KT4DS32CH27P9VHJTK66KG68.png",
+    "linkedin": null,
+    "isKeynote": false
+  },
+  {
+    "name": "Mariam Sobh",
+    "slug": "mariam-sobh",
+    "title": "Communications Strategist, Host and Public Relations Coordinator, Chicago PD",
+    "image": "/assets/optimized/lead/speakers/mariam-sobh.jpg",
+    "remoteImage": "/storage/speakers/01KY57A4E6DC4Z5S1FM6CJ7P67.jpg",
+    "linkedin": null,
+    "isKeynote": false
+  },
+  {
+    "name": "Mouneeb Shahid",
+    "slug": "mouneeb-shahid",
+    "title": "CEO and Digital Marketing Expert",
+    "image": "/assets/optimized/lead/speakers/mouneeb-shahid.jpg",
+    "remoteImage": "/storage/speakers/01KYMKFMN7S6HN9V5WZS2ZRZ3T.jpg",
+    "linkedin": "https://www.linkedin.com/in/mouneeb/",
+    "isKeynote": false
+  }
+]

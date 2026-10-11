@@ -1,0 +1,151 @@
+[
+  {
+    "name": "Title Sponsor",
+    "price": "$25,000",
+    "priceNum": 25000,
+    "badge": "Premier Anchor",
+    "description": "Exclusive marquee summit partnership with premier brand naming across all mainstage sessions, VIP receptions, and national media collateral.",
+    "features": [
+      "10 Full Summit Passes with VIP Executive seating",
+      "Keynote Mainstage speaking slot / Welcome Remarks",
+      "Prominent booth in the Commercial Expo hall",
+      "Logo on all summit signage, lanyards, stage backdrops, and website",
+      "Dedicated sponsor spotlight article in AMCOB Editorial",
+      "Full page feature in digital and printed summit program guides",
+      "Direct access to summit attendee directory and executive roster"
+    ]
+  },
+  {
+    "name": "Saturday Dinner Sponsor",
+    "price": "$15,000",
+    "priceNum": 15000,
+    "badge": "Evening Gala Host",
+    "description": "Sole presenting partner for the Saturday Night Executive Dinner and Community Leadership Awards.",
+    "features": [
+      "6 Full Summit Passes with premium banquet tables",
+      "5-minute opening keynote address before the evening gala",
+      "Exclusive branded signage on all dining tables and banquet stage",
+      "Logo featured across all dinner invitations and digital ticketing",
+      "Exhibition booth space in the pre-dinner networking atrium"
+    ]
+  },
+  {
+    "name": "Friday Dinner Sponsor",
+    "price": "$10,000",
+    "priceNum": 10000,
+    "badge": "Opening Night Host",
+    "description": "Presenting sponsor for the opening night executive reception and welcome banquet.",
+    "features": [
+      "4 Full Summit Passes",
+      "Welcome remarks at the Friday Opening Dinner",
+      "Signage throughout the Friday reception hall",
+      "Prominent branding in event collateral and summit website"
+    ]
+  },
+  {
+    "name": "Gold Sponsor",
+    "price": "$10,000",
+    "priceNum": 10000,
+    "badge": "Major Sponsor",
+    "description": "High-visibility strategic partnership designed for established companies seeking prominent regional executive presence.",
+    "features": [
+      "5 Full Summit Passes",
+      "Panel moderator or panelist speaking opportunity",
+      "Premium Expo booth location",
+      "Logo on mainstage digital displays and event materials",
+      "Half-page feature in the official summit program guide"
+    ]
+  },
+  {
+    "name": "Silver Sponsor",
+    "price": "$5,000",
+    "priceNum": 5000,
+    "badge": "Executive Sponsor",
+    "description": "Ideal for scaling enterprises looking to build trusted B2B relationships and showcase commercial services.",
+    "features": [
+      "3 Full Summit Passes",
+      "Commercial Expo booth in high-traffic networking zone",
+      "Logo on summit website, program guide, and digital displays",
+      "Quarter-page ad in the official summit guide"
+    ]
+  },
+  {
+    "name": "Bronze Sponsor",
+    "price": "$2,500",
+    "priceNum": 2500,
+    "badge": "Ecosystem Partner",
+    "description": "Entry-level executive sponsorship for small businesses and service providers entering the chamber network.",
+    "features": [
+      "2 Full Summit Passes",
+      "Logo and profile listing on summit website and program guide",
+      "Collateral insert in official summit welcome bags"
+    ]
+  },
+  {
+    "name": "Lanyard Sponsor",
+    "price": "$2,000",
+    "priceNum": 2000,
+    "badge": "Brand Takeover",
+    "description": "Every attendee, speaker, and VIP wears your brand for all three days of the summit.",
+    "features": [
+      "Exclusive logo placement alongside AMCOB on all official summit lanyards",
+      "1 Full Summit Pass included",
+      "Logo listing on summit website"
+    ]
+  },
+  {
+    "name": "Commercial Expo Booth",
+    "price": "$1,200",
+    "priceNum": 1200,
+    "badge": "Vendor Exhibition",
+    "description": "Dedicated 10x10 table exhibition space in the active summit networking expo hall.",
+    "features": [
+      "6-foot skirted table and 2 chairs",
+      "2 Commercial Expo passes for staff",
+      "Listing in the official summit expo map and directory"
+    ]
+  },
+  {
+    "name": "Coffee & Break Sponsor",
+    "price": "$1,000",
+    "priceNum": 1000,
+    "badge": "Networking Break",
+    "description": "Exclusive branding at the morning and afternoon networking coffee & refreshments stations.",
+    "features": [
+      "Custom signage with your logo at all coffee stations during designated summit breaks",
+      "Listing in official summit program guide"
+    ]
+  },
+  {
+    "name": "Welcome Bag Insert",
+    "price": "$500",
+    "priceNum": 500,
+    "badge": "Direct Reach",
+    "description": "Your promotional merchandise, one-pager, or coupon placed directly into every attendee welcome bag.",
+    "features": [
+      "Guaranteed placement in all 300 attendee welcome kits",
+      "Direct touchpoint with every summit executive"
+    ]
+  },
+  {
+    "name": "Digital Program Ad",
+    "price": "$350",
+    "priceNum": 350,
+    "badge": "Print & Digital",
+    "description": "Half-page advertisement in the digital and downloadable summit companion guide.",
+    "features": [
+      "Half-page full color advertisement",
+      "Hyperlinked in digital distribution to all attendees"
+    ]
+  },
+  {
+    "name": "Business Card Insert",
+    "price": "$100",
+    "priceNum": 100,
+    "badge": "Micro Sponsor",
+    "description": "Your company business card or mini card included in the summit registration packet.",
+    "features": [
+      "Distributed to all registered attendees at badge pickup"
+    ]
+  }
+]

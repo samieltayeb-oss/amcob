@@ -141,51 +141,58 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
           <div class="glass-dropdown-panel" role="region" aria-label="Chamber Events">
             <div class="glass-panel-grid">
               <div class="glass-panel-links">
+                <a href="/lead" class="glass-panel-link-item">
+                  <div class="glass-panel-link-icon" style="background: rgba(206,137,36,0.15); color: #ce8924;">01</div>
+                  <div class="glass-panel-link-text">
+                    <span class="glass-panel-link-title" style="color: #ce8924;">LEAD Summit (Anaheim 2027)</span>
+                    <span class="glass-panel-link-desc">Flagship 3-day working summit &bull; 300 capped seats</span>
+                  </div>
+                </a>
                 <a href="/events" class="glass-panel-link-item">
-                  <div class="glass-panel-link-icon">01</div>
+                  <div class="glass-panel-link-icon">02</div>
                   <div class="glass-panel-link-text">
                     <span class="glass-panel-link-title">Master Calendar</span>
                     <span class="glass-panel-link-desc">Complete schedule of in-person and virtual dates</span>
                   </div>
                 </a>
                 <a href="/dinner-mixers" class="glass-panel-link-item">
-                  <div class="glass-panel-link-icon">02</div>
+                  <div class="glass-panel-link-icon">03</div>
                   <div class="glass-panel-link-text">
                     <span class="glass-panel-link-title">Dinner Mixers</span>
                     <span class="glass-panel-link-desc">Regional chapter executive dinners across 12 cities</span>
                   </div>
                 </a>
                 <a href="/virtual-mixers" class="glass-panel-link-item">
-                  <div class="glass-panel-link-icon">03</div>
+                  <div class="glass-panel-link-icon">04</div>
                   <div class="glass-panel-link-text">
                     <span class="glass-panel-link-title">Virtual Mixers</span>
                     <span class="glass-panel-link-desc">Global online networking sessions</span>
                   </div>
                 </a>
                 <a href="/upcoming-peer-advisory-meetings" class="glass-panel-link-item">
-                  <div class="glass-panel-link-icon">04</div>
+                  <div class="glass-panel-link-icon">05</div>
                   <div class="glass-panel-link-text">
                     <span class="glass-panel-link-title">Peer Advisory Meetings</span>
                     <span class="glass-panel-link-desc">Closed-door monthly cohort board dates</span>
                   </div>
                 </a>
                 <a href="/conferences-workshops" class="glass-panel-link-item">
-                  <div class="glass-panel-link-icon">05</div>
+                  <div class="glass-panel-link-icon">06</div>
                   <div class="glass-panel-link-text">
                     <span class="glass-panel-link-title">Conferences &amp; Workshops</span>
-                    <span class="glass-panel-link-desc">LEAD Summit convenings and executive clinics</span>
+                    <span class="glass-panel-link-desc">Regional convenings and executive clinics</span>
                   </div>
                 </a>
               </div>
 
               <!-- Featured Event Card -->
               <div class="glass-panel-featured">
-                <img src="/assets/optimized/hero/amcob-summit-atrium.webp" alt="AMCOB LEAD Summit" class="glass-panel-featured-img">
+                <img src="/assets/optimized/lead/hero-poster.webp" alt="AMCOB LEAD Summit" class="glass-panel-featured-img">
                 <div class="glass-panel-featured-body">
-                  <span class="glass-panel-featured-tag">Annual Flagship</span>
-                  <span class="glass-panel-featured-title">AMCOB LEAD Summit</span>
-                  <p class="glass-panel-featured-desc">National conference bringing business founders, investors, and leaders together.</p>
-                  <a href="/conferences-workshops" class="glass-panel-featured-action">View Summit Details &rarr;</a>
+                  <span class="glass-panel-featured-tag" style="background: #ce8924; color: #ffffff;">Annual Flagship</span>
+                  <span class="glass-panel-featured-title">LEAD Summit Anaheim</span>
+                  <p class="glass-panel-featured-desc">March 26-28, 2027. 300 seats for high-growth Muslim founders and executives.</p>
+                  <a href="/lead" class="glass-panel-featured-action" style="color: #ce8924;">Claim Your Seat &rarr;</a>
                 </div>
               </div>
             </div>
@@ -295,6 +302,7 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
 
     <div class="mobile-nav-group">
       <span class="mobile-nav-group-title">Events &amp; Gatherings</span>
+      <a href="/lead" class="mobile-nav-link" style="color: #ce8924; font-weight: 700;">LEAD Summit Anaheim (300 Seats)</a>
       <a href="/events" class="mobile-nav-link">Master Calendar</a>
       <a href="/dinner-mixers" class="mobile-nav-link">Regional Dinner Mixers</a>
       <a href="/virtual-mixers" class="mobile-nav-link">Virtual Mixers</a>
@@ -396,6 +404,7 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
         <div class="footer-nav-col">
           <h4 class="footer-nav-title">Engage</h4>
           <ul class="footer-nav-list">
+            <li><a href="/lead" style="color: #ce8924; font-weight: 600;">LEAD Summit Anaheim</a></li>
             <li><a href="/events">Events Calendar</a></li>
             <li><a href="/dinner-mixers">Regional Dinner Mixers</a></li>
             <li><a href="/ambassador-program">Ambassador Program</a></li>

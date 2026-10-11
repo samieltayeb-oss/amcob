@@ -1,0 +1,83 @@
+{
+  "title": "LEAD Summit Anaheim 2027",
+  "tagline": "The 48-Hour Reset for Muslim Entrepreneurs and Executives",
+  "dates": "March 26–28, 2027",
+  "location": "Anaheim, CA",
+  "seatCap": 300,
+  "hotelPrice": 550,
+  "ticketTiers": [
+    {
+      "id": 1,
+      "name": "Full Summit Pass (Early Bird)",
+      "price": 750,
+      "priceFormatted": "$750",
+      "badge": "Recommended",
+      "description": "Complete 3-day all-inclusive access to all keynote sessions, workshops, peer circles, and evening dining.",
+      "includes": [
+        "Full 3-day access (Friday 5:00 PM – Sunday 5:00 PM)",
+        "All keynote sessions, masterclasses, and executive panel breakouts",
+        "Complimentary Behavioral & Cognitive Leadership Assessment",
+        "Friday Welcome Dinner & Networking Reception",
+        "Saturday Executive Banquet Gala & Leadership Awards",
+        "Daily networking breakfasts and catered executive lunches",
+        "Access to the Commercial Expo and Founder Deal Lounge",
+        "Official LEAD Summit Anaheim delegate kit and workbook"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "One-Day Summit Pass",
+      "price": 500,
+      "priceFormatted": "$500",
+      "badge": "Flexible",
+      "description": "Single-day access for busy executives wishing to participate in key masterclasses and daytime networking.",
+      "includes": [
+        "Full single day summit access (Friday, Saturday, or Sunday)",
+        "All daytime keynote sessions and breakout tracks for that day",
+        "Catered lunch and daytime coffee/tea breaks",
+        "Access to the Commercial Expo hall",
+        "LEAD Summit delegate workbook"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Saturday Night Gala Dinner Only",
+      "price": 250,
+      "priceFormatted": "$250",
+      "badge": "Banquet Only",
+      "description": "Evening banquet pass for community leaders, partners, and spouses attending the flagship Saturday Gala.",
+      "includes": [
+        "Admission to the Saturday Night Executive Banquet & Awards Gala",
+        "Keynote evening address and leadership recognition ceremony",
+        "Halal gourmet dinner banquet seating",
+        "Evening executive mixer and deal-making lounge"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Why is LEAD Summit capped at exactly 300 seats?",
+      "a": "Most conferences pack thousands of people into massive auditoriums where high-impact conversations are impossible. AMCOB deliberately caps LEAD Summit at 300 verified founders, executives, and decision-makers to guarantee intimacy, authentic confidentiality, and high-value deal making."
+    },
+    {
+      "q": "What is the 48-Hour Reset?",
+      "a": "The summit is engineered around five tangible pillars: reconnecting you to your commercial and ethical purpose, sharpening your operational strategy, putting real capital and customers in front of you, providing a personal behavioral and cognitive assessment, and surrounding you with an enduring peer advisory board."
+    },
+    {
+      "q": "What does the Behavioral & Cognitive Assessment include?",
+      "a": "Every full summit attendee receives an advanced executive evaluation measuring cognitive problem-solving, behavioral decision-making under stress, and leadership archetype mapping, with actionable coaching on how to leverage your innate strengths."
+    },
+    {
+      "q": "Where will the event take place in Anaheim?",
+      "a": "LEAD Summit Anaheim takes place at a premier executive hotel and convention property in Anaheim, California. Registered delegates receive direct room block booking links ($550 discounted 3-night rate) upon ticket confirmation."
+    },
+    {
+      "q": "Are meals included with summit registration?",
+      "a": "Yes. Full Summit passes include Friday evening dinner reception, Saturday breakfast, lunch, and the evening Banquet Gala, as well as Sunday breakfast, lunch, and all day coffee and refreshment breaks. All food provided is strictly Halal certified."
+    },
+    {
+      "q": "Can non-AMCOB members attend?",
+      "a": "Yes. While AMCOB members receive priority registration and preferred seating, the summit welcomes all qualified business founders, executives, and aspiring leaders across North America."
+    }
+  ]
+}
