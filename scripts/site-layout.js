@@ -18,6 +18,8 @@ function esc(str) {
 
 // Master Layout Generator
 function renderLayout({ title, description, activeNav = '', breadcrumbs = [], content, extraHead = '', extraScripts = '', brandLogo, brandUrl, brandTitle, brandLogoWidth }) {
+  const isLeadPage = activeNav === 'lead' || brandUrl === '/lead' || (brandLogo && brandLogo.includes('lead'));
+
   const breadcrumbsHtml = breadcrumbs.length > 0 ? `
     <div class="breadcrumbs">
       <div class="container breadcrumbs-inner">
@@ -360,15 +362,56 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
     <div class="footer-dock-notch-wrap">
       <div class="footer-dock-notch">
         <div class="footer-notch-pill">
-          <span class="footer-notch-dot"></span>
-          <span>Allied Muslim Chamber of Business</span>
-          <span class="footer-notch-badge">Est. 2023</span>
+          <span class="footer-notch-dot"${isLeadPage ? ' style="background: #ce8924;"' : ''}></span>
+          <span>${isLeadPage ? 'LEAD Summit Anaheim' : 'Allied Muslim Chamber of Business'}</span>
+          <span class="footer-notch-badge"${isLeadPage ? ' style="background: rgba(206,137,36,0.22); color: #f59e0b; border-color: rgba(206,137,36,0.45);"' : ''}>${isLeadPage ? 'March 2027' : 'Est. 2023'}</span>
         </div>
       </div>
     </div>
 
     <div class="container footer-content-wrap">
       <div class="footer-main-grid">
+        ${isLeadPage ? `
+        <!-- Brand Column: LEAD Summit Flagship -->
+        <div class="footer-brand-showcase">
+          <a href="/lead" class="footer-brand-logo" title="LEAD Summit Anaheim 2027">
+            <img src="/assets/optimized/lead/lead-logo.svg" alt="LEAD Summit" width="180" height="54" style="object-fit: contain;">
+          </a>
+          <div class="footer-brand-badge" style="background: rgba(206,137,36,0.18); color: #f59e0b; border-color: rgba(206,137,36,0.4);">Flagship Annual Gathering</div>
+          
+          <h3 class="footer-headline">
+            <span class="footer-headline-primary">The 48-Hour Reset.</span>
+            <span class="footer-headline-secondary" style="color: #ce8924;">Engineered for Leaders.</span>
+          </h3>
+          
+          <p class="footer-brand-desc">
+            Three days. Exactly 300 seats. Connecting Muslim business leaders to strategic purpose, executive peer advisory circles, and curated commercial capital.
+          </p>
+
+          <div class="footer-brand-actions">
+            <a href="/lead/tickets" class="footer-cta-pill" style="background: linear-gradient(135deg, #e59e1b 0%, #ce8924 100%) !important;">
+              <span>Reserve Summit Passes</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/lead/sponsorship" class="footer-portal-link" style="color: rgba(255, 255, 255, 0.9);">
+              <span>Sponsor Packages &rarr;</span>
+            </a>
+          </div>
+
+          <div class="footer-contact-cluster">
+            <div class="footer-contact-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>JW Marriott Anaheim Resort &bull; March 26 to 28, 2027</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:info@amcob.org">info@amcob.org</a>
+              <span class="footer-sep">&bull;</span>
+              <a href="/lead/agenda">View 3-Day Agenda</a>
+            </div>
+          </div>
+        </div>
+        ` : `
         <!-- Brand Column -->
         <div class="footer-brand-showcase">
           <a href="/" class="footer-brand-logo" title="AMCOB Home">
@@ -408,7 +451,24 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
             </div>
           </div>
         </div>
+        `}
 
+        ${isLeadPage ? `
+        <!-- Summit Access Column -->
+        <div class="footer-nav-col footer-lead-col">
+          <h4 class="footer-nav-title" style="color: #f59e0b;">Summit Access</h4>
+          <ul class="footer-nav-list">
+            <li><a href="/lead" style="color: #f59e0b; font-weight: 600;">Summit Overview</a></li>
+            <li><a href="/lead/speakers">Keynote Speakers</a></li>
+            <li><a href="/lead/sponsorship">Sponsor Packages</a></li>
+            <li><a href="/lead/tickets">Reserve Passes (300 Seats)</a></li>
+            <li><a href="/lead/agenda">3-Day Agenda</a></li>
+            <li><a href="/lead/hotel">Hotel &amp; Travel</a></li>
+            <li><a href="/lead/houston">Houston Retrospective</a></li>
+            <li><a href="/lead/blog">Summit Articles</a></li>
+          </ul>
+        </div>
+        ` : `
         <!-- LEAD Summit Flagship Column -->
         <div class="footer-nav-col footer-lead-col">
           <div class="footer-lead-logo-wrap" style="margin-bottom: 0.85rem;">
@@ -432,6 +492,7 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
             <li><a href="/lead/blog">Summit Articles</a></li>
           </ul>
         </div>
+        `}
 
         <!-- Membership Column -->
         <div class="footer-nav-col">
@@ -486,8 +547,8 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
       <!-- Footer Bottom Row -->
       <div class="footer-bottom-row">
         <div class="footer-copy-text">
-          <p>&copy; ${new Date().getFullYear()} AMCOB | Allied Muslim Chamber of Business LLC. All Rights Reserved.</p>
-          <p class="footer-subtext">The institutional chamber uniting Muslim enterprise across North America.</p>
+          <p>&copy; ${new Date().getFullYear()} ${isLeadPage ? 'LEAD Summit | An AMCOB Flagship Initiative' : 'AMCOB | Allied Muslim Chamber of Business LLC'}. All Rights Reserved.</p>
+          <p class="footer-subtext">${isLeadPage ? 'The flagship annual convening uniting Muslim founders, executives, and capital across North America.' : 'The institutional chamber uniting Muslim enterprise across North America.'}</p>
         </div>
 
         <div class="footer-social-cluster">
@@ -499,9 +560,9 @@ function renderLayout({ title, description, activeNav = '', breadcrumbs = [], co
       </div>
     </div>
 
-    <!-- Supaste Brand Watermark: Original AMCOB Logo -->
+    <!-- Supaste Brand Watermark: Dynamic for LEAD vs AMCOB -->
     <div class="footer-watermark-wrap" aria-hidden="true">
-      <img src="/assets/optimized/logos/logo-watermark.webp" alt="" class="footer-watermark-logo" width="1200" height="336" loading="lazy">
+      <img src="${isLeadPage ? '/assets/optimized/lead/lead-logo.svg' : '/assets/optimized/logos/logo-watermark.webp'}" alt="" class="${isLeadPage ? 'footer-watermark-logo footer-watermark-lead' : 'footer-watermark-logo'}" width="${isLeadPage ? 1160 : 1200}" height="${isLeadPage ? 348 : 336}" loading="lazy">
     </div>
   </footer>
 

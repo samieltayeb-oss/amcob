@@ -124,6 +124,7 @@ async function capture() {
     await snapScrolled('http://127.0.0.1:8000/', 'verify_footer_lead_column.png', '.site-footer-imperial');
     await snapScrolled('http://127.0.0.1:8000/lead', 'verify_lead_for_everyone.png', '#for-everyone');
     await snapScrolled('http://127.0.0.1:8000/lead', 'verify_lead_expo.png', '#expo');
+    await snapScrolled('http://127.0.0.1:8000/lead', 'verify_lead_footer_watermark.png', '.footer-bottom-row');
 
   } finally {
     chrome.kill('SIGKILL');

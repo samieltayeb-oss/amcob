@@ -1096,6 +1096,13 @@ body {
   filter: grayscale(100%);
 }
 
+.footer-watermark-logo.footer-watermark-lead {
+  width: min(92%, 1050px);
+  max-width: 1100px;
+  opacity: 0.052;
+  filter: grayscale(100%);
+}
+
 .footer-watermark-text {
   font-family: var(--font-sans);
   font-size: clamp(80px, 17vw, 250px);
